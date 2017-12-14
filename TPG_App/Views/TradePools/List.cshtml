@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TPG_App.Models.TradePool>
+
+@{
+    ViewBag.Title = "ListTradePools";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListTradePools</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TradeType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TradeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstSettlementDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerInitials)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TradeType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TradeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstSettlementDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManagerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManagerInitials)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TradeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TradeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TradeID })
+        </td>
+    </tr>
+}
+
+</table>
