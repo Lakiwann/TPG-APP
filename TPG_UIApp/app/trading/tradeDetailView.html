@@ -1,0 +1,41 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <span style="font-size:large" class="col-md-2">Trade Detail</span>
+        <i class="glyphicon glyphicon-minus">  {{vm.trade.tradeName}}</i>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Type</td>
+                    <td>Name</td>
+                    <td>Settlement Date</td>
+                    <td>Manager Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{vm.trade.tradeID}}</td>
+                    <td>{{vm.trade.tradeType}}</td>
+                    <td>{{vm.trade.tradeName}}</td>
+                    <td>{{vm.trade.estSettlementDate | date}}</td>
+                    <td>{{vm.trade.managerName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-default"
+           ui-sref="trading"
+           style="width:80px">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Back
+        </a>
+        <!--<a class="btn btn-primary"
+           ui-sref="productEdit({productId: vm.product.productId})"
+           style="width:80px; margin-left:10px">
+            Edit
+        </a>-->
+    </div>
+</div>

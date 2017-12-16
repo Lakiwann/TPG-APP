@@ -109,6 +109,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\common\common.services.js" />
+    <Content Include="app\common\tradeResource.js" />
+    <Content Include="app\css\app.css" />
+    <Content Include="app\trading\tradeDetailCtrl.js" />
+    <Content Include="app\trading\tradeDetailView.html" />
+    <Content Include="app\trading\tradeEditCtrl.js" />
+    <Content Include="app\trading\tradeEditView.html" />
+    <Content Include="app\trading\tradeEditView2.html" />
+    <Content Include="app\trading\tradeListCtrl.js" />
+    <Content Include="app\trading\tradeListView.html" />
+    <Content Include="app\WelcomeView.html" />
+    <Content Include="content\angular-confirm.min.css" />
     <Content Include="content\bootstrap-theme.css" />
     <Content Include="content\bootstrap-theme.min.css" />
     <Content Include="content\bootstrap.css" />
@@ -117,6 +129,7 @@
     <Content Include="content\toastr.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.html" />
+    <Content Include="scripts\angular-confirm.js" />
     <Content Include="scripts\angular-mocks.js" />
     <Content Include="scripts\angular-resource.js" />
     <Content Include="scripts\angular-resource.min.js" />
@@ -142,8 +155,12 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\mask.js" />
+    <Content Include="scripts\mask.min.js" />
     <Content Include="scripts\toastr.js" />
     <Content Include="scripts\toastr.min.js" />
+    <Content Include="scripts\ui-bootstrap-tpls-2.5.0.js" />
+    <Content Include="scripts\ui-bootstrap-tpls-2.5.0.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

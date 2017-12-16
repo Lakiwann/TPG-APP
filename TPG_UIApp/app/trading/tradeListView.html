@@ -1,0 +1,34 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <span style="font-size:large" class="col-md-2">Trades List</span>
+        
+        <!--<button type="button" style="background-color:lightskyblue;font-style:normal;border-color:transparent"class="btn btn-default" ng-click="vm.open($event)"><i class="glyphicon glyphicon-plus"></i> New</button>-->
+        <a class="btn btn-primary" style="width:80px;border-color:transparent" ui-sref="tradeEdit({tradeId:0})"><i class="glyphicon glyphicon-plus"></i> New</a>
+        
+    </div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            <thead class="thead-dark">
+                <tr>
+                    <td>Id</td>
+                    <td>Type</td>
+                    <td>Name</td>
+                    <td>Settlement Date</td>
+                    <td>Manager Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="trade in vm.trades">
+                    <td>{{trade.tradeID}}</td>
+                    <td>{{trade.tradeType}}</td>
+                    <td><a ui-sref="tradeDetail({tradeId:trade.tradeID})">{{trade.tradeName}}</a></td>
+                    <td>{{trade.estSettlementDate | date}}</td>
+                    <td>{{trade.managerName}}</td>
+                    <td>
+                        <a class="btn btn-primary" style="width:80px" ui-sref="tradeEdit({tradeId:trade.tradeID})">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

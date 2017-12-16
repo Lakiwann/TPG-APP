@@ -8,11 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using TPG_App.Models;
 
 namespace TPG_App.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class TradePoolsController : ApiController
     {
         private TradeModels db = new TradeModels();
@@ -80,7 +82,17 @@ namespace TPG_App.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.TradePools.Add(tradePool);
+            if (tradePool.TradeID > 1 && db.TradePools.Where(p => (p.TradeID == tradePool.TradeID && p.TradeName == tradePool.TradeName)).Count() > 0)
+            {
+                //If the TradeId of the incoming entry matches an existing TradePool ID and name then update
+                db.Entry(tradePool).State = EntityState.Modified;
+            }
+            else
+            {
+                //Otherwise add the new
+                db.TradePools.Add(tradePool);
+            }
+
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = tradePool.TradeID }, tradePool);

@@ -4,9 +4,40 @@
     <title>Palisades Group Application Dashboard</title>
 	<meta charset="utf-8" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="app/css/app.css" rel="stylesheet" />
     <link href="Content/toastr.css" rel="stylesheet" />
+    <link href="content/angular-confirm.min.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-app="palisadesDashboard">
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <a class="navbar-brand" ui-sref="Home">Palisades Group Application Dashboard</a>
+            <div class="navbar-header">
+                <button type="button"
+                        class="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a ui-sref="trading">Trading</a></li>
+                    <!--<li><a ui-sref="productEdit.info({productId:0})"><i class="glyphicon glyphicon-plus"></i>Add Product</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- this is a Bootstrap container-->
+        <div data-ui-view>
+        </div> <!-- ui-view is to setup the routing.  If it is not recognized use 'data-ui-view'-->
+    </div>
 
     <!--Library Scripts-->
     <script src="scripts/jquery-1.9.1.js"></script>
@@ -14,15 +45,21 @@
     <script src="scripts/angular-resource.js"></script>
     <script src="scripts/angular-ui-router.js"></script>
     <script src="scripts/bootstrap.js"></script>
-    <!--<script src="scripts/date.js"></script>-->
+    <script src="scripts/mask.js"></script>
+    <script src="scripts/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="scripts/toastr.js"></script>
+    <script src="scripts/angular-confirm.js"></script>
 
     <!--Application Script-->
     <script src="app/app.js"></script>
 
     <!--Common Services-->
-
-    <!--Controllers-->
-
+    <script src="app/common/common.services.js"></script>
+    <script src="app/common/tradeResource.js"></script>
+    
+     <!--Controllers-->
+    <script src="app/trading/tradeListCtrl.js"></script>
+    <script src="app/trading/tradeEditCtrl.js"></script>
+    <script src="app/trading/tradeDetailCtrl.js"></script>
 </body>
 </html>
