@@ -1,13 +1,18 @@
 ﻿(function () {
     "use strict";
     var app = angular.module("palisadesDashboard");
-    app.controller("tradeEditCtrl", ["trade", "tradeResource", "$state", "$scope", "$ngConfirm", "$stateParams", TradeEditCtrl]);
+    app.controller("tradeEditCtrl", ["trade", "tradeResource", "tradeStageResource", "$state", "$scope", "$ngConfirm", "$stateParams", TradeEditCtrl]);
 
-    function TradeEditCtrl(trade, tradeResource, $state, $scope, $ngConfirm, $stateParams) {
+    function TradeEditCtrl(trade, tradeResource, tradeStageResource, $state, $scope, $ngConfirm, $stateParams) {
         
         var vm = this;
         vm.trade = trade;
+        vm.availableStageOptions = [];
         
+        tradeStageResource.query(function (data) {
+            vm.availableStageOptions = data;
+        });
+
         if (vm.trade && vm.trade.tradeID) {
             vm.title = "Edit:" + vm.trade.tradeName;
             vm.datePickerDate = new Date(vm.trade.estSettlementDate);
@@ -16,6 +21,14 @@
             vm.title = "New Trade";
             //vm.trade = { tradeID: 0, tradeName: '', estSettlementDate: '', managerName: '', managerInitials: '' };
             vm.newTrade = true;
+        }
+
+        vm.selectedTradeStage = function (stageID) {
+            if(stageID == vm.trade.tradePoolStages.slice(-1)[0].lU_TradeStage.stageID) {
+                vm.isValidTradeStageSelected = true;
+                return true;
+            }
+            return false;
         }
 
         //Calendar event function

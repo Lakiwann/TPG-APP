@@ -14,6 +14,15 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="stageName" class="col-md-2 control-label">Stage</label>
+            <div class="col-md-4">
+                <select class="form-control"  name="stageName" >
+                    <option value="0">-- Please select a stage option --</option>
+                    <option ng-repeat="opt in vm.availableStageOptions" value="opt.stageID" ng-selected="vm.selectedTradeStage(opt.stageID)">{{opt.stageName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="settlementDate" class="col-md-2 control-label">Settlement Date</label>
             <div class="col-md-4">
                 <p class="input-group">
@@ -43,7 +52,7 @@
         <div class="form-group">
             <div class="col-md-4 col-md-offset-2">
                 <span>
-                    <button class="btn btn-primary" type="submit" style="width:80px;margin-right:10px" ng-click="vm.submit(tradeEditForm.$valid)" ng-disabled="tradeEditForm.$invalid || tradeEditForm.$pristine">Save</button>
+                    <button class="btn btn-primary" type="submit" style="width:80px;margin-right:10px" ng-click="vm.submit(tradeEditForm.$valid)" ng-disabled="!vm.isValidTradeStageSelected || tradeEditForm.$invalid || tradeEditForm.$pristine">Save</button>
                 </span>
                 <span>
                     <button id="deleteBtn" name="deleteBtn" class="btn btn-warning" type="submit" style="width:80px;margin-right:10px" ng-click="vm.deleteTrade(vm.trade)" ng-disabled="!tradeEditForm.$pristine">Delete</button>

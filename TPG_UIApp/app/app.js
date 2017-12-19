@@ -57,7 +57,7 @@
             //     templateUrl: "/app/products/productEditTagsView.html",
             // })
             .state("tradeDetail", {
-                url: "/trading/Detail/:tradeId",
+                url: "/trading/detail/:tradeId",
                 templateUrl: "/app/trading/tradeDetailView.html",
                 controller: "tradeDetailCtrl as vm",
 

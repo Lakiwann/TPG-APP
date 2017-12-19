@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 using TPG_App.Models;
 
 namespace TPG_App.Controllers
@@ -69,6 +70,39 @@ namespace TPG_App.Controllers
                     throw;
                 }
             }
+
+            //Update the TradePoolStages. 
+            //Only update the trade's last stage, and/or the sequentially subsequent ones
+            //For example if the last stage for the trade is 2 and the request sends the stages 1,2,3,5 (- note the stage 4 is missing), 
+            //stage 2 will be updated and stage 3 will be added.  
+            //There will be no entries added for stage 4 & 5
+
+            var tpsCtrl = new TradePoolStagesController();
+
+            var tpCurrentStage = tpsCtrl.GetTradePoolStages().Where(s => s.TradeID == tradePool.TradeID).OrderByDescending(o => o.StageID).First();
+            int nextStageId = tpCurrentStage != null ? tpCurrentStage.StageID + 1 : 1;
+            foreach (var newTradePoolStage in tradePool.TradePoolStages.OrderBy(s => s.StageID))
+            {
+                if (newTradePoolStage.StageID < tpCurrentStage.StageID)
+                    continue;
+
+                newTradePoolStage.TradeID = tradePool.TradeID;
+                if (newTradePoolStage.StageID == tpCurrentStage.StageID)
+                {
+                    
+                    tpCurrentStage.TradeStageDate = newTradePoolStage.TradeStageDate;
+                    var result = await tpsCtrl.PutTradePoolStage(tpCurrentStage.ID, tpCurrentStage);
+                    continue;
+                }
+
+                
+                if(newTradePoolStage.StageID == nextStageId)
+                {
+                    var result = await tpsCtrl.PostTradePoolStage(newTradePoolStage);
+                    nextStageId++;
+                }
+            }
+
 
             return StatusCode(HttpStatusCode.NoContent);
         }

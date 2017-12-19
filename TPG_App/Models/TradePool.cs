@@ -9,6 +9,12 @@ namespace TPG_App.Models
     [Table("Trd.TradePool")]
     public partial class TradePool
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TradePool()
+        {
+            TradePoolStages = new HashSet<TradePoolStage>();
+        }
+
         [Key]
         public int TradeID { get; set; }
 
@@ -28,5 +34,8 @@ namespace TPG_App.Models
 
         [StringLength(3)]
         public string ManagerInitials { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TradePoolStage> TradePoolStages { get; set; }
     }
 }

@@ -111,6 +111,7 @@
     <Content Include="app\app.js" />
     <Content Include="app\common\common.services.js" />
     <Content Include="app\common\tradeResource.js" />
+    <Content Include="app\common\tradeStageResource.js" />
     <Content Include="app\css\app.css" />
     <Content Include="app\trading\tradeDetailCtrl.js" />
     <Content Include="app\trading\tradeDetailView.html" />

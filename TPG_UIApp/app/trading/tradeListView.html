@@ -13,6 +13,7 @@
                     <td>Id</td>
                     <td>Type</td>
                     <td>Name</td>
+                    <td>Stage</td>
                     <td>Settlement Date</td>
                     <td>Manager Name</td>
                 </tr>
@@ -22,6 +23,7 @@
                     <td>{{trade.tradeID}}</td>
                     <td>{{trade.tradeType}}</td>
                     <td><a ui-sref="tradeDetail({tradeId:trade.tradeID})">{{trade.tradeName}}</a></td>
+                    <td>{{trade.tradePoolStages.slice(-1)[0].lU_TradeStage.stageName}}</td>
                     <td>{{trade.estSettlementDate | date}}</td>
                     <td>{{trade.managerName}}</td>
                     <td>

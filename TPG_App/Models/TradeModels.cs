@@ -32,5 +32,9 @@ namespace TPG_App.Models
                 .Property(e => e.ManagerInitials)
                 .IsUnicode(false);
         }
+
+        public System.Data.Entity.DbSet<TPG_App.Models.TradePoolStage> TradePoolStages { get; set; }
+
+        public System.Data.Entity.DbSet<TPG_App.Models.LU_TradeStage> LU_TradeStages { get; set; }
     }
 }
