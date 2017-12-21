@@ -79,15 +79,17 @@ namespace TPG_App.Controllers
 
             var tpsCtrl = new TradePoolStagesController();
 
-            var tpCurrentStage = tpsCtrl.GetTradePoolStages().Where(s => s.TradeID == tradePool.TradeID).OrderByDescending(o => o.StageID).First();
+            var tpCurrentStages = tpsCtrl.GetTradePoolStages().Where(s => s.TradeID == tradePool.TradeID).OrderByDescending(o => o.StageID);
+            
+            TradePoolStage tpCurrentStage = tpCurrentStages.Count() == 0 ? null : tpCurrentStages.First();
             int nextStageId = tpCurrentStage != null ? tpCurrentStage.StageID + 1 : 1;
             foreach (var newTradePoolStage in tradePool.TradePoolStages.OrderBy(s => s.StageID))
             {
-                if (newTradePoolStage.StageID < tpCurrentStage.StageID)
+                if ((tpCurrentStage != null)&&(newTradePoolStage.StageID < tpCurrentStage.StageID))
                     continue;
 
                 newTradePoolStage.TradeID = tradePool.TradeID;
-                if (newTradePoolStage.StageID == tpCurrentStage.StageID)
+                if ((tpCurrentStage != null) && (newTradePoolStage.StageID == tpCurrentStage.StageID))
                 {
                     
                     tpCurrentStage.TradeStageDate = newTradePoolStage.TradeStageDate;

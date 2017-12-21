@@ -4,6 +4,8 @@
     app.factory("tradeResource", ["$resource", TradeResource]);
 
     function TradeResource($resource) {
-        return $resource("http://localhost:3666/" + "api/tradepools/:Id");
+        return $resource("http://localhost:3666/" + "api/tradepools/:Id", null, {
+            'update': { method: 'PUT' }
+        });
     }
 }());

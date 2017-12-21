@@ -11,6 +11,7 @@
                     <td>Type</td>
                     <td>Name</td>
                     <td>Settlement Date</td>
+                    <td class="col-md-4">Stage</td>
                     <td>Manager Name</td>
                 </tr>
             </thead>
@@ -20,6 +21,14 @@
                     <td>{{vm.trade.tradeType}}</td>
                     <td>{{vm.trade.tradeName}}</td>
                     <td>{{vm.trade.estSettlementDate | date}}</td>
+                    <td>
+                        <a href="" ng-click="vm.ToggleDropDown()">{{vm.trade.tradePoolStages.reverse()[0].lU_TradeStage.stageName}}</a>
+                        <div id="stage+{{vm.trade.tradeID}}" ng-show="vm.toggleState" style="z-index:1000" class="dropdown-menu-right">
+                            <ul ng-repeat="tradePoolStage in vm.trade.tradePoolStages.reverse()" style="font-size:smaller">
+                                <li>{{tradePoolStage.lU_TradeStage.stageName}} - {{tradePoolStage.tradeStageDate | date}}</li>
+                            </ul>
+                        </div>
+                    </td>
                     <td>{{vm.trade.managerName}}</td>
                 </tr>
             </tbody>

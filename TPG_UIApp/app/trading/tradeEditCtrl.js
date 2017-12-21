@@ -8,6 +8,21 @@
         var vm = this;
         vm.trade = trade;
         vm.availableStageOptions = [];
+        vm.selectedStageDropdownParams = "";
+        vm.selectedStageDate = "";
+        vm.selectedStage = "";
+        if (vm.trade && vm.trade.tradePoolStages) {
+            vm.selectedStage = vm.trade.tradePoolStages.slice(-1)[0] ? vm.trade.tradePoolStages.slice(-1)[0].lU_TradeStage : "";
+        }
+       // vm.selectedStage = vm.trade.tradePoolStages.slice(-1)[0] ? vm.trade.tradePoolStages.slice(-1)[0].lU_TradeStage : "";
+       
+        //vm.selectedStageDropdownParams = "{name: "+ vm.selectedStage.stageName + ", value: " + vm.selectedStage.stageID +"}";
+        if (vm.selectedStage) {
+            vm.selectedStageDropdownParams = vm.selectedStage.stageID;
+            //alert(vm.selectedStage.trade.tradePoolStages.slice(-1)[0].tradeStageDate);
+            vm.selectedStageDate = new Date(vm.trade.tradePoolStages.slice(-1)[0].tradeStageDate);
+        }
+        
         
         tradeStageResource.query(function (data) {
             vm.availableStageOptions = data;
@@ -19,16 +34,7 @@
         }
         else {
             vm.title = "New Trade";
-            //vm.trade = { tradeID: 0, tradeName: '', estSettlementDate: '', managerName: '', managerInitials: '' };
             vm.newTrade = true;
-        }
-
-        vm.selectedTradeStage = function (stageID) {
-            if(stageID == vm.trade.tradePoolStages.slice(-1)[0].lU_TradeStage.stageID) {
-                vm.isValidTradeStageSelected = true;
-                return true;
-            }
-            return false;
         }
 
         //Calendar event function
@@ -37,6 +43,14 @@
             $event.stopPropagation();
 
             vm.opened = !vm.opened;
+        };
+
+        //Calendar event function
+        vm.open2 = function ($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            vm.opened2 = !vm.opened2;
         };
 
         vm.submit = function () {
@@ -48,14 +62,37 @@
                 vm.trade.tradeType = "Sale";
                 vm.trade = tradeResource.save(vm.trade);
                 vm.title = "Edit:" + vm.trade.tradeName;
+               
             }
             else {
-                vm.trade.$save(function (data) {
-
-                });
+                var today = new Date();
+                var enteredStageDate = monthNames[vm.selectedStageDate.getMonth()] + '/' + vm.selectedStageDate.getDate() + '/' + vm.selectedStageDate.getFullYear();
+                //If the stage selection's stage id is greater than the current stageId for the trade then create a new tradePoolStage
+                if ((vm.selectedStageDropdownParams != "") && ((vm.selectedStage == "") || (vm.selectedStageDropdownParams > vm.selectedStage.stageID))) {
+                    vm.trade.tradePoolStages.push(
+                        {
+                            'tradeID': vm.trade.tradeID,
+                            'stageID': vm.selectedStageDropdownParams,
+                            'tradeStageDate': enteredStageDate
+                        })
+                }
+                //If the stage selection's stage id is the same as the current stage id, then only the stage date may have been changed by the user so update the stage date
+                if ((vm.selectedStageDropdownParams != "") && ((vm.selectedStage != ""))) {
+                    //vm.trade.tradePoolStages.slice(-1)[0].tradeStageDate = enteredStageDate;
+                    for (var i = 0; i < vm.trade.tradePoolStages.length; i++) {
+                        if(vm.trade.tradePoolStages[i].stageID == vm.selectedStageDropdownParams)
+                        {
+                            vm.trade.tradePoolStages[i].tradeStageDate = enteredStageDate;
+                        }
+                    }
+                }
+                tradeResource.update({ Id: vm.trade.tradeID }, vm.trade);
+                //Reload the trade information to get the tradePoolStages with the DB generated IDs
+                //vm.trade = tradeResource.get({ Id: vm.trade.tradeID }).$promise;
             }
             toastr.success("Save Successful");
-            $scope.tradeEditForm.$pristine = true;
+            //$scope.tradeEditForm.$pristine = true;
+            $state.go('trading');
 
         }
 

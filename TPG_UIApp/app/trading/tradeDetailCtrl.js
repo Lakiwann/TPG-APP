@@ -7,6 +7,12 @@
 
         var vm = this;
         vm.trade = trade;
+
+        vm.toggleState = false;
+
+        vm.ToggleDropDown = function () {
+            vm.toggleState = !vm.toggleState;
+        }
     }
 }
 ());
