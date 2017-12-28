@@ -10,17 +10,20 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
+using System.Web.Http.OData;
 using System.Web.Http.Results;
 using TPG_App.Models;
 
 namespace TPG_App.Controllers
 {
     [EnableCors("*", "*", "*")]
+    [RoutePrefix("api/TradePools")]
     public class TradePoolsController : ApiController
     {
         private TradeModels db = new TradeModels();
 
         // GET: api/TradePools
+        [EnableQuery]
         public IQueryable<TradePool> GetTradePools()
         {
             return db.TradePools;
@@ -38,6 +41,16 @@ namespace TPG_App.Controllers
 
             return Ok(tradePool);
         }
+
+        //GET: api/TradePools/5/tradePoolStages/1
+        [Route("{id:int}/stages")]
+        [EnableQuery]
+        public IQueryable<TradePoolStage> GetTradePoolStages(int id)
+        {
+            var tpsCtrl = new TradePoolStagesController();
+            return tpsCtrl.GetTradePoolStages().Where(s => s.TradeID == id);
+        }
+
 
         // PUT: api/TradePools/5
         [ResponseType(typeof(void))]

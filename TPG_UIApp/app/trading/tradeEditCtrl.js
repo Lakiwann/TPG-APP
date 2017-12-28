@@ -6,6 +6,8 @@
     function TradeEditCtrl(trade, tradeResource, tradeStageResource, $state, $scope, $ngConfirm, $stateParams) {
         
         var vm = this;
+       // vm.data = [{ 'id': '1', 'name': { 'first': 'Lakshan', 'last': 'W' }, 'address': '23903 Brio Ct', 'price': '23', 'isActive': '1' }, { 'id': '2', 'name': { 'first': 'Aparna', 'last': 'W' }, 'address': '23903 Brio Ct', 'price': '23', 'isActive': '0' }];
+       // alert(vm.data[0].id + "|" + vm.data[0].address + vm.data[1].id + "|" + vm.data[1].address);
         vm.trade = trade;
         vm.availableStageOptions = [];
         vm.selectedStageDropdownParams = "";

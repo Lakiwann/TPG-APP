@@ -96,6 +96,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="content\handsontable.full.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -105,11 +106,9 @@
     <Content Include="scripts\esm\popper-utils.min.js" />
     <Content Include="scripts\esm\popper.js" />
     <Content Include="scripts\esm\popper.min.js" />
+    <Content Include="scripts\handsontable.full.js" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
-    <Content Include="scripts\popper-utils.js" />
-    <Content Include="scripts\popper-utils.min.js" />
-    <Content Include="scripts\popper.js" />
-    <Content Include="scripts\popper.min.js" />
+    <Content Include="scripts\ngHandsontable.js" />
     <Content Include="scripts\umd\popper-utils.js" />
     <Content Include="scripts\umd\popper-utils.min.js" />
     <Content Include="scripts\umd\popper.js" />
@@ -119,10 +118,6 @@
     <Content Include="scripts\umd\popper-utils.min.js.map" />
     <Content Include="scripts\umd\popper-utils.js.map" />
     <Content Include="scripts\README.md" />
-    <Content Include="scripts\popper.min.js.map" />
-    <Content Include="scripts\popper.js.map" />
-    <Content Include="scripts\popper-utils.min.js.map" />
-    <Content Include="scripts\popper-utils.js.map" />
     <Content Include="scripts\esm\popper.min.js.map" />
     <Content Include="scripts\esm\popper.js.map" />
     <Content Include="scripts\esm\popper-utils.min.js.map" />
@@ -193,9 +188,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

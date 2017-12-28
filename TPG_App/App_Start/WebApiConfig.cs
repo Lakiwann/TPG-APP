@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.OData.Extensions;
 
 namespace TPG_App
 {
@@ -18,6 +19,8 @@ namespace TPG_App
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             config.EnableCors();
+            config.AddODataQueryFilter();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
