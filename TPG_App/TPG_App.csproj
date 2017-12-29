@@ -271,6 +271,7 @@
     <Compile Include="Common\UploadMultipartFormProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TradeAssetsController.cs" />
     <Compile Include="Controllers\TradePoolsController.cs" />
     <Compile Include="Controllers\TradePoolStagesController.cs" />
     <Compile Include="Controllers\TradeStageController.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LU_TradeStage.cs" />
+    <Compile Include="Models\TradeAsset.cs" />
     <Compile Include="Models\TradeModels.cs" />
     <Compile Include="Models\TradePool.cs" />
     <Compile Include="Models\TradePoolStage.cs" />
