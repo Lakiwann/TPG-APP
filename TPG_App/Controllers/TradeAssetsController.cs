@@ -8,11 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using TPG_App.Models;
 
 namespace TPG_App.Controllers
 {
+    [EnableCors("*", "*", "*")]
     [RoutePrefix("api/TradeAssets")]
     public class TradeAssetsController : ApiController
     {

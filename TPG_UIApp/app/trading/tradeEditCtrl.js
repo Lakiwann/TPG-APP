@@ -1,9 +1,9 @@
 ﻿(function () {
     "use strict";
     var app = angular.module("palisadesDashboard");
-    app.controller("tradeEditCtrl", ["trade", "tradeResource", "tradeStageResource", "$state", "$scope", "$ngConfirm", "$stateParams", TradeEditCtrl]);
+    app.controller("tradeEditCtrl", ["trade", "tradeResource", "tradeStageResource", "$state", "$scope", "$ngConfirm", "$stateParams", "FileUploader", "tradeTapeResource", TradeEditCtrl]);
 
-    function TradeEditCtrl(trade, tradeResource, tradeStageResource, $state, $scope, $ngConfirm, $stateParams) {
+    function TradeEditCtrl(trade, tradeResource, tradeStageResource, $state, $scope, $ngConfirm, $stateParams,  FileUploader, tradeTapeResource) {
         
         var vm = this;
        // vm.data = [{ 'id': '1', 'name': { 'first': 'Lakshan', 'last': 'W' }, 'address': '23903 Brio Ct', 'price': '23', 'isActive': '1' }, { 'id': '2', 'name': { 'first': 'Aparna', 'last': 'W' }, 'address': '23903 Brio Ct', 'price': '23', 'isActive': '0' }];
@@ -13,6 +13,37 @@
         vm.selectedStageDropdownParams = "";
         vm.selectedStageDate = "";
         vm.selectedStage = "";
+
+        $scope.uploader = new FileUploader();
+        $scope.uploader.url = "http://localhost:3666/" + "api/tradetapes";
+        $scope.uploader.onBeforeUploadItem = function (fileItem) {
+            fileItem.formData.push({ TradeID: vm.trade.tradeID });
+            fileItem.formData.push({ Name: vm.trade.tradeName });
+            fileItem.formData.push({ Description: 'Desc' });
+        };
+
+        $scope.uploader.onCompleteAll = function () {
+            toastr.success("File uploaded successfully");
+            $scope.uploader.clearQueue();
+            tradeTapeResource.query({ tradefilter: "$filter=TradeID eq " + vm.trade.tradeID }, function (data) {
+                vm.tradeTape = data[0];
+                toastr.warning("File being imported....");
+                tradeTapeResource.importtape({id: vm.tradeTape.tapeID}, function(data) {
+                    toastr.success("File successfully imported!");
+                    var newdate = new Date();
+                    //Change the Pool stage from 'Pool Identified' to 'Out for Bid'
+                    vm.trade.tradePoolStages.push(
+                        {
+                            'tradeID': vm.trade.tradeID,
+                            'stageID': vm.selectedStageDropdownParams + 1,
+                            'tradeStageDate': (newdate.getMonth() + 1) + "/" + newdate.getDate() + "/" + newdate.getFullYear()
+                        })
+                    tradeResource.update({ Id: vm.trade.tradeID }, vm.trade);
+                    $state.go('trading');
+                })
+            })
+        }
+
         if (vm.trade && vm.trade.tradePoolStages) {
             vm.selectedStage = vm.trade.tradePoolStages.slice(-1)[0] ? vm.trade.tradePoolStages.slice(-1)[0].lU_TradeStage : "";
         }

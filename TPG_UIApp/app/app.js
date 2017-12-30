@@ -6,7 +6,10 @@
                                                     , "ui.router"
                                                     , "ui.mask"
                                                     , "ui.bootstrap",
-                                                    , "cp.ngConfirm"]);
+                                                    , "cp.ngConfirm"
+                                                    , "angularFileUpload"
+                                                    , "ngTouch"
+                                                    , "ui.grid"]);
 
     app.config(['$locationProvider',
          function ($locationProvider) {

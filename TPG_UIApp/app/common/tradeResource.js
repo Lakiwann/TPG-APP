@@ -5,7 +5,9 @@
 
     function TradeResource($resource) {
         return $resource("http://localhost:3666/" + "api/tradepools/:Id", null, {
-            'update': { method: 'PUT' }
+            'update': {
+                method: 'PUT'
+            }
         });
     }
 }());
