@@ -96,6 +96,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\common\IframeModal.js" />
+    <Content Include="app\common\IframeModalService.js" />
     <Content Include="app\common\tradeAssetResource.js" />
     <Content Include="app\common\tradeTapeResource.js" />
     <Content Include="content\handsontable.full.css" />

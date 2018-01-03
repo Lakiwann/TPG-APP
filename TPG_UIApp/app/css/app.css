@@ -36,3 +36,58 @@ form legend {
     color: #fff;
 }
 
+.modal {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:9990;
+    display:none;
+}
+.modal-backdrop {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1;
+    background-color:#000;
+    opacity:0.8;
+}
+.modal-stretch {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 3;
+}
+.modal-stretch .header {
+    background-color: #005daa;
+}
+.modal-stretch .content {
+    background-color: #fff;
+}
+.modal-container {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:9999;
+    background-color: #fff;
+}
+.modal-container button {
+  position: absolute;
+  top: -30px;
+  right: 0;
+}
+.modal-container iframe {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    z-index: 2;
+}
+.modal-content {
+    z-index:9999;
+    padding: 5px;
+}

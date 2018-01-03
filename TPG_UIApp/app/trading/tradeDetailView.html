@@ -33,7 +33,13 @@
                 </tr>
             </tbody>
         </table>
-        <div class="ui-grid" ui-grid="{data: vm.tradeAssets}" ></div>
+        <!--<div class="ui-grid" ui-grid="{data: vm.tradeAssets}" ></div>-->
+        <div>
+            <!--<iframe width="500" height="200" src="https://palisadesgroup-my.sharepoint.com/:x:/r/personal/lakshan_wannakuwatte_palisades_us_com/_layouts/15/WopiFrame.aspx?sourcedoc=%7BB18B8F4E-3C5D-4670-823F-280E1E0B3907%7D&file=TradeCreationData.csv&action=default&action=embedview&wdbipreview=true"></iframe>-->
+            <!--<iframe width="500" height="200" ng-src="{vm.tradeFileUrl}"></iframe>-->
+            <button class="btn btn-primary" ng-click="showModal()">Trade Details</button>
+            <iframe-modal></iframe-modal>
+        </div>
     </div>
    
 
