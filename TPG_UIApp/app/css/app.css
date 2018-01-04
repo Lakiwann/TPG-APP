@@ -36,6 +36,11 @@ form legend {
     color: #fff;
 }
 
+.grid {
+    width: 95%;
+    height: 250px;
+}
+
 .modal {
     position:fixed;
     top:0;

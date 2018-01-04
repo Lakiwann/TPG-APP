@@ -4,10 +4,20 @@
     app.factory("tradeResource", ["$resource", TradeResource]);
 
     function TradeResource($resource) {
-        return $resource("http://localhost:3666/" + "api/tradepools/:Id", null, {
-            'update': {
-                method: 'PUT'
-            }
-        });
+        return $resource("http://localhost:3666/" + "api/tradepools/:Id",
+            {tradeId:'@tradeId'}, //Parameters that can be passed into the resouce.  They can be used in the other resource methods (for example in the 'summary' method below)
+            {
+                'update': {
+                    method: 'PUT'
+                },
+                'getsummary': {
+                    method: 'GET',
+                    url: "http://localhost:3666/" + "api/tradepools/:tradeId/summary"
+                },
+                'getassetsummary': {
+                    method: 'GET',
+                    url: "http://localhost:3666/" + "api/tradepools/:tradeId/assetsummary"
+                }
+            });
     }
 }());

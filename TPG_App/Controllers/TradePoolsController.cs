@@ -51,7 +51,65 @@ namespace TPG_App.Controllers
             return tpsCtrl.GetTradePoolStages().Where(s => s.TradeID == id);
         }
 
+        //GET: api/TradePools/5/Summary
+        [Route("{id:int}/summary")]
+        [ResponseType(typeof(TradePoolHighLevelSummary))]
+        public async Task<IHttpActionResult> GetTradePoolSummary(int id)
+        {
+            TradePool tradePool = await db.TradePools.FindAsync(id);
+            if (tradePool == null)
+            {
+                return NotFound();
+            }
 
+            List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == id).ToListAsync();
+            
+            TradePoolHighLevelSummary poolSummary = assets == null || assets.Count == 0 ?
+                new TradePoolHighLevelSummary(id) { TotalCount = 0, TotalDebt = 0, TotalPurchasePrice = 0, TotalReprices = 0, TotalKicks = 0, TotalPIFs = 0, TotalTrailingDocs = 0 } :
+                new TradePoolHighLevelSummary(id)
+                {
+                    TotalCount = assets.Count,
+                    TotalDebt = assets.Sum(a => a.CurrentBalance),
+                    TotalPurchasePrice = 0,
+                    TotalReprices = 0,
+                    TotalKicks = 0,
+                    TotalPIFs = 0,
+                    TotalTrailingDocs = 0
+                };
+
+            return Ok(poolSummary);
+        }
+        //GET: api/TradePools/5/Summary
+        [Route("{id:int}/assetsummary")]
+        [ResponseType(typeof(TradePoolAssetsSummary))]
+        public async Task<IHttpActionResult> GetTradePoolAssetSummary(int id)
+        {
+            TradePool tradePool = await db.TradePools.FindAsync(id);
+            if (tradePool == null)
+            {
+                return NotFound();
+            }
+
+            List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == id).OrderBy(o => o.AssetID).ToListAsync();
+
+            TradePoolAssetsSummary poolAssetsSummary = new TradePoolAssetsSummary(id);
+            foreach(var asset in assets)
+            {
+                AssetSummary assetSummary = new AssetSummary()
+                {
+                    AssetID = asset.AssetID,
+                    InOutStatus = "IN",
+                    NumberOfIssues = 0,
+                    TotalRepriceAmount = 0,
+                    OriginalPrice = asset.OriginalBalance,
+                    CurrentPrice = asset.CurrentBalance
+                };
+
+                poolAssetsSummary.AssetSummaries.Add(assetSummary);
+            }
+
+            return Ok(poolAssetsSummary);
+        }
         // PUT: api/TradePools/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutTradePool(int id, TradePool tradePool)

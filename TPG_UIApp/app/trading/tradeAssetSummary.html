@@ -1,0 +1,48 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <span style="font-size:large" class="col-md-4">
+            Trade Asset Summary -
+        </span>
+        <span style="font-size:large">[Asset ID:  {{vm.tradeAsset.assetID}}]</span>
+
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Trade Id</th>
+                    <th scope="col">Current Bal</th>
+                    <th scope="col">BPO</th>
+                    <th scope="col">Original Prc</th>
+                    <th scope="col">Current Prc</th>
+                    <th scope="col">Prod. Type</th>
+                    <th scope="col">Prop. Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a ui-sref="tradeDetail({tradeId:{{vm.tradeAsset.tradeID}}})">{{vm.tradeAsset.tradeID}}</a></td>
+                    <td>{{vm.tradeAsset.currentBalance | currency}}</td>
+                    <td>{{vm.tradeAsset.bpo}}</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{vm.tradeAsset.prodType}}</td>
+                    <td>{{vm.tradeAsset.propType}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    <div class="panel-footer">
+        <a class="btn btn-primary"
+           ui-sref="trading"
+           style="width:120px">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Trades List
+        </a>
+        <!--<a class="btn btn-primary"
+           ui-sref="productEdit({productId: vm.product.productId})"
+           style="width:80px; margin-left:10px">
+            Edit
+        </a>-->
+    </div>
+</div>

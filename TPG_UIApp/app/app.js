@@ -9,7 +9,10 @@
                                                     , "cp.ngConfirm"
                                                     , "angularFileUpload"
                                                     , "ngTouch"
-                                                    , "ui.grid"]);
+                                                    , "ui.grid"
+                                                    , "ui.grid.pagination"
+                                                    , "ui.grid.autoResize"
+                                                    ]);
 
     app.config(['$locationProvider',
          function ($locationProvider) {
@@ -47,6 +50,7 @@
                 }
                
             })
+            
             //.state("productEdit.info", {
             //    url: "/info",
             //    templateUrl: "/app/products/productEditInfoView.html",
@@ -65,14 +69,28 @@
                 controller: "tradeDetailCtrl as vm",
 
                 resolve: {
-                    productResource: "tradeResource",
+                    tradeResource: "tradeResource",
                     trade: function (tradeResource, $stateParams) {
                         var tradeId = $stateParams.tradeId;
                         return tradeResource.get({ Id: tradeId }).$promise;
                     }
                 }
             })
+            .state("tradeAsset",
+            {
+                url: "/trading/asset/:assetId",
+                templateUrl: "/app/trading/tradeAssetSummary.html",
+                controller: "tradeAssetCtrl as vm",
 
+                resolve: {
+                    tradeAssetResource: "tradeAssetResource",
+                    tradeAsset: function (tradeAssetResource, $stateParams) {
+                        var assetId = $stateParams.assetId;
+                        if(assetId != 0)
+                            return tradeAssetResource.get({Id:assetId}).$promise;
+                    }
+                }
+            })
             $urlRouterProvider.otherwise("/");
         }
     ])

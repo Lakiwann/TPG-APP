@@ -1,24 +1,26 @@
 ﻿<div class="panel panel-primary">
     <div class="panel-heading">
-        <span style="font-size:large" class="col-md-2">Trade Detail</span>
-        <i class="glyphicon glyphicon-minus">  {{vm.trade.tradeName}}</i>
+        <span style="font-size:large" class="col-md-2">
+            Trade Summary </span>
+            <span style="font-size:large" >-       {{vm.trade.tradeName}}</span>
+        
     </div>
     <div class="panel-body">
         <table class="table">
             <thead>
                 <tr>
-                    <td>Id</td>
-                    <td>Type</td>
-                    <td>Name</td>
-                    <td>Settlement Date</td>
-                    <td class="col-md-4">Stage</td>
-                    <td>Manager Name</td>
+                    <th scope="col">Id</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Settlement Date</th>
+                    <th scope="col" class="col-md-4">Stage</th>
+                    <th scope="col">Manager Name</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{{vm.trade.tradeID}}</td>
-                    <td>{{vm.trade.tradeType}}</td>
+                    <td>Purchase</td>
                     <td>{{vm.trade.tradeName}}</td>
                     <td>{{vm.trade.estSettlementDate | date}}</td>
                     <td>
@@ -33,12 +35,47 @@
                 </tr>
             </tbody>
         </table>
-        <!--<div class="ui-grid" ui-grid="{data: vm.tradeAssets}" ></div>-->
+           <div class="form-group">
+               <table class="table table-sm table-striped table-hover">
+                   <thead class="thead-light">
+                       <tr>
+                           <th scope="col" colspan="2">Trade Summary</th>
+                       </tr>
+                   </thead>
+                   <tr >
+                       <td class="col-md-4"><label for="totalDebt" class="col-md-6 control-label">Total </label></td>
+                       <td><label class="col-md-4" id="totalDebt" name="totalDebt" placeholder="Total Debt">{{vm.trade.summary.totalDebt | currency}} </label></td>
+                   </tr>
+                   <tr>
+                       <td class="col-md-4"><label for="totalPurchPrc" class="col-md-6 control-label">Total Purchase Price </label></td>
+                       <td><label class="col-md-4" id="totalPurchPrc" name="totalPurchPrc" placeholder="Total Purchase $">{{vm.trade.summary.totalPurchasePrice | currency}} </label></td>
+                   </tr>
+                   <tr>
+                       <td class="col-md-4"><label for="totalPurchPc" class="col-md-6 control-label">Total Purchase %</label></td>
+                       <td><label class="col-md-4" id="totalPurchPc" name="totalPurchPc" placeholder="Total Purchase %">{{(vm.trade.summary.totalPurchasePrice/vm.trade.summary.totalDebt)*100 | number:2}}%</label></td>
+                   </tr>
+                   <tr>
+                       <td class="col-md-4"><label for="totalCount" class="col-md-6 control-label">Total Loans</label></td>
+                       <td><label class="col-md-4" id="totalCount" name="totalCount" placeholder="Total Loans">{{vm.trade.summary.totalCount}}</label></td>
+                   </tr>
+               </table>
+           </div>
         <div>
-            <!--<iframe width="500" height="200" src="https://palisadesgroup-my.sharepoint.com/:x:/r/personal/lakshan_wannakuwatte_palisades_us_com/_layouts/15/WopiFrame.aspx?sourcedoc=%7BB18B8F4E-3C5D-4670-823F-280E1E0B3907%7D&file=TradeCreationData.csv&action=default&action=embedview&wdbipreview=true"></iframe>-->
-            <!--<iframe width="500" height="200" ng-src="{vm.tradeFileUrl}"></iframe>-->
-            <button class="btn btn-primary" ng-click="showModal()">Trade Details</button>
-            <iframe-modal></iframe-modal>
+            <div id="tradeLoanSummaryPanel" class="container" style="padding-bottom:inherit">
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#collapseLoanSummary">Trade Detail Summary</button>
+                <div id="collapseLoanSummary" class="collapse">
+                    <!--<div class="Grid" ui-grid="{paginationPageSizes:[10, 20, 30], paginationPageSize:10, data:vm.trade.assetSummaries}" ui-grid-auto-resize ui-grid-pagination></div>-->
+                    <div ui-grid="vm.gridOption" ui-grid-pagination ui-grid-auto-resize class="grid"></div>
+                </div>
+            </div>
+            <div class="panel-footer"></div>
+            <!--<div class="ui-grid" ui-grid="{data: vm.tradeAssets}" ></div>-->
+            <div  class="container">
+                <!--<iframe width="500" height="200" src="https://palisadesgroup-my.sharepoint.com/:x:/r/personal/lakshan_wannakuwatte_palisades_us_com/_layouts/15/WopiFrame.aspx?sourcedoc=%7BB18B8F4E-3C5D-4670-823F-280E1E0B3907%7D&file=TradeCreationData.csv&action=default&action=embedview&wdbipreview=true"></iframe>-->
+                <!--<iframe width="500" height="200" ng-src="{vm.tradeFileUrl}"></iframe>-->
+                <button class="btn btn-primary" ng-click="showModal()">Trade Tape Details</button>
+                <iframe-modal></iframe-modal>
+            </div>
         </div>
     </div>
    

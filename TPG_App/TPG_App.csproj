@@ -287,6 +287,8 @@
     <Compile Include="Models\TradeAsset.cs" />
     <Compile Include="Models\TradeModels.cs" />
     <Compile Include="Models\TradePool.cs" />
+    <Compile Include="Models\TradePoolAssetsSummary.cs" />
+    <Compile Include="Models\TradePoolHighLevelSummary.cs" />
     <Compile Include="Models\TradePoolStage.cs" />
     <Compile Include="Models\TradeTape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
