@@ -20,6 +20,11 @@ form legend {
     text-shadow: 0 3px 0 rgba(0,0,0,1);
 }
 
+.relative-panel {
+    width: 100%;
+    height: 80%;
+}
+
 .wizard a {
     background: #efefef;
     display: inline-block;
@@ -37,7 +42,7 @@ form legend {
 }
 
 .grid {
-    width: 95%;
+    width: 100%;
     height: 250px;
 }
 

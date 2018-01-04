@@ -35,48 +35,52 @@
                 </tr>
             </tbody>
         </table>
-           <div class="form-group">
-               <table class="table table-sm table-striped table-hover">
-                   <thead class="thead-light">
-                       <tr>
-                           <th scope="col" colspan="2">Trade Summary</th>
-                       </tr>
-                   </thead>
-                   <tr >
-                       <td class="col-md-4"><label for="totalDebt" class="col-md-6 control-label">Total </label></td>
-                       <td><label class="col-md-4" id="totalDebt" name="totalDebt" placeholder="Total Debt">{{vm.trade.summary.totalDebt | currency}} </label></td>
-                   </tr>
-                   <tr>
-                       <td class="col-md-4"><label for="totalPurchPrc" class="col-md-6 control-label">Total Purchase Price </label></td>
-                       <td><label class="col-md-4" id="totalPurchPrc" name="totalPurchPrc" placeholder="Total Purchase $">{{vm.trade.summary.totalPurchasePrice | currency}} </label></td>
-                   </tr>
-                   <tr>
-                       <td class="col-md-4"><label for="totalPurchPc" class="col-md-6 control-label">Total Purchase %</label></td>
-                       <td><label class="col-md-4" id="totalPurchPc" name="totalPurchPc" placeholder="Total Purchase %">{{(vm.trade.summary.totalPurchasePrice/vm.trade.summary.totalDebt)*100 | number:2}}%</label></td>
-                   </tr>
-                   <tr>
-                       <td class="col-md-4"><label for="totalCount" class="col-md-6 control-label">Total Loans</label></td>
-                       <td><label class="col-md-4" id="totalCount" name="totalCount" placeholder="Total Loans">{{vm.trade.summary.totalCount}}</label></td>
-                   </tr>
-               </table>
-           </div>
-        <div>
-            <div id="tradeLoanSummaryPanel" class="container" style="padding-bottom:inherit">
-                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#collapseLoanSummary">Trade Detail Summary</button>
-                <div id="collapseLoanSummary" class="collapse">
-                    <!--<div class="Grid" ui-grid="{paginationPageSizes:[10, 20, 30], paginationPageSize:10, data:vm.trade.assetSummaries}" ui-grid-auto-resize ui-grid-pagination></div>-->
-                    <div ui-grid="vm.gridOption" ui-grid-pagination ui-grid-auto-resize class="grid"></div>
+            <div id="tradeLoanSummaryPanel" class="panel-group" style="padding-bottom:inherit;width:100%;height:80%;min-width:550px;">
+                <div class="panel" style="width:100%">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="btn btn-default" id="tdMainSummaryLink" name="tdMainSummaryLink" data-toggle="collapse" data-target="#collapseMainLoanSummary"><span class="glyphicon glyphicon-collapse-up"></span><b>Trade Summary</b></a>
+                        </h4>
+                    </div>
+                    <div id="collapseMainLoanSummary" class="collapse in">
+                        <table class="table table-sm table-striped table-hover">
+                            <tr>
+                                <td class="col-md-4"><label for="totalDebt" class="col-md-6 control-label">Total </label></td>
+                                <td>{{vm.trade.summary.totalDebt | currency}} </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4"><label for="totalPurchPrc" class="col-md-6 control-label">Total Purchase Price </label></td>
+                                <td>{{vm.trade.summary.totalPurchasePrice | currency}} </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4"><label for="totalPurchPc" class="col-md-6 control-label">Total Purchase %</label></td>
+                                <td>{{(vm.trade.summary.totalPurchasePrice/vm.trade.summary.totalDebt)*100 | number:2}}%</td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4"><label for="totalCount" class="col-md-6 control-label">Total Loans</label></td>
+                                <td>{{vm.trade.summary.totalCount}}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
+
+                <div class="panel" style="width:100%">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="btn btn-default" id="tdSummaryLink" name="tdSummaryLink" data-toggle="collapse" data-target="#collapseLoanSummary"><span class="glyphicon glyphicon-collapse-down"></span><b>Trade Detail Summary</b></a>
+                        </h4>
+                    </div>
+                    <div id="collapseLoanSummary" class="collapse">
+                        <div ui-grid="vm.gridOption" ui-grid-pagination ui-grid-auto-resize class="grid"></div>
+                    </div>
+                </div>
+
             </div>
             <div class="panel-footer"></div>
-            <!--<div class="ui-grid" ui-grid="{data: vm.tradeAssets}" ></div>-->
-            <div  class="container">
-                <!--<iframe width="500" height="200" src="https://palisadesgroup-my.sharepoint.com/:x:/r/personal/lakshan_wannakuwatte_palisades_us_com/_layouts/15/WopiFrame.aspx?sourcedoc=%7BB18B8F4E-3C5D-4670-823F-280E1E0B3907%7D&file=TradeCreationData.csv&action=default&action=embedview&wdbipreview=true"></iframe>-->
-                <!--<iframe width="500" height="200" ng-src="{vm.tradeFileUrl}"></iframe>-->
+            <div style="padding-bottom:inherit;width:90%;height:80%;min-width:550px;">
                 <button class="btn btn-primary" ng-click="showModal()">Trade Tape Details</button>
                 <iframe-modal></iframe-modal>
             </div>
-        </div>
     </div>
    
 
@@ -87,10 +91,22 @@
             <i class="glyphicon glyphicon-chevron-left"></i>
             Back
         </a>
-        <!--<a class="btn btn-primary"
-           ui-sref="productEdit({productId: vm.product.productId})"
-           style="width:80px; margin-left:10px">
-            Edit
-        </a>-->
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $("#collapseLoanSummary").on("hide.bs.collapse", function () {
+        document.getElementById('tdSummaryLink').innerHTML = '<span class="glyphicon glyphicon-collapse-down"></span> <b>Trade Detail Summary</b>';
+  });
+$("#collapseLoanSummary").on("show.bs.collapse", function () {
+    document.getElementById('tdSummaryLink').innerHTML = '<span class="glyphicon glyphicon-collapse-up"></span> <b>Trade Detail Summary</b>';
+});
+
+$("#collapseMainLoanSummary").on("hide.bs.collapse", function () {
+    document.getElementById('tdMainSummaryLink').innerHTML = '<span class="glyphicon glyphicon-collapse-down"></span> <b>Trade Summary</b>';
+});
+$("#collapseMainLoanSummary").on("show.bs.collapse", function () {
+    document.getElementById('tdMainSummaryLink').innerHTML = '<span class="glyphicon glyphicon-collapse-up"></span> <b>Trade Summary</b>';
+});
+});
+</script>

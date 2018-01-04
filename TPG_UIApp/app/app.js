@@ -30,9 +30,17 @@
               })
             .state("trading",
               {
+                  cache: false,
                   url: "/trading",
                   templateUrl: "/app/trading/tradeListView.html",
-                  controller: "tradeListCtrl as vm"
+                  controller: "tradeListCtrl as vm",
+
+                  resolve: {
+                      tradeResource: "tradeResource",
+                      trades: function (tradeResource) {
+                          return tradeResource.query().$promise;
+                      }
+                  }
               })
             .state("tradeEdit",
             {

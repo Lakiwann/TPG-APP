@@ -92,9 +92,9 @@
             ];
             vm.trade.estSettlementDate = monthNames[vm.datePickerDate.getMonth()] + ' ' + vm.datePickerDate.getDate() + ', ' + vm.datePickerDate.getFullYear();
             if (vm.newTrade == true) {
-                vm.trade.tradeType = "Sale";
+                vm.trade.tradeType = "Purchase";
                 vm.trade = tradeResource.save(vm.trade);
-                vm.title = "Edit:" + vm.trade.tradeName;
+                //vm.title = "Edit:" + vm.trade.tradeName;
                
             }
             else {
@@ -123,9 +123,24 @@
                 //Reload the trade information to get the tradePoolStages with the DB generated IDs
                 //vm.trade = tradeResource.get({ Id: vm.trade.tradeID }).$promise;
             }
-            toastr.success("Save Successful");
+
+            $ngConfirm({
+                content: "The " + vm.trade.tradeName + " Saved successfully!!",
+                buttons: {
+                    ok: {
+                        text: 'OK',
+                        btnClass: 'btn-blue',
+                        action: function (scope, button) {
+                            $state.go('trading', {}, { reload: true });
+                        }
+                    }
+
+                }
+            });
+
+            //toastr.success("Save Successful");
             //$scope.tradeEditForm.$pristine = true;
-            $state.go('trading');
+            //$state.go('trading', {}, {reload: true});
 
         }
 
@@ -146,15 +161,32 @@
                                 inherit: false,
                                 notify: true
                             });
-                            $state.go('trading');
-                            $ngConfirm("The " + vm.trade.tradeName + " has been deleted.");
+                            //$ngConfirm("The " + vm.trade.tradeName + " has been deleted.");
+                            $ngConfirm({
+                                content: "The " + vm.trade.tradeName + " has been deleted.",
+                                buttons: {
+                                    ok: {
+                                        text: 'OK',
+                                        btnClass: 'btn-blue',
+                                        action: function (scope, button) {
+                                            $state.go('trading', {}, { reload: true });
+                                        }
+                                    }
+                                    
+                                }
+                            });
+                            //$state.go('trading', {}, {reload: true});
+                            
+
+
                         }
                     },
                     close: function (scope, button) {
                         //closes the modal
                     }
                 }
-            })
+            });
+            //$state.go('trading', {}, {reload: true});
         }
 
         vm.cancel = function () {
