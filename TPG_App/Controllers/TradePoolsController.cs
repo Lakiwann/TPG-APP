@@ -29,6 +29,60 @@ namespace TPG_App.Controllers
             return db.TradePools;
         }
 
+        [Route("yearlysummary/{year}")]
+        [ResponseType(typeof(List<TradesYearlySummary>))]
+        public async Task<IHttpActionResult> GetTradesYearlySummary(int year)
+        {
+            List<TradesYearlySummary> yearlySummaries = new List<TradesYearlySummary>();
+            List<int> years = new List<int>();
+
+            if (year > 0)
+            {
+                years.Add(year);
+            }
+            else
+            {
+                foreach(var y in db.TradePools.GroupBy(p=>p.EstSettlementDate).OrderBy(g=>g.Key).Select(s => s.Key.Value.Year))
+                {
+                    years.Add(y);
+                }
+            };
+
+            foreach (var y in years)
+            {
+                TradesYearlySummary yearlySummary = new TradesYearlySummary();
+                var pools = await db.TradePools.Where(p => p.EstSettlementDate.Value.Year == y).ToListAsync();
+                yearlySummary.Year = y;
+                yearlySummary.Trades = pools.Count();
+                yearlySummary.CounterParties = pools.GroupBy(p => p.TradeName).Count();
+
+                List<AssetSummary> assetSummaries = new List<AssetSummary>();
+                foreach(var p in pools)
+                {
+                    List<AssetSummary> poolAssetSummaries = await GetAssetSummariesAsynch(p.TradeID);
+                    if(poolAssetSummaries.Count() > 0)
+                    {
+                        assetSummaries.AddRange(poolAssetSummaries);
+                    }
+                } 
+               
+                yearlySummary.RPLoans = 0;
+                yearlySummary.NPLoans = 0;
+                yearlySummary.MixedLoans = assetSummaries.Count();
+                yearlySummary.BidAmount = 0;
+                yearlySummary.TradeAmount = assetSummaries.Sum(a => a.CurrentPrice);
+                yearlySummary.RepriceAmount = assetSummaries.Sum(a => a.TotalRepriceAmount);
+                yearlySummary.AverageCloseTime = assetSummaries.Average(a => a.CloseTime);
+                yearlySummary.AverageFallOut = (assetSummaries.Where(a => a.InStatus == false).Count() / assetSummaries.Count()) * 100;
+                yearlySummary.PurchasesAmount = assetSummaries.Sum(a => a.CurrentPrice);
+                yearlySummary.SalesAmount = 0;
+
+                yearlySummaries.Add(yearlySummary);
+            }
+
+            return Ok(yearlySummaries);
+        }
+
         // GET: api/TradePools/5
         [ResponseType(typeof(TradePool))]
         public async Task<IHttpActionResult> GetTradePool(int id)
@@ -75,6 +129,8 @@ namespace TPG_App.Controllers
                     TotalKicks = 0,
                     TotalPIFs = 0,
                     TotalTrailingDocs = 0
+                    
+                    //TODO: Add the other 'YEAR/Type' information here
                 };
 
             return Ok(poolSummary);
@@ -90,10 +146,24 @@ namespace TPG_App.Controllers
                 return NotFound();
             }
 
-            List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == id).OrderBy(o => o.AssetID).ToListAsync();
+            TradePoolAssetsSummary poolAssetsSummary = await GetTradePoolAssetsSummaryAsynch(id);
 
-            TradePoolAssetsSummary poolAssetsSummary = new TradePoolAssetsSummary(id);
-            foreach(var asset in assets)
+            return Ok(poolAssetsSummary);
+        }
+
+        private async Task<TradePoolAssetsSummary> GetTradePoolAssetsSummaryAsynch(int tradeId)
+        {
+            TradePoolAssetsSummary poolAssetsSummary = new TradePoolAssetsSummary(tradeId);
+            List<AssetSummary> assetSummaries = await GetAssetSummariesAsynch(tradeId);
+            poolAssetsSummary.AssetSummaries = assetSummaries;
+            return poolAssetsSummary;
+        }
+
+        private async Task<List<AssetSummary>> GetAssetSummariesAsynch(int tradeId)
+        {
+            List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == tradeId).OrderBy(o => o.AssetID).ToListAsync();
+            List<AssetSummary> assetSummaries = new List<AssetSummary>();
+            foreach (var asset in assets)
             {
                 AssetSummary assetSummary = new AssetSummary()
                 {
@@ -105,11 +175,12 @@ namespace TPG_App.Controllers
                     CurrentPrice = asset.CurrentBalance
                 };
 
-                poolAssetsSummary.AssetSummaries.Add(assetSummary);
+                assetSummaries.Add(assetSummary);
             }
 
-            return Ok(poolAssetsSummary);
+            return assetSummaries;
         }
+
         // PUT: api/TradePools/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutTradePool(int id, TradePool tradePool)

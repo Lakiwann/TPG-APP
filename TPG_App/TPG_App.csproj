@@ -284,6 +284,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LU_TradeStage.cs" />
+    <Compile Include="Models\TradesYearlySummary.cs" />
     <Compile Include="Models\TradeAsset.cs" />
     <Compile Include="Models\TradeModels.cs" />
     <Compile Include="Models\TradePool.cs" />

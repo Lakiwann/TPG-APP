@@ -10,24 +10,24 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Trade Id</th>
                     <th scope="col">Current Bal</th>
                     <th scope="col">BPO</th>
                     <th scope="col">Original Prc</th>
                     <th scope="col">Current Prc</th>
                     <th scope="col">Prod. Type</th>
                     <th scope="col">Prop. Type</th>
+                    <th scope="col">Related Trade</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><a ui-sref="tradeDetail({tradeId:{{vm.tradeAsset.tradeID}}})">{{vm.tradeAsset.tradeID}}</a></td>
                     <td>{{vm.tradeAsset.currentBalance | currency}}</td>
-                    <td>{{vm.tradeAsset.bpo}}</td>
+                    <td>{{vm.tradeAsset.bpo | currency}}</td>
                     <td></td>
                     <td></td>
                     <td>{{vm.tradeAsset.prodType}}</td>
                     <td>{{vm.tradeAsset.propType}}</td>
+                    <td><a ui-sref="tradeDetail({tradeId:{{vm.tradeAsset.tradeID}}})">{{vm.tradeSummary.tradeName}}</a></td>
                 </tr>
             </tbody>
         </table>

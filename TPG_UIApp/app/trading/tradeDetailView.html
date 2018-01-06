@@ -11,17 +11,16 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Type</th>
-                    <th scope="col">Name</th>
                     <th scope="col">Settlement Date</th>
-                    <th scope="col" class="col-md-4">Stage</th>
+                    <th scope="col">Stage</th>
                     <th scope="col">Manager Name</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{{vm.trade.tradeID}}</td>
                     <td>Purchase</td>
-                    <td>{{vm.trade.tradeName}}</td>
                     <td>{{vm.trade.estSettlementDate | date}}</td>
                     <td>
                         <a href="" ng-click="vm.ToggleDropDown()">{{vm.trade.tradePoolStages.reverse()[0].lU_TradeStage.stageName}}</a>
@@ -32,6 +31,9 @@
                         </div>
                     </td>
                     <td>{{vm.trade.managerName}}</td>
+                    <td>
+                        <a class="btn btn-primary" style="width:80px" ui-sref="tradeEdit({tradeId:vm.trade.tradeID})">Edit</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -39,7 +41,7 @@
                 <div class="panel" style="width:100%">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="btn btn-default" id="tdMainSummaryLink" name="tdMainSummaryLink" data-toggle="collapse" data-target="#collapseMainLoanSummary"><span class="glyphicon glyphicon-collapse-up"></span><b>Trade Summary</b></a>
+                            <a class="btn btn-link" id="tdMainSummaryLink" name="tdMainSummaryLink" data-toggle="collapse" data-target="#collapseMainLoanSummary"><span class="glyphicon glyphicon-collapse-up"></span><b>Trade Summary</b></a>
                         </h4>
                     </div>
                     <div id="collapseMainLoanSummary" class="collapse in">
@@ -67,7 +69,7 @@
                 <div class="panel" style="width:100%">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="btn btn-default" id="tdSummaryLink" name="tdSummaryLink" data-toggle="collapse" data-target="#collapseLoanSummary"><span class="glyphicon glyphicon-collapse-down"></span><b>Trade Detail Summary</b></a>
+                            <a class="btn btn-link" id="tdSummaryLink" name="tdSummaryLink" data-toggle="collapse" data-target="#collapseLoanSummary"><span class="glyphicon glyphicon-collapse-down"></span><b>Trade Detail Summary</b></a>
                         </h4>
                     </div>
                     <div id="collapseLoanSummary" class="collapse">
@@ -78,18 +80,18 @@
             </div>
             <div class="panel-footer"></div>
             <div style="padding-bottom:inherit;width:90%;height:80%;min-width:550px;">
-                <button class="btn btn-primary" ng-click="showModal()">Trade Tape Details</button>
+                <button class="btn btn-link" ng-click="showModal()">Trade Tape Details</button>
                 <iframe-modal></iframe-modal>
             </div>
     </div>
    
 
     <div class="panel-footer">
-        <a class="btn btn-default"
+        <a class="btn btn-primary"
            ui-sref="trading"
-           style="width:80px">
+           style="width:120px">
             <i class="glyphicon glyphicon-chevron-left"></i>
-            Back
+            Trades List
         </a>
     </div>
 </div>

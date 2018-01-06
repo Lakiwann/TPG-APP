@@ -87,7 +87,7 @@
             .state("tradeAsset",
             {
                 url: "/trading/asset/:assetId",
-                templateUrl: "/app/trading/tradeAssetSummary.html",
+                templateUrl: "/app/trading/tradeAssetSummaryView.html",
                 controller: "tradeAssetCtrl as vm",
 
                 resolve: {

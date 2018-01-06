@@ -101,7 +101,7 @@
     <Content Include="app\common\tradeAssetResource.js" />
     <Content Include="app\common\tradeTapeResource.js" />
     <Content Include="app\trading\tradeAssetCtrl.js" />
-    <Content Include="app\trading\tradeAssetSummary.html" />
+    <Content Include="app\trading\tradeAssetSummaryView.html" />
     <Content Include="content\handsontable.full.css" />
     <Content Include="content\ui-grid.css" />
     <Content Include="content\ui-grid.min.css" />

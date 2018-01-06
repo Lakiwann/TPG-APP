@@ -131,8 +131,9 @@
                         text: 'OK',
                         btnClass: 'btn-blue',
                         action: function (scope, button) {
-                            $state.go('trading', {}, { reload: true });
-                        }
+                            //$state.go('trading', {}, { reload: true });
+                            $state.go('tradeDetail', { tradeId: vm.trade.tradeID });
+                            }
                     }
 
                 }
@@ -141,6 +142,8 @@
             //toastr.success("Save Successful");
             //$scope.tradeEditForm.$pristine = true;
             //$state.go('trading', {}, {reload: true});
+            //$state.go('tradeDetail', { tradeId: vm.trade.tradeId });
+
 
         }
 
@@ -190,7 +193,8 @@
         }
 
         vm.cancel = function () {
-            $state.go('trading');
+            //$state.go('trading');
+            $state.go('tradeDetail', { tradeId: vm.trade.tradeID });
         }
     }
 }

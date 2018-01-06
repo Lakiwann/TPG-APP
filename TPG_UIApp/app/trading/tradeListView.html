@@ -10,25 +10,31 @@
         <table class="table table-condensed">
             <thead class="thead-dark">
                 <tr>
-                    <td>Id</td>
-                    <td>Type</td>
-                    <td>Name</td>
-                    <td>Stage</td>
-                    <td>Settlement Date</td>
-                    <td>Manager Name</td>
+                    <th scope="col">Trade Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Stage</th>
+                    <th scope="col">Settlement Date</th>
+                    <th scope="col">TM</th>
+                    <th scope="col">Total Bid$</th>
+                    <th scope="col">Total Traded$</th>
+                    <th scope="col">Total Reprices$</th>
+                    <th scope="col">Close Time</th>
+                    <th scope="col">Fall Out%</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="trade in vm.trades">
-                    <td>{{trade.tradeID}}</td>
-                    <td>{{trade.tradeType}}</td>
                     <td><a ui-sref="tradeDetail({tradeId:trade.tradeID})">{{trade.tradeName}}</a></td>
+                    <td>{{trade.tradeType}}</td>
                     <td>{{trade.tradePoolStages.slice(-1)[0].lU_TradeStage.stageName}}</td>
                     <td>{{trade.estSettlementDate | date}}</td>
                     <td>{{trade.managerName}}</td>
-                    <td>
-                        <a class="btn btn-primary" style="width:80px" ui-sref="tradeEdit({tradeId:trade.tradeID})">Edit</a>
-                    </td>
+                    <td>{{trade.totalBidAmount | number:2}}</td>
+                    <td>{{trade.totalTradedAmount | number:2}}</td>
+                    <td>{{trade.totalRepriceAmount | number:2}}</td>
+                    <td>{{trade.closeTime}}</td>
+                    <td>{{trade.fallOutPercent | number:2}}</td>
+                    
                 </tr>
             </tbody>
         </table>

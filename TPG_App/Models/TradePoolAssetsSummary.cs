@@ -8,19 +8,19 @@ namespace TPG_App.Models
     public class TradePoolAssetsSummary
     {
         private int tradeId = 0;
-        List<AssetSummary> assetSummaries = new List<AssetSummary>();
-
+       
         public TradePoolAssetsSummary(int tradeID)
         {
             tradeId = tradeID;
         }
 
         public int TradeId { get { return tradeId; } }
-        public List<AssetSummary> AssetSummaries { get { return assetSummaries; } }
+        public List<AssetSummary> AssetSummaries { get; set; }
     }
 
     public class AssetSummary
     {
+        private bool inStatus = true;
         public long AssetID { get; set; }
         public string InOutStatus { get; set; }
 
@@ -31,5 +31,10 @@ namespace TPG_App.Models
         public decimal OriginalPrice { get; set; }
 
         public decimal CurrentPrice { get; set; }
+        public decimal CloseTime { get; set; }
+        public bool InStatus {
+            get { return inStatus; }
+            set { inStatus = value; }
+        }
     }
 }
