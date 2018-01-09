@@ -29,9 +29,9 @@ namespace TPG_App.Controllers
             return db.TradePools;
         }
 
-        [Route("yearlysummary/{year}")]
+        [Route("yearlysummary/{year:int?}")]
         [ResponseType(typeof(List<TradesYearlySummary>))]
-        public async Task<IHttpActionResult> GetTradesYearlySummary(int year)
+        public async Task<IHttpActionResult> GetTradesYearlySummary(int year = 0)
         {
             List<TradesYearlySummary> yearlySummaries = new List<TradesYearlySummary>();
             List<int> years = new List<int>();
@@ -42,7 +42,7 @@ namespace TPG_App.Controllers
             }
             else
             {
-                foreach(var y in db.TradePools.GroupBy(p=>p.EstSettlementDate).OrderBy(g=>g.Key).Select(s => s.Key.Value.Year))
+                foreach(var y in db.TradePools.GroupBy(p=>p.EstSettlementDate.Value.Year).OrderBy(g=>g.Key).Select(s => s.Key))
                 {
                     years.Add(y);
                 }

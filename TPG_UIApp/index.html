@@ -9,7 +9,8 @@
     <link href="app/css/app.css" rel="stylesheet" />
     <link href="Content/toastr.css" rel="stylesheet" />
     <link href="content/angular-confirm.min.css" rel="stylesheet" />
-    <link href="content/ui-grid.css" rel="stylesheet" />
+    <link href="content/ui-grid2.css" rel="stylesheet" />
+    <!--<link href="content/ui-grid.css" rel="stylesheet" />-->
     <link href="content/handsontable.full.css" rel="stylesheet" />
 </head>
 <body ng-app="palisadesDashboard">
@@ -31,8 +32,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a ui-sref="trading">Trading</a></li>
+                    <!--<li><a ui-sref="trading">Trading</a></li>-->
                     <!--<li><a ui-sref="productEdit.info({productId:0})"><i class="glyphicon glyphicon-plus"></i>Add Product</a></li>-->
+                    <li><a ui-sref="tradingYearlySummaries({year:0})">Trading</a></li>
                 </ul>
             </div>
         </div>
@@ -78,5 +80,7 @@
     <script src="app/trading/tradeEditCtrl.js"></script>
     <script src="app/trading/tradeDetailCtrl.js"></script>
     <script src="app/trading/tradeAssetCtrl.js"></script>
+    <script src="app/trading/tradePoolYearlySummaryCtrl.js"></script>>
+
 </body>
 </html>

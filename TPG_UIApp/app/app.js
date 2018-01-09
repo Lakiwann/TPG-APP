@@ -12,6 +12,7 @@
                                                     , "ui.grid"
                                                     , "ui.grid.pagination"
                                                     , "ui.grid.autoResize"
+                                                    //, "ui.grid.footer"
                                                     ]);
 
     app.config(['$locationProvider',
@@ -28,16 +29,36 @@
                   url: "/",
                   templateUrl: "/app/WelcomeView.html"
               })
+            .state("tradingYearlySummaries",
+              {
+                  url: "/trading/YearlySummary/:year",
+                  templateUrl: "/app/trading/tradePoolYearlySummaryView.html",
+                  controller: "tradePoolYearlySummaryCtrl as vm",
+
+                  resolve: {
+                   tradeYearlySummaries: function (tradeResource, $stateParams) {
+                          var yr = $stateParams.year;
+                          return tradeResource.getyearlysummaries({ year: yr });
+                      }
+                  }
+              })
             .state("trading",
               {
                   cache: false,
-                  url: "/trading",
+                  url: "/trading/:year",
                   templateUrl: "/app/trading/tradeListView.html",
                   controller: "tradeListCtrl as vm",
 
                   resolve: {
                       tradeResource: "tradeResource",
-                      trades: function (tradeResource) {
+                      trades: function (tradeResource, $stateParams) {
+                          var year = parseInt($stateParams.year);
+                          if (year > 0)
+                          {
+                              var curdate = year + "-01-01";
+                              var nextDate = year + 1 + "-01-01"
+                              return tradeResource.query({ $filter: '(EstSettlementDate gt datetime\'' + curdate + '\' and EstSettlementDate lt datetime\'' + nextDate + '\')'})
+                          }
                           return tradeResource.query().$promise;
                       }
                   }

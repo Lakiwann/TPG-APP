@@ -102,10 +102,13 @@
     <Content Include="app\common\tradeTapeResource.js" />
     <Content Include="app\trading\tradeAssetCtrl.js" />
     <Content Include="app\trading\tradeAssetSummaryView.html" />
+    <Content Include="app\trading\tradePoolYearlySummaryView.html" />
+    <Content Include="app\trading\tradePoolYearlySummaryCtrl.js" />
     <Content Include="content\handsontable.full.css" />
     <Content Include="content\ui-grid.css" />
     <Content Include="content\ui-grid.min.css" />
     <Content Include="content\ui-grid.svg" />
+    <Content Include="content\ui-grid2.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
