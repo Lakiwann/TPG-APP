@@ -101,3 +101,21 @@ form legend {
     z-index:9999;
     padding: 5px;
 }
+
+.my-drop-zone 
+{ 
+    border: dotted 3px lightgray; 
+}
+
+.nv-file-over 
+{ 
+    border: dotted 3px red; 
+
+} /* Default class applied to drop zones on over */
+
+.another-file-over-class 
+{ 
+    border: dotted 3px green; 
+
+}
+            
