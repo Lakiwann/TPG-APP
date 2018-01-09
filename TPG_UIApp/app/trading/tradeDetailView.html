@@ -45,21 +45,21 @@
                         </h4>
                     </div>
                     <div id="collapseMainLoanSummary" class="collapse in">
-                        <table class="table table-sm table-striped table-hover">
-                            <tr>
-                                <td class="col-md-4"><label for="totalDebt" class="col-md-6 control-label">Total </label></td>
+                        <table class="table table-inverse table-striped table-hover">
+                            <tr class="row-sm">
+                                <td class="col-sm-4"><label for="totalDebt" class="col-sm-6 control-label">Total </label></td>
                                 <td>{{vm.trade.summary.totalDebt | currency}} </td>
                             </tr>
                             <tr>
-                                <td class="col-md-4"><label for="totalPurchPrc" class="col-md-6 control-label">Total Purchase Price </label></td>
+                                <td class="col-sm-4"><label for="totalPurchPrc" class="col-sm-6 control-label">Total Purchase Price </label></td>
                                 <td>{{vm.trade.summary.totalPurchasePrice | currency}} </td>
                             </tr>
                             <tr>
-                                <td class="col-md-4"><label for="totalPurchPc" class="col-md-6 control-label">Total Purchase %</label></td>
+                                <td class="col-sm-4"><label for="totalPurchPc" class="col-sm-6 control-label">Total Purchase %</label></td>
                                 <td>{{(vm.trade.summary.totalPurchasePrice/vm.trade.summary.totalDebt)*100 | number:2}}%</td>
                             </tr>
                             <tr>
-                                <td class="col-md-4"><label for="totalCount" class="col-md-6 control-label">Total Loans</label></td>
+                                <td class="col-sm-4"><label for="totalCount" class="col-sm-6 control-label">Total Loans</label></td>
                                 <td>{{vm.trade.summary.totalCount}}</td>
                             </tr>
                         </table>
@@ -73,7 +73,13 @@
                         </h4>
                     </div>
                     <div id="collapseLoanSummary" class="collapse">
-                        <div ui-grid="vm.gridOption" ui-grid-auto-resize class="gridAssets"></div>
+                        <div class="input-group" >
+                            <input class="form-control" placeholder="Search query... [Example query: (AssetID eq 3947) and (Zip eq '85041')]" name="search" id="search" type="text" ng-model="vm.filterValue" />
+                            <div class="input-group-btn"><button class="btn btn-primary" type="submit" ng-click="vm.filter()"><i class="glyphicon glyphicon-search"></i> </button></div>
+                        </div>
+                        <!--<div ui-grid="vm.gridOption" ui-grid-auto-resize class="gridAssets"></div>-->
+                        <!--<span><input ng-model='vm.filterValue' placeholder="Search by Asset ID.. " />  <label class='btn btn-link' ng-click='vm.filter()'>Search</label></span>-->
+                        <div ui-grid="vm.gridOption" ui-grid-pagination class="grid"></div>
                     </div>
                 </div>
 

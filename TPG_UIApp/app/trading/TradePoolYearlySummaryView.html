@@ -1,16 +1,12 @@
 ﻿<div class="panel panel-primary">
     <div class="panel-heading">
         <span style="font-size:large">Trades Yearly Report</span>
+       
     </div>
     <div class="panel-body">
           <div ui-grid="vm.yearlySummaryGridOption" ui-grid-auto-resize class="grid ui-grid-footer ui-grid-footer-aggregates-column"></div>
      </div>
     <div class="panel-footer">
-        <!--<a class="btn btn-primary"
-           ui-sref="trading"
-           style="width:120px">
-            <i class="glyphicon glyphicon-chevron-left"></i>
-            Trades List
-        </a>-->
+        <a class="btn btn-primary" style="width:160px;border-color:transparent" ui-sref="tradeEdit({tradeId:0})"><i class="glyphicon glyphicon-plus"></i> New Trade</a>
     </div>
 </div>

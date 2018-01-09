@@ -21,6 +21,7 @@ namespace TPG_App.Models
     public class AssetSummary
     {
         private bool inStatus = true;
+        public int TradeID { get; set; }
         public long AssetID { get; set; }
         public string InOutStatus { get; set; }
 
@@ -36,5 +37,6 @@ namespace TPG_App.Models
             get { return inStatus; }
             set { inStatus = value; }
         }
+        public string Zip { get; set; }
     }
 }

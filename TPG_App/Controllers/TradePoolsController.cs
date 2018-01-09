@@ -136,19 +136,30 @@ namespace TPG_App.Controllers
             return Ok(poolSummary);
         }
         //GET: api/TradePools/5/Summary
+        //[Route("{id:int}/assetsummary")]
+        //[ResponseType(typeof(TradePoolAssetsSummary))]
+        //public async Task<IHttpActionResult> GetTradePoolAssetSummary(int id)
+        //{
+        //    TradePool tradePool = await db.TradePools.FindAsync(id);
+        //    if (tradePool == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    TradePoolAssetsSummary poolAssetsSummary = await GetTradePoolAssetsSummaryAsynch(id);
+
+        //    return Ok(poolAssetsSummary);
+        //}
+
         [Route("{id:int}/assetsummary")]
-        [ResponseType(typeof(TradePoolAssetsSummary))]
-        public async Task<IHttpActionResult> GetTradePoolAssetSummary(int id)
+        //[ResponseType(typeof(TradePoolAssetsSummary))]
+        [EnableQuery]
+        public async Task<IQueryable<AssetSummary>> GetTradePoolAssetSummary(int id)
         {
-            TradePool tradePool = await db.TradePools.FindAsync(id);
-            if (tradePool == null)
-            {
-                return NotFound();
-            }
+            
+            List<AssetSummary> assetSumarries = await GetAssetSummariesAsynch(id);
 
-            TradePoolAssetsSummary poolAssetsSummary = await GetTradePoolAssetsSummaryAsynch(id);
-
-            return Ok(poolAssetsSummary);
+            return assetSumarries.AsQueryable();
         }
 
         private async Task<TradePoolAssetsSummary> GetTradePoolAssetsSummaryAsynch(int tradeId)
@@ -167,12 +178,14 @@ namespace TPG_App.Controllers
             {
                 AssetSummary assetSummary = new AssetSummary()
                 {
+                    TradeID = asset.TradeID,
                     AssetID = asset.AssetID,
                     InOutStatus = "IN",
                     NumberOfIssues = 0,
                     TotalRepriceAmount = 0,
                     OriginalPrice = asset.OriginalBalance,
-                    CurrentPrice = asset.CurrentBalance
+                    CurrentPrice = asset.CurrentBalance,
+                    Zip = asset.Zip
                 };
 
                 assetSummaries.Add(assetSummary);

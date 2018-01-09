@@ -16,6 +16,7 @@
                 },
                 'getassetsummary': {
                     method: 'GET',
+                    isArray: true,
                     url: "http://localhost:3666/" + "api/tradepools/:tradeId/assetsummary"
                 },
                 'getyearlysummaries': {
