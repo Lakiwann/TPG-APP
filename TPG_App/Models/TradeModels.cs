@@ -40,5 +40,7 @@ namespace TPG_App.Models
         public System.Data.Entity.DbSet<TPG_App.Models.TradeTape> TradeTapes { get; set; }
 
         public System.Data.Entity.DbSet<TPG_App.Models.TradeAsset> TradeAssets { get; set; }
+
+        public System.Data.Entity.DbSet<TPG_App.Models.TradeAssetDiligence> TradeAssetDiligences { get; set; }
     }
 }
