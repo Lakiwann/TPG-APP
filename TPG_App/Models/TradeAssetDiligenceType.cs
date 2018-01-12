@@ -7,7 +7,7 @@ namespace TPG_App.Models
     using System.Data.Entity.Spatial;
 
     [Table("Trd.LU_DiligenceType")]
-    public partial class LU_DiligenceType
+    public partial class TradeAssetDiligenceType
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public byte ID { get; set; }

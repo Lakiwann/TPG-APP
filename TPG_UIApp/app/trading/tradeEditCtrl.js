@@ -1,9 +1,9 @@
 ﻿(function () {
     "use strict";
     var app = angular.module("palisadesDashboard");
-    app.controller("tradeEditCtrl", ["trade", "tradeResource", "tradeStageResource", "$state", "$scope", "$ngConfirm", "$stateParams", "FileUploader", "tradeTapeResource", TradeEditCtrl]);
+    app.controller("tradeEditCtrl", ["trade", "tradeResource", "tradeStageResource", "$state", "$scope", "$ngConfirm", "$stateParams", "FileUploader", "tradeTapeResource", "$uibModal", TradeEditCtrl]);
 
-    function TradeEditCtrl(trade, tradeResource, tradeStageResource, $state, $scope, $ngConfirm, $stateParams,  FileUploader, tradeTapeResource) {
+    function TradeEditCtrl(trade, tradeResource, tradeStageResource, $state, $scope, $ngConfirm, $stateParams,  FileUploader, tradeTapeResource, $uibModal) {
         
         var vm = this;
        // vm.data = [{ 'id': '1', 'name': { 'first': 'Lakshan', 'last': 'W' }, 'address': '23903 Brio Ct', 'price': '23', 'isActive': '1' }, { 'id': '2', 'name': { 'first': 'Aparna', 'last': 'W' }, 'address': '23903 Brio Ct', 'price': '23', 'isActive': '0' }];
@@ -13,6 +13,8 @@
         vm.selectedStageDropdownParams = "";
         vm.selectedStageDate = "";
         vm.selectedStage = "";
+        vm.availableCounterPartyOptions = [];
+        vm.selectedCounterPartyId = "";
 
         $scope.uploader = new FileUploader();
         $scope.uploader.url = "http://localhost:3666/" + "api/tradetapes";
@@ -60,6 +62,53 @@
         tradeStageResource.query(function (data) {
             vm.availableStageOptions = data;
         });
+
+        tradeResource.getcounterparties(function (data) {
+            vm.availableCounterPartyOptions = data;
+            vm.availableCounterPartyOptions.push({ counterPartyID: -1, counterPartyName: "+ New", bold: true });
+            vm.selectedCounterPartyId = vm.trade.counterPartyID;
+        });
+
+        
+        vm.counterPartyChange = function () {
+            
+            if(vm.trade != null && vm.trade.counterPartyID == -1)
+            {
+                console.log('Opening new counterparty pop up');
+                var modalInstance = $uibModal.open({
+                    templateUrl: '/app/trading/tradeCounterPartyModalView.html',
+                    controller: 'tradePopupCtrl',
+                    controllerAs: 'vmCtrl',
+                    
+                });
+
+                modalInstance.result.then(function (selectedID) {
+                    
+                    console.log("selectedID : " + selectedID);
+                    //In case the user cancels the modal dialog or in case of an error then +New will be selected in the dropdown.  Set it back to the previous value
+                    console.log(vm.trade.counterPartyID);
+                    if (selectedID != "-1") {
+                        console.log("Refresh the counter party list")
+                        //Refresh the counter party list
+                        tradeResource.getcounterparties(function (data) {
+                            vm.availableCounterPartyOptions = data;
+                            vm.availableCounterPartyOptions.push({ counterPartyID: -1, counterPartyName: "+ New", bold: true });
+                        });
+                        vm.trade.counterPartyID = selectedID;
+                    }
+                    else
+                    {
+                       
+                        console.log("User cancelled dialog.  Setting to the counterPartyID: " + vm.selectedCounterPartyId)
+                        vm.trade.counterPartyID = vm.selectedCounterPartyId;
+                    }
+                   
+                });
+               
+            }
+
+            vm.selectedCounterPartyId = vm.trade.counterPartyId;
+        }
 
         if (vm.trade && vm.trade.tradeID) {
             vm.title = "Edit:" + vm.trade.tradeName;

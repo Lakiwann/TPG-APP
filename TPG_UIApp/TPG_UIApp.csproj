@@ -100,10 +100,14 @@
     <Content Include="app\common\IframeModalService.js" />
     <Content Include="app\common\tradeAssetResource.js" />
     <Content Include="app\common\tradeTapeResource.js" />
+    <Content Include="app\trading\tradeAssetsDiligenceView.html" />
     <Content Include="app\trading\tradeAssetCtrl.js" />
+    <Content Include="app\trading\tradeAssetsDiligenceCtrl.js" />
     <Content Include="app\trading\tradeAssetSummaryView.html" />
+    <Content Include="app\trading\tradeCounterPartyModalView.html" />
     <Content Include="app\trading\tradePoolYearlySummaryView.html" />
     <Content Include="app\trading\tradePoolYearlySummaryCtrl.js" />
+    <Content Include="app\trading\tradePopupCtrl.js" />
     <Content Include="content\handsontable.full.css" />
     <Content Include="content\ui-grid.css" />
     <Content Include="content\ui-grid.min.css" />

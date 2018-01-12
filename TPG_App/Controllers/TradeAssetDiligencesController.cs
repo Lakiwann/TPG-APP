@@ -27,7 +27,8 @@ namespace TPG_App.Controllers
             return db.TradeAssetDiligences.Where(d => d.AssetID == assetId);
         }
 
-        // GET: api/TradeAssetDiligences/5
+        // GET: api/TradeAssets/diligences/5
+        [Route("diligences")]
         [ResponseType(typeof(TradeAssetDiligence))]
         public async Task<IHttpActionResult> GetTradeAssetDiligence(long id)
         {
@@ -39,8 +40,38 @@ namespace TPG_App.Controllers
 
             return Ok(tradeAssetDiligence);
         }
+        // GET: api/TradeAssets/diligencetypes
+        [Route("diligencetypes")]
+        [ResponseType(typeof(List<TradeAssetDiligenceType>))]
+        public async Task<IHttpActionResult> GetTradeAssetDiligenceTypes()
+        {
+            List<TradeAssetDiligenceType> diligenceTypes = await db.TradeAssetDiligenceTypes.OrderBy(o=>o.ID).ToListAsync();
 
-        // PUT: api/TradeAssetDiligences/5
+            return Ok(diligenceTypes);
+        }
+
+        // GET: api/TradeAssets/diligencecategories
+        [Route("diligencecategories")]
+        [ResponseType(typeof(List<TradeAssetDiligenceCategory>))]
+        public async Task<IHttpActionResult> GetTradeAssetDiligenceCategories()
+        {
+            List<TradeAssetDiligenceCategory> diligenceCategories = await db.TradeAssetDiligenceCategories.OrderBy(o=>o.ID).ToListAsync();
+
+            return Ok(diligenceCategories);
+        }
+
+        // GET: api/TradeAssets/diligencecategories/{categoryId}/descriptions
+        [Route("diligencecategories/{categoryId:int}/descriptions")]
+        [ResponseType(typeof(List<TradeAssetDiligenceDesc>))]
+        public async Task<IHttpActionResult> GetTradeAssetDiligenceDescriptions(int categoryId)
+        {
+            List<TradeAssetDiligenceDesc> diligenceDescs = await db.TradeAssetDiligenceDescriptions.Where(d => d.CategoryID == categoryId).OrderBy(o=>o.ID).ToListAsync();
+
+            return Ok(diligenceDescs);
+        }
+
+        // PUT:  api/TradeAssets/diligences/5
+        [Route("diligences")]
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutTradeAssetDiligence(long id, TradeAssetDiligence tradeAssetDiligence)
         {
@@ -75,7 +106,8 @@ namespace TPG_App.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/TradeAssetDiligences
+        // POST:  api/TradeAssets/diligences
+        [Route("diligences")]
         [ResponseType(typeof(TradeAssetDiligence))]
         public async Task<IHttpActionResult> PostTradeAssetDiligence(TradeAssetDiligence tradeAssetDiligence)
         {
@@ -90,7 +122,8 @@ namespace TPG_App.Controllers
             return CreatedAtRoute("DefaultApi", new { id = tradeAssetDiligence.DeligenceID }, tradeAssetDiligence);
         }
 
-        // DELETE: api/TradeAssetDiligences/5
+        // DELETE:  api/TradeAssets/diligences/5
+        [Route("diligences")]
         [ResponseType(typeof(TradeAssetDiligence))]
         public async Task<IHttpActionResult> DeleteTradeAssetDiligence(long id)
         {

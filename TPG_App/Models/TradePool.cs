@@ -35,6 +35,8 @@ namespace TPG_App.Models
         [StringLength(3)]
         public string ManagerInitials { get; set; }
 
+        public short? CounterPartyID { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TradePoolStage> TradePoolStages { get; set; }
     }

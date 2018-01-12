@@ -1,0 +1,13 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">Add a Counter Party</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" name="cpEditForm" novalidate>
+        <label for="counterParty" class="control-label col-md-4">Counter Party Name</label>
+        <input id="counterParty" name="counterParty" class="form-control" type="text" placeholder="Trade Name" ng-model="vmCtrl.counterPartyName" style="text-align:left" />
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="submit" ng-click="vmCtrl.submit()" ng-disabled="cpEditForm.$invalid || cpEditForm.$pristine">Submit</button>
+    <button class="btn btn-primary" type="button" ng-click="vmCtrl.close()">Cancel</button>
+</div>

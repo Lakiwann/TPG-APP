@@ -23,6 +23,15 @@
                     method: 'GET',
                     isArray: true,
                     url: "http://localhost:3666/" + "api/tradepools/yearlysummary/:year"
+                },
+                'getcounterparties': {
+                    method: 'GET',
+                    isArray: true,
+                    url: "http://localhost:3666/" + "api/tradepools/counterparties/"
+                },
+                'postcounterparty': {
+                    method: 'POST',
+                    url: "http://localhost:3666/" + "api/tradepools/counterparties/"
                 }
             });
     }

@@ -32,3 +32,12 @@ ADD CONSTRAINT UC_TradePool_TradeType_TradeName UNIQUE (TradeType,TradeName)
 SET ANSI_PADDING OFF
 GO
 
+--added the CounterParty field 01/11/2018 and the foreign key constraint
+
+ALTER TABLE [Trd].[TradePool]  
+ADD CounterPartyID smallint NULL
+GO
+
+ALTER TABLE [Trd].[TradePool] WITH  CHECK ADD CONSTRAINT [FK_TradePool_CounterPartyID] FOREIGN KEY([CounterPartyID])
+REFERENCES [Trd].[CounterParty] ([CounterPartyID])
+GO

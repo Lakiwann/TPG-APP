@@ -6,15 +6,14 @@ namespace TPG_App.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Trd.LU_DiligenceDesc")]
-    public partial class LU_DiligenceDesc
+    [Table("Trd.LU_DiligenceCategory")]
+    public partial class TradeAssetDiligenceCategory
     {
-        public int ID { get; set; }
-
-        public byte CategoryID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public byte ID { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Description { get; set; }
+        public string CategoryName { get; set; }
     }
 }

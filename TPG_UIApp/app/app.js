@@ -12,8 +12,53 @@
                                                     , "ui.grid"
                                                     , "ui.grid.pagination"
                                                     , "ui.grid.autoResize"
+                                                    , "ui.grid.edit"
+                                                    , "ui.grid.rowEdit"
                                                     //, "ui.grid.footer"
-                                                    ]);
+    ]);
+
+    app.filter('griddropdown', function () {
+        alert('insidefilter');
+        //return function (input, context) {
+        //    alert(input, context);
+        //    var map = context.col.colDef.editDropdownOptionsArray;
+        //    var idField = context.col.colDef.editDropdownIdLabel;
+        //    var valueField = context.col.colDef.editDropdownValueLabel;
+        //    var initial = context.row.entity[context.col.field];
+        //    if (typeof map !== "undefined") {
+        //        for (var i = 0; i < map.length; i++) {
+        //            if (map[i][idField] == input) {
+        //                return map[i][valueField];
+        //            }
+        //        }
+        //    } else if (initial) {
+        //        return initial;
+        //    }
+        //    return input;
+        //};
+        return function (input) {
+            alert(input, context);
+            if (!input) {
+                return '';
+            }
+            var fieldLevel = (context.editDropdownOptionsArray == undefined) ? context.col.colDef : context;
+            var map = fieldLevel.editDropdownOptionsArray;
+            var map = context.col.colDef.editDropdownOptionsArray;
+            var idField = context.col.colDef.editDropdownIdLabel;
+            var valueField = context.col.colDef.editDropdownValueLabel;
+            var initial = context.row.entity[context.col.field];
+            if (typeof map !== "undefined") {
+                for (var i = 0; i < map.length; i++) {
+                    if (map[i][idField] == input) {
+                        return map[i][valueField];
+                    }
+                }
+            } else if (initial) {
+                return initial;
+            }
+            return input;
+        };
+    })
 
     app.config(['$locationProvider',
          function ($locationProvider) {
@@ -117,6 +162,20 @@
                         var assetId = $stateParams.assetId;
                         if(assetId != 0)
                             return tradeAssetResource.get({Id:assetId}).$promise;
+                    }
+                }
+            })
+            .state("tradeAssetDiligence",
+            {
+                url: "/trading/asset/:assetId/diligence",
+                templateUrl: "/app/trading/tradeAssetsDiligenceView.html",
+                controller: "tradeAssetsDiligenceCtrl as vm",
+                resolve: {
+                    tradeAssetResource: "tradeAssetResource",
+                    tradeAsset: function (tradeAssetResource, $stateParams) {
+                        var assetId = $stateParams.assetId;
+                        if (assetId != 0)
+                            return tradeAssetResource.get({ Id: assetId }).$promise;
                     }
                 }
             })

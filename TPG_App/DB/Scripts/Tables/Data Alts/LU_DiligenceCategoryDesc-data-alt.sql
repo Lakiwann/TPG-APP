@@ -485,7 +485,7 @@ GO
 
 DECLARE @CategoryIdData tinyint
 SET @CategoryIdData = (Select ID from [Trd].LU_DiligenceCategory 
-WHERE CategoryName = 'Title')
+WHERE CategoryName = 'Data')
 
 INSERT INTO [Trd].[LU_DiligenceDesc]
            ([CategoryID]
