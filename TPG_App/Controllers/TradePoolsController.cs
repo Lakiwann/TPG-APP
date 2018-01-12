@@ -281,7 +281,7 @@ namespace TPG_App.Controllers
             
             if((counterParty == null) || db.TradeCounterParties.Where(cp => cp.CounterPartyName.ToLower() == counterParty.CounterPartyName.ToLower()).Count() > 0)
             {
-                return BadRequest("The counter party name is invalid or is already taken");
+                return BadRequest("The counter party name is invalid or already taken");
             }
                
             db.TradeCounterParties.Add(counterParty);

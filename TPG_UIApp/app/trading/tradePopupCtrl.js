@@ -1,15 +1,15 @@
 ﻿(function () {
     "use strict";
     var app = angular.module("palisadesDashboard");
-    app.controller("tradePopupCtrl", ["$uibModalInstance", 'tradeResource', TradePopupCtrl]);
+    app.controller("tradePopupCtrl", ["$uibModalInstance", "prevSelection", 'tradeResource', TradePopupCtrl]);
 
-    function TradePopupCtrl($uibModalInstance, tradeResource) {
+    function TradePopupCtrl($uibModalInstance, prevSelection, tradeResource) {
         var vm = this;
-        
         vm.counterPartyName = "";
         vm.cpID = "";
+        vm.serverErrors = "";
         vm.close = function () {
-            $uibModalInstance.close('-1');
+            $uibModalInstance.close(prevSelection);
         }
 
         vm.submit = function () {
@@ -23,13 +23,11 @@
                 $uibModalInstance.close(vm.cpID);
             },
             function (error) {
-                alert(error);
                 console.log(error);
+                vm.serverErrors = error.data.message;
                 err = true;
             });
         }
     }
-
-
 }
 ());

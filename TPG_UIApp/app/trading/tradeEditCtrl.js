@@ -72,13 +72,16 @@
         
         vm.counterPartyChange = function () {
             
-            if(vm.trade != null && vm.trade.counterPartyID == -1)
+            if(vm.trade != null && vm.trade.counterPartyID == "-1")
             {
                 console.log('Opening new counterparty pop up');
                 var modalInstance = $uibModal.open({
                     templateUrl: '/app/trading/tradeCounterPartyModalView.html',
                     controller: 'tradePopupCtrl',
                     controllerAs: 'vmCtrl',
+                    resolve: {
+                        prevSelection: vm.selectedCounterPartyId
+                    }
                     
                 });
 
@@ -94,15 +97,8 @@
                             vm.availableCounterPartyOptions = data;
                             vm.availableCounterPartyOptions.push({ counterPartyID: -1, counterPartyName: "+ New", bold: true });
                         });
-                        vm.trade.counterPartyID = selectedID;
+                        vm.trade.counterPartyID = vm.selectedCounterPartyId = selectedID;
                     }
-                    else
-                    {
-                       
-                        console.log("User cancelled dialog.  Setting to the counterPartyID: " + vm.selectedCounterPartyId)
-                        vm.trade.counterPartyID = vm.selectedCounterPartyId;
-                    }
-                   
                 });
                
             }

@@ -122,3 +122,9 @@ form legend {
 .newitem {
   color: blue;  
 }
+
+.submit-error {
+    color: red;
+}
+
+

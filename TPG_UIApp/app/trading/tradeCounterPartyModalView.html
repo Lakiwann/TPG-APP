@@ -1,10 +1,15 @@
 ﻿<div class="modal-header">
-    <h3 class="modal-title">Add a Counter Party</h3>
+    <h3 class="modal-title">Add a new Counter Party</h3>
 </div>
 <div class="modal-body">
     <form class="form-horizontal" name="cpEditForm" novalidate>
-        <label for="counterParty" class="control-label col-md-4">Counter Party Name</label>
-        <input id="counterParty" name="counterParty" class="form-control" type="text" placeholder="Trade Name" ng-model="vmCtrl.counterPartyName" style="text-align:left" />
+        <div class="form-group">
+            <input id="counterParty" name="counterParty" class="form-control" type="text" placeholder="Please enter a new counter party name.." ng-model="vmCtrl.counterPartyName" style="text-align:left;" />
+            <div class="has-error submit-error" data-ng-message="vmCtrl.serverErrors" data-ng-show="vmCtrl.serverErrors" style="padding-top:20px">
+                <span class="glyphicon glyphicon-warning-sign has-feedback"></span><label class="has-feedback">{{vmCtrl.serverErrors}}</label>
+                <!--<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>-->
+            </div>
+        </div>
     </form>
 </div>
 <div class="modal-footer">
