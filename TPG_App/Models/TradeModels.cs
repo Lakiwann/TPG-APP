@@ -32,6 +32,82 @@ namespace TPG_App.Models
                 .Property(e => e.ManagerInitials)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.SellerAssetID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.StreetAddress1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.StreetAddress2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.City)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.State)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.Zip)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.StreetAddress1_Standardized)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.StreetAddress2_Standardized)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.City_Standardized)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.State_Standardized)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.Zip_Standardized)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.Cbsa)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.CbsaName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.ProdType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.LoanPurp)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.PropType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.OrigFico)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.CurrFico)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeAsset>()
+                .Property(e => e.PayString)
+                .IsUnicode(false);
+
             modelBuilder.Entity<TradeAssetDiligenceType>()
                 .Property(e => e.TypeName)
                 .IsUnicode(false);

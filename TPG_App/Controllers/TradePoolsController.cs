@@ -228,6 +228,7 @@ namespace TPG_App.Controllers
                 {
                     
                     tpCurrentStage.TradeStageDate = newTradePoolStage.TradeStageDate;
+                    //Update currentstage -  (PUT) 
                     var result = await tpsCtrl.PutTradePoolStage(tpCurrentStage.ID, tpCurrentStage);
                     continue;
                 }
@@ -235,6 +236,18 @@ namespace TPG_App.Controllers
                 
                 if(newTradePoolStage.StageID == nextStageId)
                 {
+                    //Add new  stage - (POST)
+                    LU_TradeStage trdStage = await db.LU_TradeStages.Where(s => s.StageName == "Pool Awarded").FirstAsync();
+                    if (newTradePoolStage.StageID == trdStage.StageID)
+                    {
+                        List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == tradePool.TradeID).ToListAsync();
+                        foreach(var asset in assets)
+                        {
+                            //TODO:  Add the SellerID and SellerAssetID to PALID table and keep the address as a back up mechanism
+
+                        }
+
+                    }
                     var result = await tpsCtrl.PostTradePoolStage(newTradePoolStage);
                     nextStageId++;
                 }

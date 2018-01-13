@@ -1,7 +1,7 @@
 USE [APP]
 GO
 
-/****** Object:  Table [Trd].[TradePoolStage]    Script Date: 12/27/2017 4:31:10 PM ******/
+/****** Object:  Table [Trd].[TradeAsset]    Script Date: 12/27/2017 4:31:10 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,8 +12,9 @@ CREATE TABLE [Trd].[TradeAsset](
 	[AssetID] [bigint] IDENTITY(1,1) NOT NULL,
 	[TradeID] [int] NOT NULL,
 	[TapeID] [int] NOT NULL,
-	[CounterParty] varchar(50) NOT NULL,
-	[CounterPartyAssetID] varchar(50) NOT NULL,
+	[Seller_CounterPartyID] smallint NOT NULL,
+	[SellerAssetID] varchar(50) NOT NULL,
+	[PalID] [bigint] NULL,
 	[OriginalBalance] numeric (18, 2) NOT NULL,
 	[CurrentBalance] numeric (18, 2) NOT NULL,
 	[Bpo] numeric (18, 2) NULL,
@@ -24,8 +25,16 @@ CREATE TABLE [Trd].[TradeAsset](
 	[PaidToDate] datetime NULL,
 	[NextDueDate] datetime NULL,
 	[MaturityDate] datetime NULL,
+	[StreetAddress1] varchar(100) NULL,
+	[StreetAddress2] varchar(100) NULL,
+	[City] varchar(50) NULL,
 	[State] varchar(10) NULL,
 	[Zip] varchar(10) NULL,
+	[StreetAddress1_Standardized] varchar(100) NULL,
+	[StreetAddress2_Standardized] varchar(100) NULL,
+	[City_Standardized] varchar(50) NULL,
+	[State_Standardized] varchar(10) NULL,
+	[Zip_Standardized] varchar(10) NULL,
 	[Cbsa] varchar(100) NULL,
 	[CbsaName] varchar(100) NULL,
 	[ProdType] varchar(100) NULL,
@@ -51,4 +60,17 @@ ALTER TABLE [Trd].[TradeAsset]  WITH CHECK ADD  CONSTRAINT [FK_TradeAsset_TapeID
 REFERENCES [Trd].[TradeTape] ([TapeID])
 ON DELETE CASCADE
 GO
+
+ALTER TABLE [Trd].[TradeAsset]  WITH CHECK ADD  CONSTRAINT [FK_TradeAsset_Seller_CounterPartyID] FOREIGN KEY([Seller_CounterPartyID])
+REFERENCES [Trd].[CounterParty] ([CounterPartyID])
+GO
+
+ALTER TABLE [Trd].[TradeAsset]  WITH CHECK ADD  CONSTRAINT [FK_TradeAsset_PalID] FOREIGN KEY([PalID])
+REFERENCES [Trd].[PalisadesAssetReference] ([PalID])
+GO
+
+ALTER TABLE [Trd].[TradeAsset]  WITH CHECK ADD  CONSTRAINT [UC_TradeAsset] UNIQUE([TradeID], [Seller_CounterPartyID], [SellerAssetID])
+GO
+
+
 

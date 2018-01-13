@@ -191,6 +191,7 @@ namespace TPG_App.Controllers
             do
             {
                 var loanBatch = File.ReadLines(tradeTape.StoragePath).Skip(skipRowCount).Take(rowBatchSize);
+                var counterPartyID = db.TradePools.Where(p => p.TradeID == tradeTape.TradeID).First().CounterPartyID;
 
                 foreach (var line in loanBatch)
                 {
@@ -199,8 +200,8 @@ namespace TPG_App.Controllers
                     {
                         TradeID = tradeTape.TradeID,
                         TapeID = tradeTape.TapeID,
-                        CounterParty = "Bank of America",
-                        CounterPartyAssetID = loanAttributes[2].Trim(),
+                        Seller_CounterPartyID = (short)counterPartyID, 
+                        SellerAssetID = loanAttributes[2].Trim(),
                         OriginalBalance = Convert.ToDecimal(loanAttributes[4]),
                         CurrentBalance = Convert.ToDecimal(loanAttributes[5]),
                         Bpo = Convert.ToDecimal(loanAttributes[12]),
@@ -211,6 +212,8 @@ namespace TPG_App.Controllers
                         PaidToDate = Convert.ToDateTime(loanAttributes[25]),
                         NextDueDate = Convert.ToDateTime(loanAttributes[26]),
                         MaturityDate = Convert.ToDateTime(loanAttributes[27]),
+                        StreetAddress1 = loanAttributes[34].Trim(),
+                        City = loanAttributes[35].Trim(),
                         State = loanAttributes[36].Trim(),
                         Zip = loanAttributes[37].Trim(),
                         Cbsa = loanAttributes[38].Trim(),

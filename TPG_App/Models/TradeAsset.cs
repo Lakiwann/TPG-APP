@@ -16,13 +16,13 @@ namespace TPG_App.Models
 
         public int TapeID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string CounterParty { get; set; }
+        public short Seller_CounterPartyID { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string CounterPartyAssetID { get; set; }
+        public string SellerAssetID { get; set; }
+
+        public long? PalID { get; set; }
 
         [Column(TypeName = "numeric")]
         public decimal OriginalBalance { get; set; }
@@ -49,11 +49,35 @@ namespace TPG_App.Models
 
         public DateTime? MaturityDate { get; set; }
 
+        [StringLength(100)]
+        public string StreetAddress1 { get; set; }
+
+        [StringLength(100)]
+        public string StreetAddress2 { get; set; }
+
+        [StringLength(50)]
+        public string City { get; set; }
+
         [StringLength(10)]
         public string State { get; set; }
 
         [StringLength(10)]
         public string Zip { get; set; }
+
+        [StringLength(100)]
+        public string StreetAddress1_Standardized { get; set; }
+
+        [StringLength(100)]
+        public string StreetAddress2_Standardized { get; set; }
+
+        [StringLength(50)]
+        public string City_Standardized { get; set; }
+
+        [StringLength(10)]
+        public string State_Standardized { get; set; }
+
+        [StringLength(10)]
+        public string Zip_Standardized { get; set; }
 
         [StringLength(100)]
         public string Cbsa { get; set; }
