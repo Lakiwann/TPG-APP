@@ -14,8 +14,11 @@ namespace TPG_App.Models
 
         public short Seller_CounterPartyID { get; set; }
 
+        [StringLength(50)]
+        public string Seller_AssetID { get; set; }
+
         [StringLength(250)]
-        public string StandardizedAssetAddress { get; set; }
+        public string StandardizedAssetSearchCriteria { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime CreatedDate { get; set; }

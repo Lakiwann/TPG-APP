@@ -11,7 +11,8 @@ GO
 CREATE TABLE [Trd].[PalisadesAssetReference](
     [PalID] [bigint] IDENTITY(1000000,1) NOT NULL,
 	[Seller_CounterPartyID] smallint NOT NULL,
-	[StandardizedAssetAddress] varchar(250) NULL,
+	[Seller_AssetID] varchar(50) NULL,  -- The PalID is loosely coupled with Seller_assetID and standardized property address so business logic can be built to
+	[StandardizedAssetSearchCriteria] varchar(250) NULL,  --... lookup the PalID from a matching seller ID and StandardizedAssetSearchCriteria combination to associate the asset to the same PALID if the asset is received later from the same seller
 	[CreatedDate] date NOT NULL
 
 	PRIMARY KEY CLUSTERED 

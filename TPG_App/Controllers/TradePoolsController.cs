@@ -233,28 +233,70 @@ namespace TPG_App.Controllers
                     continue;
                 }
 
-                
-                if(newTradePoolStage.StageID == nextStageId)
+                if (newTradePoolStage.StageID == nextStageId)
                 {
                     //Add new  stage - (POST)
-                    LU_TradeStage trdStage = await db.LU_TradeStages.Where(s => s.StageName == "Pool Awarded").FirstAsync();
-                    if (newTradePoolStage.StageID == trdStage.StageID)
+                    LU_TradeStage trdPoolAwdedStage = await db.LU_TradeStages.Where(s => s.StageName == "Pool Awarded").FirstAsync();
+                    if (newTradePoolStage.StageID == trdPoolAwdedStage.StageID)
                     {
-                        List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == tradePool.TradeID).ToListAsync();
-                        foreach(var asset in assets)
-                        {
-                            //TODO:  Add the SellerID and SellerAssetID to PALID table and keep the address as a back up mechanism
-
-                        }
-
+                        //If the new stage is 'Pool Awarded' then Apply the PALID
+                        await ApplyPalIDsToTradeAssets(tradePool, newTradePoolStage);
                     }
                     var result = await tpsCtrl.PostTradePoolStage(newTradePoolStage);
                     nextStageId++;
                 }
             }
 
-
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        private async Task ApplyPalIDsToTradeAssets(TradePool tradePool, TradePoolStage newTradePoolStage)
+        {
+            List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == tradePool.TradeID).ToListAsync();
+            foreach (var asset in assets)
+            {
+                string standardizedAssetSearchString = GenerateStandardizedAssetSearchString(asset);
+
+                //Check if there is a PalID matching the AssetID for the seller
+                List<PalisadesAssetReference> palEntities = await db.PalisadesAssetReferences.Where(p => (p.Seller_CounterPartyID == asset.Seller_CounterPartyID) && (p.Seller_AssetID == asset.SellerAssetID)).ToListAsync();
+                PalisadesAssetReference pal = null;
+                if (palEntities.Count() > 0)
+                {
+                    pal = palEntities.Where(pe => pe.StandardizedAssetSearchCriteria == standardizedAssetSearchString).OrderByDescending(o => o.CreatedDate).First();
+                }
+                else
+                {
+                    pal = await db.PalisadesAssetReferences.Where(p => (p.Seller_CounterPartyID == asset.Seller_CounterPartyID) && (p.StandardizedAssetSearchCriteria == standardizedAssetSearchString)).OrderByDescending(o => o.CreatedDate).FirstAsync();
+                }
+
+                if (pal == null)
+                {
+                    //We couldn't find a matching palid.  Generate a new one
+                    pal = new PalisadesAssetReference();
+                    pal.Seller_CounterPartyID = asset.Seller_CounterPartyID;
+                    pal.Seller_AssetID = asset.SellerAssetID;
+                    pal.StandardizedAssetSearchCriteria = standardizedAssetSearchString;
+                    pal.CreatedDate = DateTime.UtcNow;
+
+                    //Save in the DB and once save is successful the object will have a PalID created
+                    db.PalisadesAssetReferences.Add(pal);
+                    await db.SaveChangesAsync();
+                }
+
+                asset.PalID = pal.PalID;
+            }
+        }
+
+        private static string GenerateStandardizedAssetSearchString(TradeAsset asset)
+        {
+            string standardizedAddress = asset.StreetAddress1.Trim() + "|" + asset.City.Trim() + "|" + asset.State.Trim() + "|" + asset.Zip.Trim();
+            string standardizedAssetSearchString = asset.MaturityDate.ToString() + "|" + standardizedAddress;
+            if (standardizedAssetSearchString.Length > 250)
+            {
+                standardizedAssetSearchString = standardizedAssetSearchString.Take(250).ToString();
+            }
+
+            return standardizedAssetSearchString;
         }
 
         // POST: api/TradePools

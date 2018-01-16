@@ -141,5 +141,7 @@ namespace TPG_App.Models
         public System.Data.Entity.DbSet<TradeAssetDiligenceDesc> TradeAssetDiligenceDescriptions { get; set; }
 
         public System.Data.Entity.DbSet<TradeCounterParty> TradeCounterParties { get; set; }
+
+        public System.Data.Entity.DbSet<TPG_App.Models.PalisadesAssetReference> PalisadesAssetReferences { get; set; }
     }
 }
