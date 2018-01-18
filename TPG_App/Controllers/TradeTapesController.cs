@@ -206,6 +206,7 @@ namespace TPG_App.Controllers
                             SellerAssetID = loanAttributes[2].Trim(),
                             OriginalBalance = Convert.ToDecimal(loanAttributes[4]),
                             CurrentBalance = Convert.ToDecimal(loanAttributes[5]),
+                            ForebearBalance = Convert.ToDecimal(loanAttributes[6]),
                             Bpo = Convert.ToDecimal(loanAttributes[12]),
                             BpoDate = Convert.ToDateTime(loanAttributes[11]),
                             OriginalPmt = Convert.ToDecimal(loanAttributes[21]),

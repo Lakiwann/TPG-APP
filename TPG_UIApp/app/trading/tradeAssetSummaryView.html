@@ -10,6 +10,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th scope="col">Pal ID</th>
                     <th scope="col">Current Bal</th>
                     <th scope="col">BPO</th>
                     <th scope="col">Original Prc</th>
@@ -21,9 +22,10 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>{{vm.tradeAsset.palID}}</td>
                     <td>{{vm.tradeAsset.currentBalance | currency}}</td>
                     <td>{{vm.tradeAsset.bpo | currency}}</td>
-                    <td></td>
+                    <td>{{vm.tradeAsset.currentBalance + vm.tradeAsset.forebearBalance | currency}}</td>
                     <td></td>
                     <td>{{vm.tradeAsset.prodType}}</td>
                     <td>{{vm.tradeAsset.propType}}</td>

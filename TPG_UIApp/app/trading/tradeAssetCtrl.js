@@ -6,7 +6,13 @@
     function TradeAssetCtrl(tradeAsset, tradeResource) {
 
         var vm = this;
+        if (tradeAsset.palID == "")
+        {
+            tradeAsset.palID = 'Pending';
+        }
+
         vm.tradeAsset = tradeAsset;
+
 
         tradeResource.query({ tradeId: vm.tradeAsset.tradeID }, function (data) {
             vm.tradeSummary = data[0];

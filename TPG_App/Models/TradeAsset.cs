@@ -31,6 +31,9 @@ namespace TPG_App.Models
         public decimal CurrentBalance { get; set; }
 
         [Column(TypeName = "numeric")]
+        public decimal ForebearBalance { get; set; }
+
+        [Column(TypeName = "numeric")]
         public decimal? Bpo { get; set; }
 
         public DateTime? BpoDate { get; set; }

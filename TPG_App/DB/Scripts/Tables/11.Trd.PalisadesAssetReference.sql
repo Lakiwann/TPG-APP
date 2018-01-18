@@ -26,3 +26,23 @@ GO
 ALTER TABLE [Trd].[PalisadesAssetReference]  WITH CHECK ADD  CONSTRAINT [FK_PalisadesAssetReference_SellerID] FOREIGN KEY([Seller_CounterPartyID])
 REFERENCES [Trd].[CounterParty] ([CounterPartyID])
 GO
+
+IF EXISTS (SELECT name FROM sys.indexes  
+            WHERE name = N'IX_Pal_SellerCounterParty')   
+    DROP INDEX IX_Pal_SellerCounterParty ON [Trd].[PalisadesAssetReference];   
+GO  
+-- Create a nonclustered index called IX_ProductVendor_VendorID   
+-- on the Purchasing.ProductVendor table using the BusinessEntityID column.   
+CREATE NONCLUSTERED INDEX IX_Pal_SellerCounterParty   
+    ON [Trd].[PalisadesAssetReference] (Seller_CounterPartyID);   
+GO  
+
+IF EXISTS (SELECT name FROM sys.indexes  
+            WHERE name = N'IX_Pal_CounterPartyAssetSearchCriteria')   
+    DROP INDEX IX_Pal_AssetSearchCriteria ON [Trd].[PalisadesAssetReference];   
+GO  
+-- Create a nonclustered index called IX_ProductVendor_VendorID   
+-- on the Purchasing.ProductVendor table using the BusinessEntityID column.   
+CREATE NONCLUSTERED INDEX IX_Pal_AssetSearchCriteria   
+    ON [Trd].[PalisadesAssetReference] (Seller_CounterPartyID, StandardizedAssetSearchCriteria);   
+GO  

@@ -17,6 +17,7 @@ CREATE TABLE [Trd].[TradeAsset](
 	[PalID] [bigint] NULL,
 	[OriginalBalance] numeric (18, 2) NOT NULL,
 	[CurrentBalance] numeric (18, 2) NOT NULL,
+	[ForebearBalance] numeric (18, 2) NOT NULL,
 	[Bpo] numeric (18, 2) NULL,
 	[BpoDate] datetime NULL,
 	[OriginalPmt] numeric (18, 2) NULL,

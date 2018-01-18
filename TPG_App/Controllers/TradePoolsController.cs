@@ -217,40 +217,41 @@ namespace TPG_App.Controllers
             var tpCurrentStages = tpsCtrl.GetTradePoolStages().Where(s => s.TradeID == tradePool.TradeID).OrderByDescending(o => o.StageID);
             
             TradePoolStage tpCurrentStage = tpCurrentStages.Count() == 0 ? null : tpCurrentStages.First();
-            int nextStageId = tpCurrentStage != null ? tpCurrentStage.StageID + 1 : 1;
-            foreach (var newTradePoolStage in tradePool.TradePoolStages.OrderBy(s => s.StageID))
+            //int nextStageId = tpCurrentStage != null ? tpCurrentStage.StageID + 1 : 1;
+            int currentStageId = tpCurrentStage != null ? tpCurrentStage.StageID : 0;
+            foreach (var tradePoolStage in tradePool.TradePoolStages.OrderBy(s => s.StageID))
             {
-                if ((tpCurrentStage != null)&&(newTradePoolStage.StageID < tpCurrentStage.StageID))
+                if ((tpCurrentStage != null)&&(tradePoolStage.StageID < currentStageId))
                     continue;
 
-                newTradePoolStage.TradeID = tradePool.TradeID;
-                if ((tpCurrentStage != null) && (newTradePoolStage.StageID == tpCurrentStage.StageID))
+                //var newTradePoolStage = tradePoolStage;
+                //newTradePoolStage.TradeID = tradePool.TradeID;
+                if ((tpCurrentStage != null) && (tradePoolStage.StageID == currentStageId))
                 {
                     
-                    tpCurrentStage.TradeStageDate = newTradePoolStage.TradeStageDate;
+                    tpCurrentStage.TradeStageDate = tradePoolStage.TradeStageDate;
                     //Update currentstage -  (PUT) 
                     var result = await tpsCtrl.PutTradePoolStage(tpCurrentStage.ID, tpCurrentStage);
                     continue;
                 }
 
-                if (newTradePoolStage.StageID == nextStageId)
+                if (tradePoolStage.StageID > currentStageId)
                 {
-                    //Add new  stage - (POST)
-                    LU_TradeStage trdPoolAwdedStage = await db.LU_TradeStages.Where(s => s.StageName == "Pool Awarded").FirstAsync();
-                    if (newTradePoolStage.StageID == trdPoolAwdedStage.StageID)
+                    //TODO:  This needs to be migrated to a service later.  The above will set the stage to 'Pool Awarded'.  Now generate the PAL IDs for the assets.  
+                    if (currentStageId == 2) //If the current stage is Out for Bid before setting it to 'Pool Awarded' assign PAL IDs
                     {
                         //If the new stage is 'Pool Awarded' then Apply the PALID
-                        await ApplyPalIDsToTradeAssets(tradePool, newTradePoolStage);
+                        await ApplyPalIDsToTradeAssets(tradePool);
                     }
-                    var result = await tpsCtrl.PostTradePoolStage(newTradePoolStage);
-                    nextStageId++;
+                    //ENDTODO
+                    var result = await tpsCtrl.PostTradePoolStage(tradePoolStage);
                 }
             }
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        private async Task ApplyPalIDsToTradeAssets(TradePool tradePool, TradePoolStage newTradePoolStage)
+        private async Task ApplyPalIDsToTradeAssets(TradePool tradePool)
         {
             List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == tradePool.TradeID).ToListAsync();
             foreach (var asset in assets)
@@ -266,7 +267,14 @@ namespace TPG_App.Controllers
                 }
                 else
                 {
-                    pal = await db.PalisadesAssetReferences.Where(p => (p.Seller_CounterPartyID == asset.Seller_CounterPartyID) && (p.StandardizedAssetSearchCriteria == standardizedAssetSearchString)).OrderByDescending(o => o.CreatedDate).FirstAsync();
+                    try
+                    {
+                        pal = await db.PalisadesAssetReferences.Where(p => (p.Seller_CounterPartyID == asset.Seller_CounterPartyID) && (p.StandardizedAssetSearchCriteria == standardizedAssetSearchString)).OrderByDescending(o => o.CreatedDate).FirstAsync();
+                    }
+                    catch(Exception ex)
+                    {
+                        //TODO:  if there are no results an exception will be thrown - ignoring for now as that would allow to continue the flow.  Make some improvements later to check the results before trying to access the 'First' above
+                    }
                 }
 
                 if (pal == null)
@@ -279,18 +287,32 @@ namespace TPG_App.Controllers
                     pal.CreatedDate = DateTime.UtcNow;
 
                     //Save in the DB and once save is successful the object will have a PalID created
-                    db.PalisadesAssetReferences.Add(pal);
-                    await db.SaveChangesAsync();
+                    try
+                    {
+                        var newPal = db.PalisadesAssetReferences.Add(pal);
+                        await db.SaveChangesAsync();
+                        asset.PalID = newPal.PalID;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                   
+                    //asset.PalID = assetPal.PalID;
                 }
-
-                asset.PalID = pal.PalID;
+                else
+                {
+                    asset.PalID = pal.PalID;
+                }
+                db.Entry(asset).State = EntityState.Modified;
+                await db.SaveChangesAsync();
             }
         }
 
         private static string GenerateStandardizedAssetSearchString(TradeAsset asset)
         {
             string standardizedAddress = asset.StreetAddress1.Trim() + "|" + asset.City.Trim() + "|" + asset.State.Trim() + "|" + asset.Zip.Trim();
-            string standardizedAssetSearchString = asset.MaturityDate.ToString() + "|" + standardizedAddress;
+            string standardizedAssetSearchString = asset.MaturityDate.Value.ToFileTimeUtc() + "|" + standardizedAddress;
             if (standardizedAssetSearchString.Length > 250)
             {
                 standardizedAssetSearchString = standardizedAssetSearchString.Take(250).ToString();
@@ -397,8 +419,8 @@ namespace TPG_App.Controllers
                     InOutStatus = "IN",
                     NumberOfIssues = 0,
                     TotalRepriceAmount = 0,
-                    OriginalPrice = asset.OriginalBalance,
-                    CurrentPrice = asset.CurrentBalance,
+                    OriginalPrice = asset.CurrentBalance + asset.ForebearBalance,
+                    CurrentPrice = 0,
                     Zip = asset.Zip
                 };
 

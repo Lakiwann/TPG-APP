@@ -21,7 +21,7 @@
                     <div class="col-md-4">
                         <!--<select id="counterParty" name="counterParty" class="form-control" type="text"  placeholder="Counter Party" ng-model="vm.trade.counterPartyID" ng-options="opt.counterPartyID as opt.counterPartyName disable when opt.bold for opt in vm.availableCounterPartyOptions" style="text-align:left"></select>-->
                         <!--<select id="counterParty" name="counterParty" class="form-control" type="text" placeholder="Counter Party" ng-model="vm.trade.counterPartyID" ng-options="opt.counterPartyID as opt.counterPartyName opt.bold for opt in vm.availableCounterPartyOptions" style="text-align:left"></select>-->
-                        <select id="counterParty" name="counterParty" class="form-control" type="text" placeholder="Counter Party" ng-model="vm.trade.counterPartyID" ng-change="vm.counterPartyChange()" style="text-align:left">
+                        <select id="counterParty" name="counterParty" class="form-control" type="text" placeholder="Counter Party" ng-model="vm.trade.counterPartyID" ng-disabled="vm.selectedStage" ng-change="vm.counterPartyChange()" style="text-align:left">
                             <option ng-repeat="opt in vm.availableCounterPartyOptions" ng-class={newitem:opt.bold} ng-value="opt.counterPartyID" >{{opt.counterPartyName}}</option>
                         </select>
                     </div>

@@ -6,15 +6,38 @@
     function TradeEditCtrl(trade, tradeResource, tradeStageResource, $state, $scope, $ngConfirm, $stateParams,  FileUploader, tradeTapeResource, $uibModal) {
         
         var vm = this;
-       // vm.data = [{ 'id': '1', 'name': { 'first': 'Lakshan', 'last': 'W' }, 'address': '23903 Brio Ct', 'price': '23', 'isActive': '1' }, { 'id': '2', 'name': { 'first': 'Aparna', 'last': 'W' }, 'address': '23903 Brio Ct', 'price': '23', 'isActive': '0' }];
-       // alert(vm.data[0].id + "|" + vm.data[0].address + vm.data[1].id + "|" + vm.data[1].address);
         vm.trade = trade;
         vm.availableStageOptions = [];
         vm.selectedStageDropdownParams = "";
         vm.selectedStageDate = "";
-        vm.selectedStage = "";
+        vm.selectedStage = ""; //This is used to keep track of the selected stage id.  This also serves as the modal for the counterparty dropdown disablement (ie when selected stage has a value the counter party drop down will be disabled)
         vm.availableCounterPartyOptions = [];
         vm.selectedCounterPartyId = "";
+
+        //data modals setup
+        if (vm.trade && vm.trade.tradePoolStages) {
+            vm.selectedStage = vm.trade.tradePoolStages.slice(-1)[0] ? vm.trade.tradePoolStages.slice(-1)[0].lU_TradeStage : "";
+        }
+        if (vm.selectedStage) {
+            vm.selectedStageDropdownParams = vm.selectedStage.stageID;
+            vm.selectedStageDate = new Date(vm.trade.tradePoolStages.slice(-1)[0].tradeStageDate);
+        }
+
+
+        tradeStageResource.query(function (data) {
+            vm.availableStageOptions = data;
+        });
+
+        tradeResource.getcounterparties(function (data) {
+            vm.availableCounterPartyOptions = data;
+            vm.availableCounterPartyOptions.push({ counterPartyID: -1, counterPartyName: "+ New", bold: true });
+            if (vm.trade != null) {
+                vm.selectedCounterPartyId = vm.trade.counterPartyID;
+            }
+            else {
+                vm.selectedCounterPartyId = vm.availableCounterPartyOptions[0].counterPartyID;
+            }
+        });
 
         $scope.uploader = new FileUploader();
         $scope.uploader.url = "http://localhost:3666/" + "api/tradetapes";
@@ -33,42 +56,21 @@
                 tradeTapeResource.importtape({id: vm.tradeTape.tapeID}, function(data) {
                     toastr.success("File successfully imported!");
                     var newdate = new Date();
+
                     //Change the Pool stage from 'Pool Identified' to 'Out for Bid'
                     vm.trade.tradePoolStages.push(
                         {
                             'tradeID': vm.trade.tradeID,
-                            'stageID': vm.selectedStageDropdownParams + 1,
+                            'stageID':  vm.availableStageOptions[1].stageID, // the second stage option is 'Out for Bid' vm.selectedStageDropdownParams + 1, 
                             'tradeStageDate': (newdate.getMonth() + 1) + "/" + newdate.getDate() + "/" + newdate.getFullYear()
                         })
                     tradeResource.update({ Id: vm.trade.tradeID }, vm.trade);
-                    $state.go('trading');
+                    $state.go('tradeDetail', { tradeId: vm.trade.tradeID });
                 })
             })
         }
 
-        if (vm.trade && vm.trade.tradePoolStages) {
-            vm.selectedStage = vm.trade.tradePoolStages.slice(-1)[0] ? vm.trade.tradePoolStages.slice(-1)[0].lU_TradeStage : "";
-        }
-       // vm.selectedStage = vm.trade.tradePoolStages.slice(-1)[0] ? vm.trade.tradePoolStages.slice(-1)[0].lU_TradeStage : "";
-       
-        //vm.selectedStageDropdownParams = "{name: "+ vm.selectedStage.stageName + ", value: " + vm.selectedStage.stageID +"}";
-        if (vm.selectedStage) {
-            vm.selectedStageDropdownParams = vm.selectedStage.stageID;
-            //alert(vm.selectedStage.trade.tradePoolStages.slice(-1)[0].tradeStageDate);
-            vm.selectedStageDate = new Date(vm.trade.tradePoolStages.slice(-1)[0].tradeStageDate);
-        }
         
-        
-        tradeStageResource.query(function (data) {
-            vm.availableStageOptions = data;
-        });
-
-        tradeResource.getcounterparties(function (data) {
-            vm.availableCounterPartyOptions = data;
-            vm.availableCounterPartyOptions.push({ counterPartyID: -1, counterPartyName: "+ New", bold: true });
-            vm.selectedCounterPartyId = vm.trade.counterPartyID;
-        });
-
         
         vm.counterPartyChange = function () {
             
@@ -139,8 +141,6 @@
             if (vm.newTrade == true) {
                 vm.trade.tradeType = "Purchase";
                 vm.trade = tradeResource.save(vm.trade);
-                //vm.title = "Edit:" + vm.trade.tradeName;
-               
             }
             else {
                 var today = new Date();
@@ -156,7 +156,6 @@
                 }
                 //If the stage selection's stage id is the same as the current stage id, then only the stage date may have been changed by the user so update the stage date
                 if ((vm.selectedStageDropdownParams != "") && ((vm.selectedStage != ""))) {
-                    //vm.trade.tradePoolStages.slice(-1)[0].tradeStageDate = enteredStageDate;
                     for (var i = 0; i < vm.trade.tradePoolStages.length; i++) {
                         if(vm.trade.tradePoolStages[i].stageID == vm.selectedStageDropdownParams)
                         {
@@ -166,7 +165,6 @@
                 }
                 tradeResource.update({ Id: vm.trade.tradeID }, vm.trade);
                 //Reload the trade information to get the tradePoolStages with the DB generated IDs
-                //vm.trade = tradeResource.get({ Id: vm.trade.tradeID }).$promise;
             }
 
             $ngConfirm({
@@ -183,12 +181,6 @@
 
                 }
             });
-
-            //toastr.success("Save Successful");
-            //$scope.tradeEditForm.$pristine = true;
-            //$state.go('trading', {}, {reload: true});
-            //$state.go('tradeDetail', { tradeId: vm.trade.tradeId });
-
 
         }
 
@@ -209,7 +201,6 @@
                                 inherit: false,
                                 notify: true
                             });
-                            //$ngConfirm("The " + vm.trade.tradeName + " has been deleted.");
                             $ngConfirm({
                                 content: "The " + vm.trade.tradeName + " has been deleted.",
                                 buttons: {
@@ -217,29 +208,29 @@
                                         text: 'OK',
                                         btnClass: 'btn-blue',
                                         action: function (scope, button) {
-                                            $state.go('trading', {}, { reload: true });
+                                            $state.go('tradingYearlySummaries', {}, { reload: true });
                                         }
                                     }
                                     
                                 }
                             });
-                            //$state.go('trading', {}, {reload: true});
-                            
-
-
                         }
                     },
                     close: function (scope, button) {
-                        //closes the modal
                     }
                 }
             });
-            //$state.go('trading', {}, {reload: true});
         }
 
         vm.cancel = function () {
             //$state.go('trading');
-            $state.go('tradeDetail', { tradeId: vm.trade.tradeID });
+            if (vm.trade && vm.trade.tradeID) {
+                $state.go('tradeDetail', { tradeId: vm.trade.tradeID });
+            }
+            else {
+                $state.go('tradingYearlySummaries', {}, { reload: true });
+            }
+           
         }
     }
 }
