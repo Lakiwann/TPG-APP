@@ -1,0 +1,1509 @@
+{
+	"info": {
+		"name": "PalisadesApp",
+		"_postman_id": "260fb139-1424-8788-f9bb-a6f2094aeb0f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TradePool",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:3666/Api/TradePools",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "TradeType",
+									"value": "Sale",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "TradeName",
+									"value": "OCM Sale 2016-16 BK (PRP) ",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "EstSettlementdate",
+									"value": "2016-12-29",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "ManagerName",
+									"value": "Leyla Mamedova",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "ManagerInitials",
+									"value": "LM",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "TradeID",
+									"value": "10",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradePools/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradePools",
+								"10"
+							]
+						},
+						"description": "Put Trade"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradePools/40/sum",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradePools/40/summary",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradePools",
+								"40",
+								"summary"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradePools",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "TradeType",
+									"value": "Sale",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "TradeName",
+									"value": "BANC Sale 2016-01 Mixed (CGM)",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "EstSettlementdate",
+									"value": "2016-09-30",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "ManagerName",
+									"value": "Andrija Kostanjevec",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "ManagerInitials",
+									"value": "AK",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradePools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradePools"
+							]
+						},
+						"description": "Post Trade"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradePools",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "TradeType",
+									"value": "Sale",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "TradeName",
+									"value": "BANC Sale 2016-01 Mixed (CGM)",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "EstSettlementdate",
+									"value": "2016-09-30",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "ManagerName",
+									"value": "Andrija Kostanjevec",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "ManagerInitials",
+									"value": "AK",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradePools?$filter=EstSettlementDate gt datetime'2017-01-01' and EstSettlementDate lt datetime'2018-01-01'",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradePools"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "EstSettlementDate gt datetime'2017-01-01' and EstSettlementDate lt datetime'2018-01-01' ",
+									"equals": true
+								}
+							]
+						},
+						"description": "Get Trades"
+					},
+					"response": [
+						{
+							"id": "00d2a14e-ace1-475f-ab47-111ad32e63cd",
+							"name": "http://localhost:3666/Api/TradePools",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "TradeType",
+											"value": "Sale",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "TradeName",
+											"value": "BANC Sale 2016-01 Mixed (CGM)",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "EstSettlementdate",
+											"value": "2016-09-30",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "ManagerName",
+											"value": "Andrija Kostanjevec",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "ManagerInitials",
+											"value": "AK",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3666/Api/TradePools?$filter=EstSettlementDate gt datetime'2017-01-01' and EstSettlementDate lt datetime'2018-02-01'",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3666",
+									"path": [
+										"Api",
+										"TradePools"
+									],
+									"query": [
+										{
+											"key": "$filter",
+											"value": "EstSettlementDate gt datetime'2017-01-01' and EstSettlementDate lt datetime'2018-02-01' ",
+											"equals": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "485",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Jan 2018 01:51:28 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-AspNet-Version",
+									"value": "4.0.30319",
+									"name": "X-AspNet-Version",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-SourceFiles",
+									"value": "=?UTF-8?B?QzpcUHJvamVjdHNcVFBHX0FwcFxUUEdfQXBwXEFwaVxUcmFkZVBvb2xz?=",
+									"name": "X-SourceFiles",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"responseTime": 1952,
+							"body": "[{\"tradePoolStages\":[{\"lU_TradeStage\":{\"stageID\":1,\"stageName\":\"Pool Identified\",\"status\":\"A\"},\"id\":135,\"tradeID\":85,\"stageID\":1,\"tradeStageDate\":\"2018-01-17T00:00:00\"},{\"lU_TradeStage\":{\"stageID\":2,\"stageName\":\"Out for Bid\",\"status\":\"A\"},\"id\":136,\"tradeID\":85,\"stageID\":2,\"tradeStageDate\":\"2018-01-17T00:00:00\"}],\"tradeID\":85,\"tradeType\":\"Purchase\",\"tradeName\":\"CS - $142mm RPL2\",\"estSettlementDate\":\"2018-01-31T00:00:00\",\"managerName\":\"LW\",\"managerInitials\":\"LW\",\"counterPartyID\":1}]"
+						}
+					]
+				},
+				{
+					"name": "http://localhost:3666/Api/TradePools",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "tradeType",
+									"value": "Sale",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "tradeName",
+									"value": "OCM Sale 2017-02 REO (NJ)",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "estSettlementdate",
+									"value": "2017-05-19",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "managerName",
+									"value": "Andrija Kostanjevec",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "managerInitials",
+									"value": "AK",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradePools",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradePools"
+							]
+						},
+						"description": "Delete Trade"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradePools/40/assetSummary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradePools/40/assetSummary",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradePools",
+								"40",
+								"assetSummary"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "e95e4b5f-db61-4071-9665-7f93c578b481",
+							"name": "http://localhost:3666/Api/TradePools/40/assetSummary",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3666/Api/TradePools/53/assetSummary",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3666",
+									"path": [
+										"Api",
+										"TradePools",
+										"53",
+										"assetSummary"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37403",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 08 Jan 2018 17:50:58 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-AspNet-Version",
+									"value": "4.0.30319",
+									"name": "X-AspNet-Version",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-SourceFiles",
+									"value": "=?UTF-8?B?QzpcUHJvamVjdHNcVFBHX0FwcFxUUEdfQXBwXEFwaVxUcmFkZVBvb2xzXDUzXGFzc2V0U3VtbWFyeQ==?=",
+									"name": "X-SourceFiles",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"responseTime": 234,
+							"body": "{\"tradeId\":53,\"assetSummaries\":[{\"assetID\":3487,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165000.00,\"currentPrice\":128762.12,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3488,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":40000.00,\"currentPrice\":36640.60,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3489,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":125000.00,\"currentPrice\":112250.62,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3490,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":81600.00,\"currentPrice\":58925.82,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3491,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":236000.00,\"currentPrice\":76815.12,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3492,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":74727.87,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3493,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":25000.00,\"currentPrice\":11319.11,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3494,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":93509.30,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3495,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":45000.00,\"currentPrice\":43409.45,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3496,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":147401.05,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3497,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":60000.00,\"currentPrice\":60243.44,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3498,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":44000.00,\"currentPrice\":41743.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3499,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":30000.00,\"currentPrice\":10614.88,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3500,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":63000.00,\"currentPrice\":40220.09,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3501,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":32000.00,\"currentPrice\":27485.69,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3502,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":700000.00,\"currentPrice\":722078.67,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3503,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":239960.00,\"currentPrice\":266717.41,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3504,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":149319.00,\"currentPrice\":145112.12,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3505,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":190794.00,\"currentPrice\":188806.32,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3506,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":410000.00,\"currentPrice\":331741.37,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3507,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":95234.73,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3508,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":524216.00,\"currentPrice\":521443.19,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3509,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":107200.00,\"currentPrice\":93026.02,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3510,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":143296.18,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3511,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":650000.00,\"currentPrice\":509347.33,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3512,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130400.00,\"currentPrice\":117760.70,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3513,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":91200.00,\"currentPrice\":71254.87,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3514,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":375000.00,\"currentPrice\":369423.75,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3515,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232200.00,\"currentPrice\":203924.67,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3516,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":161000.00,\"currentPrice\":130123.59,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3517,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":366000.00,\"currentPrice\":240666.64,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3518,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":69200.00,\"currentPrice\":26252.76,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3519,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":419000.00,\"currentPrice\":446049.86,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3520,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":77310.00,\"currentPrice\":71964.60,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3521,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":227000.00,\"currentPrice\":256069.89,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3522,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":192000.00,\"currentPrice\":116727.37,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3523,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":280000.00,\"currentPrice\":159417.19,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3524,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":351500.00,\"currentPrice\":328908.42,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3525,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":379500.00,\"currentPrice\":286763.24,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3526,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188595.00,\"currentPrice\":246815.85,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3527,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":242500.00,\"currentPrice\":425240.30,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3528,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":483029.38,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3529,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":840000.00,\"currentPrice\":700984.80,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3530,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":962500.00,\"currentPrice\":759588.10,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3531,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":363750.00,\"currentPrice\":363750.00,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3532,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232320.00,\"currentPrice\":231985.27,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3533,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165295.00,\"currentPrice\":163693.46,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3534,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":174000.00,\"currentPrice\":173263.60,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3535,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":153000.00,\"currentPrice\":152282.85,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3536,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":271633.00,\"currentPrice\":239088.82,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3537,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":1279217.00,\"currentPrice\":784157.00,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3538,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":96324.00,\"currentPrice\":81598.29,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3539,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":151000.00,\"currentPrice\":118241.62,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3540,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":115840.00,\"currentPrice\":100395.24,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3541,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":359000.00,\"currentPrice\":358514.09,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3542,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":284000.00,\"currentPrice\":276030.03,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3543,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232000.00,\"currentPrice\":211130.89,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3544,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":207600.00,\"currentPrice\":141565.65,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3545,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":94500.00,\"currentPrice\":87998.12,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3546,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":301600.00,\"currentPrice\":124309.56,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3547,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238019.00,\"currentPrice\":123263.69,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3548,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":880000.00,\"currentPrice\":937651.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3549,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":368000.00,\"currentPrice\":360188.15,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3550,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":84608.00,\"currentPrice\":65705.43,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3551,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":103928.07,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3552,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":380000.00,\"currentPrice\":152283.67,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3553,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":286100.00,\"currentPrice\":246861.67,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3554,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":245400.00,\"currentPrice\":263949.66,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3555,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":322500.00,\"currentPrice\":272176.71,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3556,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188465.00,\"currentPrice\":149454.99,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3557,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":397000.00,\"currentPrice\":109961.66,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3558,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":353150.00,\"currentPrice\":330672.44,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3559,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238000.00,\"currentPrice\":210410.01,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3560,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":318000.00,\"currentPrice\":186919.71,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3561,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":112900.00,\"currentPrice\":105885.28,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3562,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":406250.00,\"currentPrice\":334070.76,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3563,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":122380.80,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3564,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":179900.00,\"currentPrice\":133736.65,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3565,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":79540.00,\"currentPrice\":51037.82,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3566,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":173900.00,\"currentPrice\":96008.41,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3567,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":680000.00,\"currentPrice\":591579.47,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3568,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":334848.00,\"currentPrice\":179958.07,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3569,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":82700.00,\"currentPrice\":59901.59,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3570,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130000.00,\"currentPrice\":53965.21,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3571,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":344600.00,\"currentPrice\":260323.62,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3572,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":430000.00,\"currentPrice\":410021.38,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3573,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":152900.00,\"currentPrice\":161195.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3574,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":200000.00,\"currentPrice\":165909.68,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3575,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":364990.00,\"currentPrice\":275677.85,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3576,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":252800.00,\"currentPrice\":187773.21,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3577,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":602046.84,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3578,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":500000.00,\"currentPrice\":462918.31,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3579,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":320000.00,\"currentPrice\":170865.06,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3580,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":560000.00,\"currentPrice\":510323.17,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3581,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":428000.00,\"currentPrice\":75096.50,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3582,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":166073.00,\"currentPrice\":104313.98,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3583,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":328000.00,\"currentPrice\":207519.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3584,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":59448.00,\"currentPrice\":48852.29,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3585,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":139920.00,\"currentPrice\":91723.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3586,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":134869.31,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3587,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":300000.00,\"currentPrice\":298796.16,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3588,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":256500.00,\"currentPrice\":179321.76,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3589,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":120000.00,\"currentPrice\":62664.61,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3590,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":109250.00,\"currentPrice\":102787.73,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3591,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":239900.00,\"currentPrice\":188281.67,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3592,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":160500.00,\"currentPrice\":131142.18,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3593,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130000.00,\"currentPrice\":120106.91,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3594,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":89000.00,\"currentPrice\":94834.68,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3595,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":132362.00,\"currentPrice\":62937.91,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3596,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":2080000.00,\"currentPrice\":1906571.70,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3597,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":223000.00,\"currentPrice\":147699.05,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3598,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":91500.00,\"currentPrice\":72716.32,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3599,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":52650.00,\"currentPrice\":62292.85,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3600,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":67500.00,\"currentPrice\":16090.97,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3601,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":71700.00,\"currentPrice\":25974.26,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3602,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":75900.00,\"currentPrice\":48655.06,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3603,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":86800.00,\"currentPrice\":48375.06,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3604,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":141000.00,\"currentPrice\":21682.78,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3605,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":71788.97,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3606,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":110000.00,\"currentPrice\":45925.35,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3607,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":120000.00,\"currentPrice\":65286.24,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3608,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":36000.00,\"currentPrice\":14699.20,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3609,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100238.00,\"currentPrice\":84987.98,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3610,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":50991.00,\"currentPrice\":12681.37,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3611,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":98000.00,\"currentPrice\":74075.10,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3612,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":144000.00,\"currentPrice\":110851.53,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3613,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":84000.00,\"currentPrice\":66145.88,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3614,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":75000.00,\"currentPrice\":62823.20,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3615,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":117000.00,\"currentPrice\":97905.64,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3616,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":70000.00,\"currentPrice\":50636.92,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3617,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165000.00,\"currentPrice\":128762.12,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3618,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":40000.00,\"currentPrice\":36640.60,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3619,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":125000.00,\"currentPrice\":112250.62,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3620,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":81600.00,\"currentPrice\":58925.82,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3621,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":236000.00,\"currentPrice\":76815.12,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3622,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":74727.87,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3623,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":25000.00,\"currentPrice\":11319.11,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3624,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":93509.30,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3625,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":45000.00,\"currentPrice\":43409.45,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3626,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":147401.05,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3627,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":60000.00,\"currentPrice\":60243.44,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3628,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":44000.00,\"currentPrice\":41743.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3629,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":30000.00,\"currentPrice\":10614.88,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3630,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":63000.00,\"currentPrice\":40220.09,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3631,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":32000.00,\"currentPrice\":27485.69,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3632,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":700000.00,\"currentPrice\":722078.67,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3633,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":239960.00,\"currentPrice\":266717.41,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3634,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":149319.00,\"currentPrice\":145112.12,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3635,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":190794.00,\"currentPrice\":188806.32,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3636,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":410000.00,\"currentPrice\":331741.37,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3637,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":95234.73,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3638,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":524216.00,\"currentPrice\":521443.19,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3639,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":107200.00,\"currentPrice\":93026.02,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3640,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":143296.18,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3641,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":650000.00,\"currentPrice\":509347.33,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3642,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130400.00,\"currentPrice\":117760.70,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3643,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":91200.00,\"currentPrice\":71254.87,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3644,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":375000.00,\"currentPrice\":369423.75,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3645,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232200.00,\"currentPrice\":203924.67,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3646,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":161000.00,\"currentPrice\":130123.59,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3647,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":366000.00,\"currentPrice\":240666.64,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3648,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":69200.00,\"currentPrice\":26252.76,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3649,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":419000.00,\"currentPrice\":446049.86,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3650,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":77310.00,\"currentPrice\":71964.60,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3651,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":227000.00,\"currentPrice\":256069.89,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3652,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":192000.00,\"currentPrice\":116727.37,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3653,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":280000.00,\"currentPrice\":159417.19,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3654,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":351500.00,\"currentPrice\":328908.42,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3655,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":379500.00,\"currentPrice\":286763.24,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3656,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188595.00,\"currentPrice\":246815.85,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3657,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":242500.00,\"currentPrice\":425240.30,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3658,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":483029.38,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3659,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":840000.00,\"currentPrice\":700984.80,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3660,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":962500.00,\"currentPrice\":759588.10,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3661,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":363750.00,\"currentPrice\":363750.00,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3662,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232320.00,\"currentPrice\":231985.27,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3663,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165295.00,\"currentPrice\":163693.46,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3664,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":174000.00,\"currentPrice\":173263.60,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3665,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":153000.00,\"currentPrice\":152282.85,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3666,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":271633.00,\"currentPrice\":239088.82,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3667,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":1279217.00,\"currentPrice\":784157.00,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3668,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":96324.00,\"currentPrice\":81598.29,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3669,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":151000.00,\"currentPrice\":118241.62,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3670,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":115840.00,\"currentPrice\":100395.24,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3671,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":359000.00,\"currentPrice\":358514.09,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3672,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":284000.00,\"currentPrice\":276030.03,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3673,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232000.00,\"currentPrice\":211130.89,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3674,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":207600.00,\"currentPrice\":141565.65,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3675,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":94500.00,\"currentPrice\":87998.12,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3676,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":301600.00,\"currentPrice\":124309.56,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3677,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238019.00,\"currentPrice\":123263.69,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3678,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":880000.00,\"currentPrice\":937651.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3679,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":368000.00,\"currentPrice\":360188.15,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3680,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":84608.00,\"currentPrice\":65705.43,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3681,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":103928.07,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3682,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":380000.00,\"currentPrice\":152283.67,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3683,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":286100.00,\"currentPrice\":246861.67,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3684,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":245400.00,\"currentPrice\":263949.66,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3685,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":322500.00,\"currentPrice\":272176.71,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3686,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188465.00,\"currentPrice\":149454.99,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3687,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":397000.00,\"currentPrice\":109961.66,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3688,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":353150.00,\"currentPrice\":330672.44,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3689,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238000.00,\"currentPrice\":210410.01,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3690,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":318000.00,\"currentPrice\":186919.71,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3691,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":112900.00,\"currentPrice\":105885.28,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3692,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":406250.00,\"currentPrice\":334070.76,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3693,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":122380.80,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3694,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":179900.00,\"currentPrice\":133736.65,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3695,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":79540.00,\"currentPrice\":51037.82,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3696,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":173900.00,\"currentPrice\":96008.41,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3697,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":680000.00,\"currentPrice\":591579.47,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3698,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":334848.00,\"currentPrice\":179958.07,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3699,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":82700.00,\"currentPrice\":59901.59,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3700,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130000.00,\"currentPrice\":53965.21,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3701,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":344600.00,\"currentPrice\":260323.62,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3702,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":430000.00,\"currentPrice\":410021.38,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3703,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":152900.00,\"currentPrice\":161195.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3704,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":200000.00,\"currentPrice\":165909.68,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3705,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":364990.00,\"currentPrice\":275677.85,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3706,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":252800.00,\"currentPrice\":187773.21,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3707,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":602046.84,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3708,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":500000.00,\"currentPrice\":462918.31,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3709,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":320000.00,\"currentPrice\":170865.06,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3710,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":560000.00,\"currentPrice\":510323.17,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3711,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":428000.00,\"currentPrice\":75096.50,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3712,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":166073.00,\"currentPrice\":104313.98,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3713,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":328000.00,\"currentPrice\":207519.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3714,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":59448.00,\"currentPrice\":48852.29,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3715,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":139920.00,\"currentPrice\":91723.34,\"closeTime\":0.0,\"inStatus\":true},{\"assetID\":3716,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":134869.31,\"closeTime\":0.0,\"inStatus\":true}]}"
+						},
+						{
+							"id": "f7334eb4-7332-4590-a554-66a2ecce67b6",
+							"name": "http://localhost:3666/Api/TradePools/40/assetSummary",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3666/Api/TradePools/57/assetSummary?$filter=InOutStatus eq 'IN'",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3666",
+									"path": [
+										"Api",
+										"TradePools",
+										"57",
+										"assetSummary"
+									],
+									"query": [
+										{
+											"key": "$filter",
+											"value": "InOutStatus eq 'IN'",
+											"equals": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87095",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Jan 2018 18:18:10 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-AspNet-Version",
+									"value": "4.0.30319",
+									"name": "X-AspNet-Version",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-SourceFiles",
+									"value": "=?UTF-8?B?QzpcUHJvamVjdHNcVFBHX0FwcFxUUEdfQXBwXEFwaVxUcmFkZVBvb2xzXDU3XGFzc2V0U3VtbWFyeQ==?=",
+									"name": "X-SourceFiles",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"responseTime": 1725,
+							"body": "[{\"tradeID\":57,\"assetID\":3947,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165000.00,\"currentPrice\":128762.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"97220\"},{\"tradeID\":57,\"assetID\":3948,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":40000.00,\"currentPrice\":36640.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"86444\"},{\"tradeID\":57,\"assetID\":3949,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":125000.00,\"currentPrice\":112250.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"85041\"},{\"tradeID\":57,\"assetID\":3950,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":81600.00,\"currentPrice\":58925.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98550\"},{\"tradeID\":57,\"assetID\":3951,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":236000.00,\"currentPrice\":76815.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"90069\"},{\"tradeID\":57,\"assetID\":3952,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":74727.87,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95446\"},{\"tradeID\":57,\"assetID\":3953,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":25000.00,\"currentPrice\":11319.11,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"19602\"},{\"tradeID\":57,\"assetID\":3954,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":93509.30,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93274\"},{\"tradeID\":57,\"assetID\":3955,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":45000.00,\"currentPrice\":43409.45,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"12010\"},{\"tradeID\":57,\"assetID\":3956,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":147401.05,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11756\"},{\"tradeID\":57,\"assetID\":3957,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":60000.00,\"currentPrice\":60243.44,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"37086\"},{\"tradeID\":57,\"assetID\":3958,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":44000.00,\"currentPrice\":41743.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75023\"},{\"tradeID\":57,\"assetID\":3959,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":30000.00,\"currentPrice\":10614.88,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76706\"},{\"tradeID\":57,\"assetID\":3960,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":63000.00,\"currentPrice\":40220.09,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21207\"},{\"tradeID\":57,\"assetID\":3961,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":32000.00,\"currentPrice\":27485.69,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"24237\"},{\"tradeID\":57,\"assetID\":3962,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":700000.00,\"currentPrice\":722078.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92649\"},{\"tradeID\":57,\"assetID\":3963,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":239960.00,\"currentPrice\":266717.41,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98059\"},{\"tradeID\":57,\"assetID\":3964,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":149319.00,\"currentPrice\":145112.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78645\"},{\"tradeID\":57,\"assetID\":3965,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":190794.00,\"currentPrice\":188806.32,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"35242\"},{\"tradeID\":57,\"assetID\":3966,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":410000.00,\"currentPrice\":331741.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20147\"},{\"tradeID\":57,\"assetID\":3967,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":95234.73,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"44281\"},{\"tradeID\":57,\"assetID\":3968,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":524216.00,\"currentPrice\":521443.19,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93035\"},{\"tradeID\":57,\"assetID\":3969,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":107200.00,\"currentPrice\":93026.02,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"44680\"},{\"tradeID\":57,\"assetID\":3970,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":143296.18,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"40291\"},{\"tradeID\":57,\"assetID\":3971,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":650000.00,\"currentPrice\":509347.33,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94403\"},{\"tradeID\":57,\"assetID\":3972,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130400.00,\"currentPrice\":117760.70,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30047\"},{\"tradeID\":57,\"assetID\":3973,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":91200.00,\"currentPrice\":71254.87,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75044\"},{\"tradeID\":57,\"assetID\":3974,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":375000.00,\"currentPrice\":369423.75,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95747\"},{\"tradeID\":57,\"assetID\":3975,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232200.00,\"currentPrice\":203924.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92308\"},{\"tradeID\":57,\"assetID\":3976,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":161000.00,\"currentPrice\":130123.59,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"6770\"},{\"tradeID\":57,\"assetID\":3977,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":366000.00,\"currentPrice\":240666.64,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48176\"},{\"tradeID\":57,\"assetID\":3978,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":69200.00,\"currentPrice\":26252.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76053\"},{\"tradeID\":57,\"assetID\":3979,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":419000.00,\"currentPrice\":446049.86,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94541\"},{\"tradeID\":57,\"assetID\":3980,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":77310.00,\"currentPrice\":71964.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"52001\"},{\"tradeID\":57,\"assetID\":3981,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":227000.00,\"currentPrice\":256069.89,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"8861\"},{\"tradeID\":57,\"assetID\":3982,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":192000.00,\"currentPrice\":116727.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"97211\"},{\"tradeID\":57,\"assetID\":3983,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":280000.00,\"currentPrice\":159417.19,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2151\"},{\"tradeID\":57,\"assetID\":3984,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":351500.00,\"currentPrice\":328908.42,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89139\"},{\"tradeID\":57,\"assetID\":3985,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":379500.00,\"currentPrice\":286763.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98030\"},{\"tradeID\":57,\"assetID\":3986,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188595.00,\"currentPrice\":246815.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23704\"},{\"tradeID\":57,\"assetID\":3987,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":242500.00,\"currentPrice\":425240.30,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11729\"},{\"tradeID\":57,\"assetID\":3988,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":483029.38,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28717\"},{\"tradeID\":57,\"assetID\":3989,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":840000.00,\"currentPrice\":700984.80,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78669\"},{\"tradeID\":57,\"assetID\":3990,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":962500.00,\"currentPrice\":759588.10,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11561\"},{\"tradeID\":57,\"assetID\":3991,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":363750.00,\"currentPrice\":363750.00,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94521\"},{\"tradeID\":57,\"assetID\":3992,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232320.00,\"currentPrice\":231985.27,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"73142\"},{\"tradeID\":57,\"assetID\":3993,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165295.00,\"currentPrice\":163693.46,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60446\"},{\"tradeID\":57,\"assetID\":3994,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":174000.00,\"currentPrice\":173263.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60156\"},{\"tradeID\":57,\"assetID\":3995,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":153000.00,\"currentPrice\":152282.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91722\"},{\"tradeID\":57,\"assetID\":3996,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":271633.00,\"currentPrice\":239088.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75081\"},{\"tradeID\":57,\"assetID\":3997,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":1279217.00,\"currentPrice\":784157.00,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"29464\"},{\"tradeID\":57,\"assetID\":3998,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":96324.00,\"currentPrice\":81598.29,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"67147\"},{\"tradeID\":57,\"assetID\":3999,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":151000.00,\"currentPrice\":118241.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"4981\"},{\"tradeID\":57,\"assetID\":4000,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":115840.00,\"currentPrice\":100395.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76009\"},{\"tradeID\":57,\"assetID\":4001,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":359000.00,\"currentPrice\":358514.09,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95073\"},{\"tradeID\":57,\"assetID\":4002,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":284000.00,\"currentPrice\":276030.03,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"90802\"},{\"tradeID\":57,\"assetID\":4003,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232000.00,\"currentPrice\":211130.89,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95822\"},{\"tradeID\":57,\"assetID\":4004,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":207600.00,\"currentPrice\":141565.65,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91601\"},{\"tradeID\":57,\"assetID\":4005,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":94500.00,\"currentPrice\":87998.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"32505\"},{\"tradeID\":57,\"assetID\":4006,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":301600.00,\"currentPrice\":124309.56,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20785\"},{\"tradeID\":57,\"assetID\":4007,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238019.00,\"currentPrice\":123263.69,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"86401\"},{\"tradeID\":57,\"assetID\":4008,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":880000.00,\"currentPrice\":937651.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89131\"},{\"tradeID\":57,\"assetID\":4009,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":368000.00,\"currentPrice\":360188.15,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93926\"},{\"tradeID\":57,\"assetID\":4010,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":84608.00,\"currentPrice\":65705.43,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76148\"},{\"tradeID\":57,\"assetID\":4011,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":103928.07,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1107\"},{\"tradeID\":57,\"assetID\":4012,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":380000.00,\"currentPrice\":152283.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7644\"},{\"tradeID\":57,\"assetID\":4013,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":286100.00,\"currentPrice\":246861.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11691\"},{\"tradeID\":57,\"assetID\":4014,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":245400.00,\"currentPrice\":263949.66,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94547\"},{\"tradeID\":57,\"assetID\":4015,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":322500.00,\"currentPrice\":272176.71,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95667\"},{\"tradeID\":57,\"assetID\":4016,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188465.00,\"currentPrice\":149454.99,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"27526\"},{\"tradeID\":57,\"assetID\":4017,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":397000.00,\"currentPrice\":109961.66,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"22043\"},{\"tradeID\":57,\"assetID\":4018,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":353150.00,\"currentPrice\":330672.44,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93012\"},{\"tradeID\":57,\"assetID\":4019,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238000.00,\"currentPrice\":210410.01,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89141\"},{\"tradeID\":57,\"assetID\":4020,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":318000.00,\"currentPrice\":186919.71,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7631\"},{\"tradeID\":57,\"assetID\":4021,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":112900.00,\"currentPrice\":105885.28,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"63111\"},{\"tradeID\":57,\"assetID\":4022,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":406250.00,\"currentPrice\":334070.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2125\"},{\"tradeID\":57,\"assetID\":4023,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":122380.80,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7062\"},{\"tradeID\":57,\"assetID\":4024,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":179900.00,\"currentPrice\":133736.65,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21620\"},{\"tradeID\":57,\"assetID\":4025,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":79540.00,\"currentPrice\":51037.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"87002\"},{\"tradeID\":57,\"assetID\":4026,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":173900.00,\"currentPrice\":96008.41,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28205\"},{\"tradeID\":57,\"assetID\":4027,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":680000.00,\"currentPrice\":591579.47,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21403\"},{\"tradeID\":57,\"assetID\":4028,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":334848.00,\"currentPrice\":179958.07,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95901\"},{\"tradeID\":57,\"assetID\":4029,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":82700.00,\"currentPrice\":59901.59,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75211\"},{\"tradeID\":57,\"assetID\":4030,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130000.00,\"currentPrice\":53965.21,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23607\"},{\"tradeID\":57,\"assetID\":4031,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":344600.00,\"currentPrice\":260323.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92105\"},{\"tradeID\":57,\"assetID\":4032,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":430000.00,\"currentPrice\":410021.38,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95032\"},{\"tradeID\":57,\"assetID\":4033,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":152900.00,\"currentPrice\":161195.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30188\"},{\"tradeID\":57,\"assetID\":4034,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":200000.00,\"currentPrice\":165909.68,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7108\"},{\"tradeID\":57,\"assetID\":4035,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":364990.00,\"currentPrice\":275677.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21704\"},{\"tradeID\":57,\"assetID\":4036,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":252800.00,\"currentPrice\":187773.21,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20886\"},{\"tradeID\":57,\"assetID\":4037,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":602046.84,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92069\"},{\"tradeID\":57,\"assetID\":4038,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":500000.00,\"currentPrice\":462918.31,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20716\"},{\"tradeID\":57,\"assetID\":4039,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":320000.00,\"currentPrice\":170865.06,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2908\"},{\"tradeID\":57,\"assetID\":4040,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":560000.00,\"currentPrice\":510323.17,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91765\"},{\"tradeID\":57,\"assetID\":4041,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":428000.00,\"currentPrice\":75096.50,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7201\"},{\"tradeID\":57,\"assetID\":4042,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":166073.00,\"currentPrice\":104313.98,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30101\"},{\"tradeID\":57,\"assetID\":4043,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":328000.00,\"currentPrice\":207519.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7801\"},{\"tradeID\":57,\"assetID\":4044,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":59448.00,\"currentPrice\":48852.29,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"38109\"},{\"tradeID\":57,\"assetID\":4045,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":139920.00,\"currentPrice\":91723.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"19709\"},{\"tradeID\":57,\"assetID\":4046,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":134869.31,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23451\"},{\"tradeID\":57,\"assetID\":4047,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":300000.00,\"currentPrice\":298796.16,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20111\"},{\"tradeID\":57,\"assetID\":4048,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":256500.00,\"currentPrice\":179321.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"6492\"},{\"tradeID\":57,\"assetID\":4049,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":120000.00,\"currentPrice\":62664.61,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28213\"},{\"tradeID\":57,\"assetID\":4050,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":109250.00,\"currentPrice\":102787.73,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"73130\"},{\"tradeID\":57,\"assetID\":4051,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":239900.00,\"currentPrice\":188281.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1826\"},{\"tradeID\":57,\"assetID\":4052,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":160500.00,\"currentPrice\":131142.18,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1109\"},{\"tradeID\":57,\"assetID\":4053,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130000.00,\"currentPrice\":120106.91,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30016\"},{\"tradeID\":57,\"assetID\":4054,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":89000.00,\"currentPrice\":94834.68,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"16823\"},{\"tradeID\":57,\"assetID\":4055,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":132362.00,\"currentPrice\":62937.91,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30315\"},{\"tradeID\":57,\"assetID\":4056,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":2080000.00,\"currentPrice\":1906571.70,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48304\"},{\"tradeID\":57,\"assetID\":4057,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":223000.00,\"currentPrice\":147699.05,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60068\"},{\"tradeID\":57,\"assetID\":4058,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":91500.00,\"currentPrice\":72716.32,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48173\"},{\"tradeID\":57,\"assetID\":4059,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":52650.00,\"currentPrice\":62292.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"27048\"},{\"tradeID\":57,\"assetID\":4060,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":67500.00,\"currentPrice\":16090.97,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60085\"},{\"tradeID\":57,\"assetID\":4061,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":71700.00,\"currentPrice\":25974.26,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"8823\"},{\"tradeID\":57,\"assetID\":4062,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":75900.00,\"currentPrice\":48655.06,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"8085\"},{\"tradeID\":57,\"assetID\":4063,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":86800.00,\"currentPrice\":48375.06,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7106\"},{\"tradeID\":57,\"assetID\":4064,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":141000.00,\"currentPrice\":21682.78,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11369\"},{\"tradeID\":57,\"assetID\":4065,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":71788.97,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11735\"},{\"tradeID\":57,\"assetID\":4066,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":110000.00,\"currentPrice\":45925.35,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1108\"},{\"tradeID\":57,\"assetID\":4067,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":120000.00,\"currentPrice\":65286.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11596\"},{\"tradeID\":57,\"assetID\":4068,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":36000.00,\"currentPrice\":14699.20,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89122\"},{\"tradeID\":57,\"assetID\":4069,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100238.00,\"currentPrice\":84987.98,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28052\"},{\"tradeID\":57,\"assetID\":4070,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":50991.00,\"currentPrice\":12681.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28312\"},{\"tradeID\":57,\"assetID\":4071,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":98000.00,\"currentPrice\":74075.10,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78753\"},{\"tradeID\":57,\"assetID\":4072,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":144000.00,\"currentPrice\":110851.53,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75093\"},{\"tradeID\":57,\"assetID\":4073,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":84000.00,\"currentPrice\":66145.88,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"79936\"},{\"tradeID\":57,\"assetID\":4074,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":75000.00,\"currentPrice\":62823.20,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48186\"},{\"tradeID\":57,\"assetID\":4075,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":117000.00,\"currentPrice\":97905.64,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48320\"},{\"tradeID\":57,\"assetID\":4076,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":70000.00,\"currentPrice\":50636.92,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89005\"},{\"tradeID\":57,\"assetID\":4077,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165000.00,\"currentPrice\":128762.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"97220\"},{\"tradeID\":57,\"assetID\":4078,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":40000.00,\"currentPrice\":36640.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"86444\"},{\"tradeID\":57,\"assetID\":4079,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":125000.00,\"currentPrice\":112250.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"85041\"},{\"tradeID\":57,\"assetID\":4080,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":81600.00,\"currentPrice\":58925.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98550\"},{\"tradeID\":57,\"assetID\":4081,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":236000.00,\"currentPrice\":76815.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"90069\"},{\"tradeID\":57,\"assetID\":4082,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":74727.87,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95446\"},{\"tradeID\":57,\"assetID\":4083,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":25000.00,\"currentPrice\":11319.11,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"19602\"},{\"tradeID\":57,\"assetID\":4084,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":93509.30,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93274\"},{\"tradeID\":57,\"assetID\":4085,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":45000.00,\"currentPrice\":43409.45,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"12010\"},{\"tradeID\":57,\"assetID\":4086,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":147401.05,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11756\"},{\"tradeID\":57,\"assetID\":4087,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":60000.00,\"currentPrice\":60243.44,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"37086\"},{\"tradeID\":57,\"assetID\":4088,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":44000.00,\"currentPrice\":41743.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75023\"},{\"tradeID\":57,\"assetID\":4089,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":30000.00,\"currentPrice\":10614.88,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76706\"},{\"tradeID\":57,\"assetID\":4090,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":63000.00,\"currentPrice\":40220.09,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21207\"},{\"tradeID\":57,\"assetID\":4091,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":32000.00,\"currentPrice\":27485.69,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"24237\"},{\"tradeID\":57,\"assetID\":4092,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":700000.00,\"currentPrice\":722078.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92649\"},{\"tradeID\":57,\"assetID\":4093,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":239960.00,\"currentPrice\":266717.41,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98059\"},{\"tradeID\":57,\"assetID\":4094,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":149319.00,\"currentPrice\":145112.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78645\"},{\"tradeID\":57,\"assetID\":4095,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":190794.00,\"currentPrice\":188806.32,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"35242\"},{\"tradeID\":57,\"assetID\":4096,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":410000.00,\"currentPrice\":331741.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20147\"},{\"tradeID\":57,\"assetID\":4097,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":95234.73,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"44281\"},{\"tradeID\":57,\"assetID\":4098,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":524216.00,\"currentPrice\":521443.19,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93035\"},{\"tradeID\":57,\"assetID\":4099,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":107200.00,\"currentPrice\":93026.02,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"44680\"},{\"tradeID\":57,\"assetID\":4100,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":143296.18,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"40291\"},{\"tradeID\":57,\"assetID\":4101,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":650000.00,\"currentPrice\":509347.33,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94403\"},{\"tradeID\":57,\"assetID\":4102,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130400.00,\"currentPrice\":117760.70,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30047\"},{\"tradeID\":57,\"assetID\":4103,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":91200.00,\"currentPrice\":71254.87,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75044\"},{\"tradeID\":57,\"assetID\":4104,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":375000.00,\"currentPrice\":369423.75,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95747\"},{\"tradeID\":57,\"assetID\":4105,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232200.00,\"currentPrice\":203924.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92308\"},{\"tradeID\":57,\"assetID\":4106,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":161000.00,\"currentPrice\":130123.59,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"6770\"},{\"tradeID\":57,\"assetID\":4107,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":366000.00,\"currentPrice\":240666.64,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48176\"},{\"tradeID\":57,\"assetID\":4108,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":69200.00,\"currentPrice\":26252.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76053\"},{\"tradeID\":57,\"assetID\":4109,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":419000.00,\"currentPrice\":446049.86,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94541\"},{\"tradeID\":57,\"assetID\":4110,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":77310.00,\"currentPrice\":71964.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"52001\"},{\"tradeID\":57,\"assetID\":4111,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":227000.00,\"currentPrice\":256069.89,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"8861\"},{\"tradeID\":57,\"assetID\":4112,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":192000.00,\"currentPrice\":116727.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"97211\"},{\"tradeID\":57,\"assetID\":4113,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":280000.00,\"currentPrice\":159417.19,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2151\"},{\"tradeID\":57,\"assetID\":4114,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":351500.00,\"currentPrice\":328908.42,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89139\"},{\"tradeID\":57,\"assetID\":4115,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":379500.00,\"currentPrice\":286763.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98030\"},{\"tradeID\":57,\"assetID\":4116,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188595.00,\"currentPrice\":246815.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23704\"},{\"tradeID\":57,\"assetID\":4117,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":242500.00,\"currentPrice\":425240.30,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11729\"},{\"tradeID\":57,\"assetID\":4118,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":483029.38,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28717\"},{\"tradeID\":57,\"assetID\":4119,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":840000.00,\"currentPrice\":700984.80,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78669\"},{\"tradeID\":57,\"assetID\":4120,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":962500.00,\"currentPrice\":759588.10,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11561\"},{\"tradeID\":57,\"assetID\":4121,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":363750.00,\"currentPrice\":363750.00,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94521\"},{\"tradeID\":57,\"assetID\":4122,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232320.00,\"currentPrice\":231985.27,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"73142\"},{\"tradeID\":57,\"assetID\":4123,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165295.00,\"currentPrice\":163693.46,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60446\"},{\"tradeID\":57,\"assetID\":4124,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":174000.00,\"currentPrice\":173263.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60156\"},{\"tradeID\":57,\"assetID\":4125,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":153000.00,\"currentPrice\":152282.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91722\"},{\"tradeID\":57,\"assetID\":4126,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":271633.00,\"currentPrice\":239088.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75081\"},{\"tradeID\":57,\"assetID\":4127,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":1279217.00,\"currentPrice\":784157.00,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"29464\"},{\"tradeID\":57,\"assetID\":4128,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":96324.00,\"currentPrice\":81598.29,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"67147\"},{\"tradeID\":57,\"assetID\":4129,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":151000.00,\"currentPrice\":118241.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"4981\"},{\"tradeID\":57,\"assetID\":4130,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":115840.00,\"currentPrice\":100395.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76009\"},{\"tradeID\":57,\"assetID\":4131,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":359000.00,\"currentPrice\":358514.09,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95073\"},{\"tradeID\":57,\"assetID\":4132,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":284000.00,\"currentPrice\":276030.03,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"90802\"},{\"tradeID\":57,\"assetID\":4133,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232000.00,\"currentPrice\":211130.89,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95822\"},{\"tradeID\":57,\"assetID\":4134,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":207600.00,\"currentPrice\":141565.65,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91601\"},{\"tradeID\":57,\"assetID\":4135,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":94500.00,\"currentPrice\":87998.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"32505\"},{\"tradeID\":57,\"assetID\":4136,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":301600.00,\"currentPrice\":124309.56,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20785\"},{\"tradeID\":57,\"assetID\":4137,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238019.00,\"currentPrice\":123263.69,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"86401\"},{\"tradeID\":57,\"assetID\":4138,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":880000.00,\"currentPrice\":937651.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89131\"},{\"tradeID\":57,\"assetID\":4139,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":368000.00,\"currentPrice\":360188.15,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93926\"},{\"tradeID\":57,\"assetID\":4140,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":84608.00,\"currentPrice\":65705.43,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76148\"},{\"tradeID\":57,\"assetID\":4141,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":103928.07,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1107\"},{\"tradeID\":57,\"assetID\":4142,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":380000.00,\"currentPrice\":152283.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7644\"},{\"tradeID\":57,\"assetID\":4143,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":286100.00,\"currentPrice\":246861.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11691\"},{\"tradeID\":57,\"assetID\":4144,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":245400.00,\"currentPrice\":263949.66,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94547\"},{\"tradeID\":57,\"assetID\":4145,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":322500.00,\"currentPrice\":272176.71,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95667\"},{\"tradeID\":57,\"assetID\":4146,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188465.00,\"currentPrice\":149454.99,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"27526\"},{\"tradeID\":57,\"assetID\":4147,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":397000.00,\"currentPrice\":109961.66,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"22043\"},{\"tradeID\":57,\"assetID\":4148,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":353150.00,\"currentPrice\":330672.44,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93012\"},{\"tradeID\":57,\"assetID\":4149,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238000.00,\"currentPrice\":210410.01,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89141\"},{\"tradeID\":57,\"assetID\":4150,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":318000.00,\"currentPrice\":186919.71,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7631\"},{\"tradeID\":57,\"assetID\":4151,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":112900.00,\"currentPrice\":105885.28,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"63111\"},{\"tradeID\":57,\"assetID\":4152,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":406250.00,\"currentPrice\":334070.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2125\"},{\"tradeID\":57,\"assetID\":4153,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":122380.80,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7062\"},{\"tradeID\":57,\"assetID\":4154,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":179900.00,\"currentPrice\":133736.65,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21620\"},{\"tradeID\":57,\"assetID\":4155,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":79540.00,\"currentPrice\":51037.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"87002\"},{\"tradeID\":57,\"assetID\":4156,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":173900.00,\"currentPrice\":96008.41,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28205\"},{\"tradeID\":57,\"assetID\":4157,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":680000.00,\"currentPrice\":591579.47,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21403\"},{\"tradeID\":57,\"assetID\":4158,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":334848.00,\"currentPrice\":179958.07,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95901\"},{\"tradeID\":57,\"assetID\":4159,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":82700.00,\"currentPrice\":59901.59,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75211\"},{\"tradeID\":57,\"assetID\":4160,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130000.00,\"currentPrice\":53965.21,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23607\"},{\"tradeID\":57,\"assetID\":4161,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":344600.00,\"currentPrice\":260323.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92105\"},{\"tradeID\":57,\"assetID\":4162,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":430000.00,\"currentPrice\":410021.38,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95032\"},{\"tradeID\":57,\"assetID\":4163,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":152900.00,\"currentPrice\":161195.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30188\"},{\"tradeID\":57,\"assetID\":4164,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":200000.00,\"currentPrice\":165909.68,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7108\"},{\"tradeID\":57,\"assetID\":4165,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":364990.00,\"currentPrice\":275677.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21704\"},{\"tradeID\":57,\"assetID\":4166,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":252800.00,\"currentPrice\":187773.21,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20886\"},{\"tradeID\":57,\"assetID\":4167,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":602046.84,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92069\"},{\"tradeID\":57,\"assetID\":4168,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":500000.00,\"currentPrice\":462918.31,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20716\"},{\"tradeID\":57,\"assetID\":4169,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":320000.00,\"currentPrice\":170865.06,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2908\"},{\"tradeID\":57,\"assetID\":4170,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":560000.00,\"currentPrice\":510323.17,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91765\"},{\"tradeID\":57,\"assetID\":4171,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":428000.00,\"currentPrice\":75096.50,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7201\"},{\"tradeID\":57,\"assetID\":4172,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":166073.00,\"currentPrice\":104313.98,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30101\"},{\"tradeID\":57,\"assetID\":4173,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":328000.00,\"currentPrice\":207519.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7801\"},{\"tradeID\":57,\"assetID\":4174,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":59448.00,\"currentPrice\":48852.29,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"38109\"},{\"tradeID\":57,\"assetID\":4175,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":139920.00,\"currentPrice\":91723.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"19709\"},{\"tradeID\":57,\"assetID\":4176,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":134869.31,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23451\"},{\"tradeID\":57,\"assetID\":4177,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165000.00,\"currentPrice\":128762.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"97220\"},{\"tradeID\":57,\"assetID\":4178,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":40000.00,\"currentPrice\":36640.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"86444\"},{\"tradeID\":57,\"assetID\":4179,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":125000.00,\"currentPrice\":112250.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"85041\"},{\"tradeID\":57,\"assetID\":4180,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":81600.00,\"currentPrice\":58925.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98550\"},{\"tradeID\":57,\"assetID\":4181,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":236000.00,\"currentPrice\":76815.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"90069\"},{\"tradeID\":57,\"assetID\":4182,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":74727.87,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95446\"},{\"tradeID\":57,\"assetID\":4183,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":25000.00,\"currentPrice\":11319.11,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"19602\"},{\"tradeID\":57,\"assetID\":4184,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":93509.30,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93274\"},{\"tradeID\":57,\"assetID\":4185,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":45000.00,\"currentPrice\":43409.45,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"12010\"},{\"tradeID\":57,\"assetID\":4186,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":147401.05,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11756\"},{\"tradeID\":57,\"assetID\":4187,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":60000.00,\"currentPrice\":60243.44,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"37086\"},{\"tradeID\":57,\"assetID\":4188,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":44000.00,\"currentPrice\":41743.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75023\"},{\"tradeID\":57,\"assetID\":4189,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":30000.00,\"currentPrice\":10614.88,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76706\"},{\"tradeID\":57,\"assetID\":4190,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":63000.00,\"currentPrice\":40220.09,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21207\"},{\"tradeID\":57,\"assetID\":4191,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":32000.00,\"currentPrice\":27485.69,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"24237\"},{\"tradeID\":57,\"assetID\":4192,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":700000.00,\"currentPrice\":722078.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92649\"},{\"tradeID\":57,\"assetID\":4193,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":239960.00,\"currentPrice\":266717.41,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98059\"},{\"tradeID\":57,\"assetID\":4194,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":149319.00,\"currentPrice\":145112.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78645\"},{\"tradeID\":57,\"assetID\":4195,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":190794.00,\"currentPrice\":188806.32,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"35242\"},{\"tradeID\":57,\"assetID\":4196,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":410000.00,\"currentPrice\":331741.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20147\"},{\"tradeID\":57,\"assetID\":4197,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":95234.73,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"44281\"},{\"tradeID\":57,\"assetID\":4198,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":524216.00,\"currentPrice\":521443.19,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93035\"},{\"tradeID\":57,\"assetID\":4199,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":107200.00,\"currentPrice\":93026.02,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"44680\"},{\"tradeID\":57,\"assetID\":4200,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":143296.18,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"40291\"},{\"tradeID\":57,\"assetID\":4201,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":650000.00,\"currentPrice\":509347.33,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94403\"},{\"tradeID\":57,\"assetID\":4202,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130400.00,\"currentPrice\":117760.70,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30047\"},{\"tradeID\":57,\"assetID\":4203,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":91200.00,\"currentPrice\":71254.87,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75044\"},{\"tradeID\":57,\"assetID\":4204,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":375000.00,\"currentPrice\":369423.75,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95747\"},{\"tradeID\":57,\"assetID\":4205,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232200.00,\"currentPrice\":203924.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92308\"},{\"tradeID\":57,\"assetID\":4206,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":161000.00,\"currentPrice\":130123.59,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"6770\"},{\"tradeID\":57,\"assetID\":4207,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":366000.00,\"currentPrice\":240666.64,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48176\"},{\"tradeID\":57,\"assetID\":4208,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":69200.00,\"currentPrice\":26252.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76053\"},{\"tradeID\":57,\"assetID\":4209,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":419000.00,\"currentPrice\":446049.86,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94541\"},{\"tradeID\":57,\"assetID\":4210,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":77310.00,\"currentPrice\":71964.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"52001\"},{\"tradeID\":57,\"assetID\":4211,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":227000.00,\"currentPrice\":256069.89,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"8861\"},{\"tradeID\":57,\"assetID\":4212,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":192000.00,\"currentPrice\":116727.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"97211\"},{\"tradeID\":57,\"assetID\":4213,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":280000.00,\"currentPrice\":159417.19,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2151\"},{\"tradeID\":57,\"assetID\":4214,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":351500.00,\"currentPrice\":328908.42,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89139\"},{\"tradeID\":57,\"assetID\":4215,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":379500.00,\"currentPrice\":286763.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98030\"},{\"tradeID\":57,\"assetID\":4216,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188595.00,\"currentPrice\":246815.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23704\"},{\"tradeID\":57,\"assetID\":4217,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":242500.00,\"currentPrice\":425240.30,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11729\"},{\"tradeID\":57,\"assetID\":4218,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":483029.38,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28717\"},{\"tradeID\":57,\"assetID\":4219,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":840000.00,\"currentPrice\":700984.80,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78669\"},{\"tradeID\":57,\"assetID\":4220,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":962500.00,\"currentPrice\":759588.10,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11561\"},{\"tradeID\":57,\"assetID\":4221,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":363750.00,\"currentPrice\":363750.00,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94521\"},{\"tradeID\":57,\"assetID\":4222,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232320.00,\"currentPrice\":231985.27,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"73142\"},{\"tradeID\":57,\"assetID\":4223,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165295.00,\"currentPrice\":163693.46,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60446\"},{\"tradeID\":57,\"assetID\":4224,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":174000.00,\"currentPrice\":173263.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60156\"},{\"tradeID\":57,\"assetID\":4225,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":153000.00,\"currentPrice\":152282.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91722\"},{\"tradeID\":57,\"assetID\":4226,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":271633.00,\"currentPrice\":239088.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75081\"},{\"tradeID\":57,\"assetID\":4227,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":1279217.00,\"currentPrice\":784157.00,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"29464\"},{\"tradeID\":57,\"assetID\":4228,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":96324.00,\"currentPrice\":81598.29,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"67147\"},{\"tradeID\":57,\"assetID\":4229,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":151000.00,\"currentPrice\":118241.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"4981\"},{\"tradeID\":57,\"assetID\":4230,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":115840.00,\"currentPrice\":100395.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76009\"},{\"tradeID\":57,\"assetID\":4231,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":359000.00,\"currentPrice\":358514.09,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95073\"},{\"tradeID\":57,\"assetID\":4232,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":284000.00,\"currentPrice\":276030.03,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"90802\"},{\"tradeID\":57,\"assetID\":4233,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232000.00,\"currentPrice\":211130.89,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95822\"},{\"tradeID\":57,\"assetID\":4234,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":207600.00,\"currentPrice\":141565.65,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91601\"},{\"tradeID\":57,\"assetID\":4235,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":94500.00,\"currentPrice\":87998.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"32505\"},{\"tradeID\":57,\"assetID\":4236,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":301600.00,\"currentPrice\":124309.56,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20785\"},{\"tradeID\":57,\"assetID\":4237,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238019.00,\"currentPrice\":123263.69,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"86401\"},{\"tradeID\":57,\"assetID\":4238,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":880000.00,\"currentPrice\":937651.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89131\"},{\"tradeID\":57,\"assetID\":4239,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":368000.00,\"currentPrice\":360188.15,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93926\"},{\"tradeID\":57,\"assetID\":4240,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":84608.00,\"currentPrice\":65705.43,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76148\"},{\"tradeID\":57,\"assetID\":4241,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":103928.07,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1107\"},{\"tradeID\":57,\"assetID\":4242,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":380000.00,\"currentPrice\":152283.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7644\"},{\"tradeID\":57,\"assetID\":4243,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":286100.00,\"currentPrice\":246861.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11691\"},{\"tradeID\":57,\"assetID\":4244,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":245400.00,\"currentPrice\":263949.66,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94547\"},{\"tradeID\":57,\"assetID\":4245,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":322500.00,\"currentPrice\":272176.71,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95667\"},{\"tradeID\":57,\"assetID\":4246,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188465.00,\"currentPrice\":149454.99,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"27526\"},{\"tradeID\":57,\"assetID\":4247,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":397000.00,\"currentPrice\":109961.66,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"22043\"},{\"tradeID\":57,\"assetID\":4248,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":353150.00,\"currentPrice\":330672.44,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93012\"},{\"tradeID\":57,\"assetID\":4249,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238000.00,\"currentPrice\":210410.01,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89141\"},{\"tradeID\":57,\"assetID\":4250,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":318000.00,\"currentPrice\":186919.71,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7631\"},{\"tradeID\":57,\"assetID\":4251,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":112900.00,\"currentPrice\":105885.28,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"63111\"},{\"tradeID\":57,\"assetID\":4252,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":406250.00,\"currentPrice\":334070.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2125\"},{\"tradeID\":57,\"assetID\":4253,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":122380.80,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7062\"},{\"tradeID\":57,\"assetID\":4254,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":179900.00,\"currentPrice\":133736.65,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21620\"},{\"tradeID\":57,\"assetID\":4255,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":79540.00,\"currentPrice\":51037.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"87002\"},{\"tradeID\":57,\"assetID\":4256,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":173900.00,\"currentPrice\":96008.41,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28205\"},{\"tradeID\":57,\"assetID\":4257,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":680000.00,\"currentPrice\":591579.47,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21403\"},{\"tradeID\":57,\"assetID\":4258,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":334848.00,\"currentPrice\":179958.07,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95901\"},{\"tradeID\":57,\"assetID\":4259,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":82700.00,\"currentPrice\":59901.59,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75211\"},{\"tradeID\":57,\"assetID\":4260,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130000.00,\"currentPrice\":53965.21,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23607\"},{\"tradeID\":57,\"assetID\":4261,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":344600.00,\"currentPrice\":260323.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92105\"},{\"tradeID\":57,\"assetID\":4262,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":430000.00,\"currentPrice\":410021.38,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95032\"},{\"tradeID\":57,\"assetID\":4263,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":152900.00,\"currentPrice\":161195.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30188\"},{\"tradeID\":57,\"assetID\":4264,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":200000.00,\"currentPrice\":165909.68,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7108\"},{\"tradeID\":57,\"assetID\":4265,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":364990.00,\"currentPrice\":275677.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21704\"},{\"tradeID\":57,\"assetID\":4266,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":252800.00,\"currentPrice\":187773.21,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20886\"},{\"tradeID\":57,\"assetID\":4267,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":602046.84,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92069\"},{\"tradeID\":57,\"assetID\":4268,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":500000.00,\"currentPrice\":462918.31,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20716\"},{\"tradeID\":57,\"assetID\":4269,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":320000.00,\"currentPrice\":170865.06,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2908\"},{\"tradeID\":57,\"assetID\":4270,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":560000.00,\"currentPrice\":510323.17,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91765\"},{\"tradeID\":57,\"assetID\":4271,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":428000.00,\"currentPrice\":75096.50,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7201\"},{\"tradeID\":57,\"assetID\":4272,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":166073.00,\"currentPrice\":104313.98,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30101\"},{\"tradeID\":57,\"assetID\":4273,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":328000.00,\"currentPrice\":207519.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7801\"},{\"tradeID\":57,\"assetID\":4274,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":59448.00,\"currentPrice\":48852.29,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"38109\"},{\"tradeID\":57,\"assetID\":4275,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":139920.00,\"currentPrice\":91723.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"19709\"},{\"tradeID\":57,\"assetID\":4276,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":134869.31,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23451\"},{\"tradeID\":57,\"assetID\":4277,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":300000.00,\"currentPrice\":298796.16,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20111\"},{\"tradeID\":57,\"assetID\":4278,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":256500.00,\"currentPrice\":179321.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"6492\"},{\"tradeID\":57,\"assetID\":4279,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":120000.00,\"currentPrice\":62664.61,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28213\"},{\"tradeID\":57,\"assetID\":4280,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":109250.00,\"currentPrice\":102787.73,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"73130\"},{\"tradeID\":57,\"assetID\":4281,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":239900.00,\"currentPrice\":188281.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1826\"},{\"tradeID\":57,\"assetID\":4282,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":160500.00,\"currentPrice\":131142.18,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1109\"},{\"tradeID\":57,\"assetID\":4283,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130000.00,\"currentPrice\":120106.91,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30016\"},{\"tradeID\":57,\"assetID\":4284,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":89000.00,\"currentPrice\":94834.68,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"16823\"},{\"tradeID\":57,\"assetID\":4285,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":132362.00,\"currentPrice\":62937.91,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30315\"},{\"tradeID\":57,\"assetID\":4286,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":2080000.00,\"currentPrice\":1906571.70,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48304\"},{\"tradeID\":57,\"assetID\":4287,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":223000.00,\"currentPrice\":147699.05,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60068\"},{\"tradeID\":57,\"assetID\":4288,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":91500.00,\"currentPrice\":72716.32,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48173\"},{\"tradeID\":57,\"assetID\":4289,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":52650.00,\"currentPrice\":62292.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"27048\"},{\"tradeID\":57,\"assetID\":4290,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":67500.00,\"currentPrice\":16090.97,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60085\"},{\"tradeID\":57,\"assetID\":4291,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":71700.00,\"currentPrice\":25974.26,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"8823\"},{\"tradeID\":57,\"assetID\":4292,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":75900.00,\"currentPrice\":48655.06,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"8085\"},{\"tradeID\":57,\"assetID\":4293,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":86800.00,\"currentPrice\":48375.06,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7106\"},{\"tradeID\":57,\"assetID\":4294,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":141000.00,\"currentPrice\":21682.78,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11369\"},{\"tradeID\":57,\"assetID\":4295,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":71788.97,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11735\"},{\"tradeID\":57,\"assetID\":4296,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":110000.00,\"currentPrice\":45925.35,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1108\"},{\"tradeID\":57,\"assetID\":4297,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":120000.00,\"currentPrice\":65286.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11596\"},{\"tradeID\":57,\"assetID\":4298,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":36000.00,\"currentPrice\":14699.20,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89122\"},{\"tradeID\":57,\"assetID\":4299,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100238.00,\"currentPrice\":84987.98,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28052\"},{\"tradeID\":57,\"assetID\":4300,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":50991.00,\"currentPrice\":12681.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28312\"},{\"tradeID\":57,\"assetID\":4301,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":98000.00,\"currentPrice\":74075.10,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78753\"},{\"tradeID\":57,\"assetID\":4302,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":144000.00,\"currentPrice\":110851.53,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75093\"},{\"tradeID\":57,\"assetID\":4303,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":84000.00,\"currentPrice\":66145.88,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"79936\"},{\"tradeID\":57,\"assetID\":4304,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":75000.00,\"currentPrice\":62823.20,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48186\"},{\"tradeID\":57,\"assetID\":4305,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":117000.00,\"currentPrice\":97905.64,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48320\"},{\"tradeID\":57,\"assetID\":4306,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":70000.00,\"currentPrice\":50636.92,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89005\"},{\"tradeID\":57,\"assetID\":4307,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165000.00,\"currentPrice\":128762.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"97220\"},{\"tradeID\":57,\"assetID\":4308,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":40000.00,\"currentPrice\":36640.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"86444\"},{\"tradeID\":57,\"assetID\":4309,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":125000.00,\"currentPrice\":112250.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"85041\"},{\"tradeID\":57,\"assetID\":4310,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":81600.00,\"currentPrice\":58925.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98550\"},{\"tradeID\":57,\"assetID\":4311,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":236000.00,\"currentPrice\":76815.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"90069\"},{\"tradeID\":57,\"assetID\":4312,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":74727.87,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95446\"},{\"tradeID\":57,\"assetID\":4313,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":25000.00,\"currentPrice\":11319.11,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"19602\"},{\"tradeID\":57,\"assetID\":4314,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":100000.00,\"currentPrice\":93509.30,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93274\"},{\"tradeID\":57,\"assetID\":4315,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":45000.00,\"currentPrice\":43409.45,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"12010\"},{\"tradeID\":57,\"assetID\":4316,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":147401.05,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11756\"},{\"tradeID\":57,\"assetID\":4317,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":60000.00,\"currentPrice\":60243.44,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"37086\"},{\"tradeID\":57,\"assetID\":4318,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":44000.00,\"currentPrice\":41743.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75023\"},{\"tradeID\":57,\"assetID\":4319,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":30000.00,\"currentPrice\":10614.88,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76706\"},{\"tradeID\":57,\"assetID\":4320,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":63000.00,\"currentPrice\":40220.09,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21207\"},{\"tradeID\":57,\"assetID\":4321,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":32000.00,\"currentPrice\":27485.69,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"24237\"},{\"tradeID\":57,\"assetID\":4322,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":700000.00,\"currentPrice\":722078.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92649\"},{\"tradeID\":57,\"assetID\":4323,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":239960.00,\"currentPrice\":266717.41,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98059\"},{\"tradeID\":57,\"assetID\":4324,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":149319.00,\"currentPrice\":145112.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78645\"},{\"tradeID\":57,\"assetID\":4325,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":190794.00,\"currentPrice\":188806.32,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"35242\"},{\"tradeID\":57,\"assetID\":4326,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":410000.00,\"currentPrice\":331741.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20147\"},{\"tradeID\":57,\"assetID\":4327,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":95234.73,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"44281\"},{\"tradeID\":57,\"assetID\":4328,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":524216.00,\"currentPrice\":521443.19,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93035\"},{\"tradeID\":57,\"assetID\":4329,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":107200.00,\"currentPrice\":93026.02,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"44680\"},{\"tradeID\":57,\"assetID\":4330,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":143296.18,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"40291\"},{\"tradeID\":57,\"assetID\":4331,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":650000.00,\"currentPrice\":509347.33,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94403\"},{\"tradeID\":57,\"assetID\":4332,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130400.00,\"currentPrice\":117760.70,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30047\"},{\"tradeID\":57,\"assetID\":4333,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":91200.00,\"currentPrice\":71254.87,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75044\"},{\"tradeID\":57,\"assetID\":4334,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":375000.00,\"currentPrice\":369423.75,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95747\"},{\"tradeID\":57,\"assetID\":4335,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232200.00,\"currentPrice\":203924.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92308\"},{\"tradeID\":57,\"assetID\":4336,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":161000.00,\"currentPrice\":130123.59,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"6770\"},{\"tradeID\":57,\"assetID\":4337,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":366000.00,\"currentPrice\":240666.64,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"48176\"},{\"tradeID\":57,\"assetID\":4338,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":69200.00,\"currentPrice\":26252.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76053\"},{\"tradeID\":57,\"assetID\":4339,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":419000.00,\"currentPrice\":446049.86,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94541\"},{\"tradeID\":57,\"assetID\":4340,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":77310.00,\"currentPrice\":71964.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"52001\"},{\"tradeID\":57,\"assetID\":4341,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":227000.00,\"currentPrice\":256069.89,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"8861\"},{\"tradeID\":57,\"assetID\":4342,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":192000.00,\"currentPrice\":116727.37,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"97211\"},{\"tradeID\":57,\"assetID\":4343,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":280000.00,\"currentPrice\":159417.19,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2151\"},{\"tradeID\":57,\"assetID\":4344,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":351500.00,\"currentPrice\":328908.42,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89139\"},{\"tradeID\":57,\"assetID\":4345,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":379500.00,\"currentPrice\":286763.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"98030\"},{\"tradeID\":57,\"assetID\":4346,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188595.00,\"currentPrice\":246815.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23704\"},{\"tradeID\":57,\"assetID\":4347,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":242500.00,\"currentPrice\":425240.30,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11729\"},{\"tradeID\":57,\"assetID\":4348,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":483029.38,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28717\"},{\"tradeID\":57,\"assetID\":4349,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":840000.00,\"currentPrice\":700984.80,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"78669\"},{\"tradeID\":57,\"assetID\":4350,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":962500.00,\"currentPrice\":759588.10,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11561\"},{\"tradeID\":57,\"assetID\":4351,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":363750.00,\"currentPrice\":363750.00,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94521\"},{\"tradeID\":57,\"assetID\":4352,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232320.00,\"currentPrice\":231985.27,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"73142\"},{\"tradeID\":57,\"assetID\":4353,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":165295.00,\"currentPrice\":163693.46,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60446\"},{\"tradeID\":57,\"assetID\":4354,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":174000.00,\"currentPrice\":173263.60,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"60156\"},{\"tradeID\":57,\"assetID\":4355,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":153000.00,\"currentPrice\":152282.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91722\"},{\"tradeID\":57,\"assetID\":4356,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":271633.00,\"currentPrice\":239088.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75081\"},{\"tradeID\":57,\"assetID\":4357,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":1279217.00,\"currentPrice\":784157.00,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"29464\"},{\"tradeID\":57,\"assetID\":4358,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":96324.00,\"currentPrice\":81598.29,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"67147\"},{\"tradeID\":57,\"assetID\":4359,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":151000.00,\"currentPrice\":118241.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"4981\"},{\"tradeID\":57,\"assetID\":4360,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":115840.00,\"currentPrice\":100395.24,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76009\"},{\"tradeID\":57,\"assetID\":4361,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":359000.00,\"currentPrice\":358514.09,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95073\"},{\"tradeID\":57,\"assetID\":4362,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":284000.00,\"currentPrice\":276030.03,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"90802\"},{\"tradeID\":57,\"assetID\":4363,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":232000.00,\"currentPrice\":211130.89,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95822\"},{\"tradeID\":57,\"assetID\":4364,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":207600.00,\"currentPrice\":141565.65,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91601\"},{\"tradeID\":57,\"assetID\":4365,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":94500.00,\"currentPrice\":87998.12,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"32505\"},{\"tradeID\":57,\"assetID\":4366,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":301600.00,\"currentPrice\":124309.56,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20785\"},{\"tradeID\":57,\"assetID\":4367,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238019.00,\"currentPrice\":123263.69,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"86401\"},{\"tradeID\":57,\"assetID\":4368,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":880000.00,\"currentPrice\":937651.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89131\"},{\"tradeID\":57,\"assetID\":4369,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":368000.00,\"currentPrice\":360188.15,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93926\"},{\"tradeID\":57,\"assetID\":4370,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":84608.00,\"currentPrice\":65705.43,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"76148\"},{\"tradeID\":57,\"assetID\":4371,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":180000.00,\"currentPrice\":103928.07,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"1107\"},{\"tradeID\":57,\"assetID\":4372,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":380000.00,\"currentPrice\":152283.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7644\"},{\"tradeID\":57,\"assetID\":4373,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":286100.00,\"currentPrice\":246861.67,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"11691\"},{\"tradeID\":57,\"assetID\":4374,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":245400.00,\"currentPrice\":263949.66,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"94547\"},{\"tradeID\":57,\"assetID\":4375,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":322500.00,\"currentPrice\":272176.71,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95667\"},{\"tradeID\":57,\"assetID\":4376,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":188465.00,\"currentPrice\":149454.99,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"27526\"},{\"tradeID\":57,\"assetID\":4377,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":397000.00,\"currentPrice\":109961.66,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"22043\"},{\"tradeID\":57,\"assetID\":4378,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":353150.00,\"currentPrice\":330672.44,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"93012\"},{\"tradeID\":57,\"assetID\":4379,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":238000.00,\"currentPrice\":210410.01,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"89141\"},{\"tradeID\":57,\"assetID\":4380,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":318000.00,\"currentPrice\":186919.71,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7631\"},{\"tradeID\":57,\"assetID\":4381,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":112900.00,\"currentPrice\":105885.28,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"63111\"},{\"tradeID\":57,\"assetID\":4382,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":406250.00,\"currentPrice\":334070.76,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2125\"},{\"tradeID\":57,\"assetID\":4383,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":150000.00,\"currentPrice\":122380.80,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7062\"},{\"tradeID\":57,\"assetID\":4384,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":179900.00,\"currentPrice\":133736.65,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21620\"},{\"tradeID\":57,\"assetID\":4385,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":79540.00,\"currentPrice\":51037.82,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"87002\"},{\"tradeID\":57,\"assetID\":4386,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":173900.00,\"currentPrice\":96008.41,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"28205\"},{\"tradeID\":57,\"assetID\":4387,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":680000.00,\"currentPrice\":591579.47,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21403\"},{\"tradeID\":57,\"assetID\":4388,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":334848.00,\"currentPrice\":179958.07,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95901\"},{\"tradeID\":57,\"assetID\":4389,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":82700.00,\"currentPrice\":59901.59,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"75211\"},{\"tradeID\":57,\"assetID\":4390,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":130000.00,\"currentPrice\":53965.21,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23607\"},{\"tradeID\":57,\"assetID\":4391,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":344600.00,\"currentPrice\":260323.62,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92105\"},{\"tradeID\":57,\"assetID\":4392,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":430000.00,\"currentPrice\":410021.38,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"95032\"},{\"tradeID\":57,\"assetID\":4393,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":152900.00,\"currentPrice\":161195.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30188\"},{\"tradeID\":57,\"assetID\":4394,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":200000.00,\"currentPrice\":165909.68,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7108\"},{\"tradeID\":57,\"assetID\":4395,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":364990.00,\"currentPrice\":275677.85,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"21704\"},{\"tradeID\":57,\"assetID\":4396,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":252800.00,\"currentPrice\":187773.21,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20886\"},{\"tradeID\":57,\"assetID\":4397,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":417000.00,\"currentPrice\":602046.84,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"92069\"},{\"tradeID\":57,\"assetID\":4398,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":500000.00,\"currentPrice\":462918.31,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"20716\"},{\"tradeID\":57,\"assetID\":4399,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":320000.00,\"currentPrice\":170865.06,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"2908\"},{\"tradeID\":57,\"assetID\":4400,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":560000.00,\"currentPrice\":510323.17,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"91765\"},{\"tradeID\":57,\"assetID\":4401,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":428000.00,\"currentPrice\":75096.50,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7201\"},{\"tradeID\":57,\"assetID\":4402,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":166073.00,\"currentPrice\":104313.98,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"30101\"},{\"tradeID\":57,\"assetID\":4403,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":328000.00,\"currentPrice\":207519.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"7801\"},{\"tradeID\":57,\"assetID\":4404,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":59448.00,\"currentPrice\":48852.29,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"38109\"},{\"tradeID\":57,\"assetID\":4405,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":139920.00,\"currentPrice\":91723.34,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"19709\"},{\"tradeID\":57,\"assetID\":4406,\"inOutStatus\":\"IN\",\"numberOfIssues\":0,\"totalRepriceAmount\":0.0,\"originalPrice\":136000.00,\"currentPrice\":134869.31,\"closeTime\":0.0,\"inStatus\":true,\"zip\":\"23451\"}]"
+						}
+					]
+				},
+				{
+					"name": "http://localhost:3666/Api/TradePools/yearlysummary/2018",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradePools/yearlysummary/2018",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradePools",
+								"yearlysummary",
+								"2018"
+							]
+						},
+						"description": "1) To get all yearly summaries call the API as follows:\nhttp://localhost:3666/Api/TradePools/yearlysummary\n2) To get a specific yearly summary pass the 4 digit year in the query as follows:\nhttp://localhost:3666/Api/TradePools/yearlysummary/2018"
+					},
+					"response": [
+						{
+							"id": "8066fcc6-0e14-424f-a7d5-0ecfc19ed676",
+							"name": "http://localhost:3666/Api/TradePools/yearlysummary/2018",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3666/Api/TradePools/yearlysummary/2018",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3666",
+									"path": [
+										"Api",
+										"TradePools",
+										"yearlysummary",
+										"2018"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "240",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 08 Jan 2018 17:51:40 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-AspNet-Version",
+									"value": "4.0.30319",
+									"name": "X-AspNet-Version",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-SourceFiles",
+									"value": "=?UTF-8?B?QzpcUHJvamVjdHNcVFBHX0FwcFxUUEdfQXBwXEFwaVxUcmFkZVBvb2xzXHllYXJseXN1bW1hcnlcMjAxOA==?=",
+									"name": "X-SourceFiles",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"responseTime": 66,
+							"body": "[{\"year\":2018,\"trades\":1,\"counterParties\":1,\"rpLoans\":0,\"npLoans\":0,\"mixedLoans\":230,\"bidAmount\":0.0,\"tradeAmount\":48631184.62,\"repriceAmount\":0.0,\"averageCloseTime\":0.0,\"averageFallOut\":0.0,\"purchasesAmount\":48631184.62,\"salesAmount\":0.0}]"
+						},
+						{
+							"id": "b334cfae-e3cc-4c18-8652-170fd9787ae8",
+							"name": "http://localhost:3666/Api/TradePools/yearlysummary/2018",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3666/Api/TradePools/yearlysummary",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3666",
+									"path": [
+										"Api",
+										"TradePools",
+										"yearlysummary"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "481",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 08 Jan 2018 17:53:14 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-AspNet-Version",
+									"value": "4.0.30319",
+									"name": "X-AspNet-Version",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-SourceFiles",
+									"value": "=?UTF-8?B?QzpcUHJvamVjdHNcVFBHX0FwcFxUUEdfQXBwXEFwaVxUcmFkZVBvb2xzXHllYXJseXN1bW1hcnk=?=",
+									"name": "X-SourceFiles",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"responseTime": 185,
+							"body": "[{\"year\":2017,\"trades\":2,\"counterParties\":2,\"rpLoans\":0,\"npLoans\":0,\"mixedLoans\":690,\"bidAmount\":0.0,\"tradeAmount\":145893553.86,\"repriceAmount\":0.0,\"averageCloseTime\":0.0,\"averageFallOut\":0.0,\"purchasesAmount\":145893553.86,\"salesAmount\":0.0},{\"year\":2018,\"trades\":1,\"counterParties\":1,\"rpLoans\":0,\"npLoans\":0,\"mixedLoans\":230,\"bidAmount\":0.0,\"tradeAmount\":48631184.62,\"repriceAmount\":0.0,\"averageCloseTime\":0.0,\"averageFallOut\":0.0,\"purchasesAmount\":48631184.62,\"salesAmount\":0.0}]"
+						}
+					]
+				},
+				{
+					"name": "http://localhost:3666/Api/TradePools/counterparties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradePools/counterparties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradePools",
+								"counterparties"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradePools/counterparties",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "CounterPartyName",
+									"value": "Bank of America",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradePools/counterparties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradePools",
+								"counterparties"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "424b9b1f-dd6f-40d5-bb8a-c9358ddfac4a",
+							"name": "http://localhost:3666/Api/TradePools/counterparties",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "CounterPartyName",
+											"value": "Bank of America",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3666/Api/TradePools/counterparties",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3666",
+									"path": [
+										"Api",
+										"TradePools",
+										"counterparties"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Jan 2018 21:22:15 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-AspNet-Version",
+									"value": "4.0.30319",
+									"name": "X-AspNet-Version",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-SourceFiles",
+									"value": "=?UTF-8?B?QzpcUHJvamVjdHNcVFBHX0FwcFxUUEdfQXBwXEFwaVxUcmFkZVBvb2xzXGNvdW50ZXJwYXJ0aWVz?=",
+									"name": "X-SourceFiles",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"responseTime": 3870,
+							"body": "{\"message\":\"The counter party name is invalid or is already taken\"}"
+						},
+						{
+							"id": "16140abb-d1bb-4a3d-9e44-7c9b8d2b63cc",
+							"name": "http://localhost:3666/Api/TradePools/counterparties",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "CounterPartyName",
+											"value": "Wells Fargo",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3666/Api/TradePools/counterparties",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3666",
+									"path": [
+										"Api",
+										"TradePools",
+										"counterparties"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Jan 2018 21:23:41 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:3666/api/TradePools/counterparties?id=2",
+									"name": "Location",
+									"description": "Used in redirection, or when a new resource has been created."
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-AspNet-Version",
+									"value": "4.0.30319",
+									"name": "X-AspNet-Version",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-SourceFiles",
+									"value": "=?UTF-8?B?QzpcUHJvamVjdHNcVFBHX0FwcFxUUEdfQXBwXEFwaVxUcmFkZVBvb2xzXGNvdW50ZXJwYXJ0aWVz?=",
+									"name": "X-SourceFiles",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"responseTime": 2789,
+							"body": "{\"counterPartyID\":2,\"counterPartyName\":\"Wells Fargo\"}"
+						}
+					]
+				},
+				{
+					"name": "http://localhost:3666/Api/TradeStages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeStages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeStages"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "f236ca3f-91a9-4963-9586-a7637b746496",
+							"name": "http://localhost:3666/Api/TradeStages",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3666/Api/TradeStages",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3666",
+									"path": [
+										"Api",
+										"TradeStages"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Content-Length",
+									"value": "343",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Jan 2018 02:03:35 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Expires",
+									"value": "-1",
+									"name": "Expires",
+									"description": "Gives the date/time after which the response is considered stale"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache",
+									"name": "Pragma",
+									"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-AspNet-Version",
+									"value": "4.0.30319",
+									"name": "X-AspNet-Version",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-SourceFiles",
+									"value": "=?UTF-8?B?QzpcUHJvamVjdHNcVFBHX0FwcFxUUEdfQXBwXEFwaVxUcmFkZVN0YWdlcw==?=",
+									"name": "X-SourceFiles",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"responseTime": 958,
+							"body": "[{\"stageID\":1,\"stageName\":\"Pool Identified\",\"status\":\"A\"},{\"stageID\":2,\"stageName\":\"Out for Bid\",\"status\":\"A\"},{\"stageID\":3,\"stageName\":\"Pool Awarded\",\"status\":\"A\"},{\"stageID\":4,\"stageName\":\"Population Finalized\",\"status\":\"A\"},{\"stageID\":5,\"stageName\":\"Settlement Complete\",\"status\":\"I\"},{\"stageID\":30,\"stageName\":\"Pool Awarded\",\"status\":\"A\"}]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "TradeTape",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:3666/Api/TradeTapes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeTapes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeTapes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST http://localhost:3666/Api/TradeTapes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "Trade",
+									"value": "",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeTapes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeTapes"
+							]
+						},
+						"description": "POST "
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradeTapes/12/import",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeTapes/12/import",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeTapes",
+								"12",
+								"import"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TradeAsset",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:3666/Api/TradeAssets?$filter=TradeID eq 40",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeAssets?$filter=TradeID eq 57",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeAssets"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "TradeID eq 57",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradeAssets/40",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeAssets/5097",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeAssets",
+								"5097"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradeAssets/diligencetypes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeAssets/diligencetypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeAssets",
+								"diligencetypes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradeAssets/5097/diligences",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeAssets/5097/diligences",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeAssets",
+								"5097",
+								"diligences"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradeAssets/diligencecategories/4/descriptions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeAssets/diligencecategories/4/descriptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeAssets",
+								"diligencecategories",
+								"4",
+								"descriptions"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3666/Api/TradeAssets/diligencecategories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3666/Api/TradeAssets/diligencecategories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3666",
+							"path": [
+								"Api",
+								"TradeAssets",
+								"diligencecategories"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

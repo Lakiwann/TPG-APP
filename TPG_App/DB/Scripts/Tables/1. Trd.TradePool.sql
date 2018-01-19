@@ -12,7 +12,7 @@ SET ANSI_PADDING ON
 GO
 
 
-CREATE SCHEMA Trd
+--CREATE SCHEMA Trd --Trd schema should be created by running the schema scripts
 
 
 CREATE TABLE [Trd].[TradePool](
@@ -26,8 +26,6 @@ CREATE TABLE [Trd].[TradePool](
 
 GO
 
-ADD CONSTRAINT UC_TradePool_TradeType_TradeName UNIQUE (TradeType,TradeName)
-
 
 SET ANSI_PADDING OFF
 GO
@@ -40,4 +38,7 @@ GO
 
 ALTER TABLE [Trd].[TradePool] WITH  CHECK ADD CONSTRAINT [FK_TradePool_CounterPartyID] FOREIGN KEY([CounterPartyID])
 REFERENCES [Trd].[CounterParty] ([CounterPartyID])
+GO
+
+ALTER TABLE [Trd].[TradePool] WITH  CHECK ADD CONSTRAINT UC_TradePool_TradeType_TradeName UNIQUE (TradeType,TradeName)
 GO

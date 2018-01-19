@@ -1,0 +1,20 @@
+﻿The following is the execution order of the DB scripts:
+
+Schemas\CreateSchema-Trd.sql
+
+Tables\Trd.lu_TradeStage.sql
+Tables\Trd.CounterParty.sql
+Tables\Trd.TradePool.sql
+Tables\Trd.TradePoolStage.sql
+Tables\Trd.TradeTape.sql
+Tables\Trd.PalisadesAssetReference.sql
+Tables\Trd.TradeAsset.sql
+Tables\lu_DiligenceType.sql
+Tables\lu_DiligenceCategory.sql
+Tables\lu_DiligenceDesc.sql
+Tables\Trd.TradeAssetDiligence.sql
+
+Tables\Data Alts\LU_TradeStage-data-alt.sql
+Tables\Data Alts\LU_DiligenceType-data-alt.sql
+Tables\Data Alts\LU_DiligenceCategory-data-alt.sql
+Tables\Data Alts\LU-DiligenceCategoryDesc-data-alt.sql

@@ -188,6 +188,7 @@ namespace TPG_App.Controllers
             do
             {
                 List<TradeAsset> tradeAssets = new List<TradeAsset>();
+                ParseHeader(parseErrors, File.ReadLines(tradeTape.StoragePath).Take(1));
                 var loanBatch = File.ReadLines(tradeTape.StoragePath).Skip(skipRowCount).Take(rowBatchSize);
                 var counterPartyID = db.TradePools.Where(p => p.TradeID == tradeTape.TradeID).First().CounterPartyID;
 
@@ -204,14 +205,14 @@ namespace TPG_App.Controllers
                             TapeID = tradeTape.TapeID,
                             Seller_CounterPartyID = (short)counterPartyID,
                             SellerAssetID = loanAttributes[2].Trim(),
-                            OriginalBalance = Convert.ToDecimal(loanAttributes[4]),
-                            CurrentBalance = Convert.ToDecimal(loanAttributes[5]),
-                            ForebearBalance = Convert.ToDecimal(loanAttributes[6]),
-                            Bpo = Convert.ToDecimal(loanAttributes[12]),
+                            OriginalBalance = String.IsNullOrEmpty(loanAttributes[4].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[4]),
+                            CurrentBalance = String.IsNullOrEmpty(loanAttributes[5].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[5]),
+                            ForebearBalance = String.IsNullOrEmpty(loanAttributes[6].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[6]),
+                            Bpo = String.IsNullOrEmpty(loanAttributes[12].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[12]),
                             BpoDate = Convert.ToDateTime(loanAttributes[11]),
-                            OriginalPmt = Convert.ToDecimal(loanAttributes[21]),
+                            OriginalPmt = String.IsNullOrEmpty(loanAttributes[21].Trim())? 0 : Convert.ToDecimal(loanAttributes[21]),
                             OriginalDate = Convert.ToDateTime(loanAttributes[23]),
-                            CurrentPmt = Convert.ToDecimal(loanAttributes[22]),
+                            CurrentPmt = String.IsNullOrEmpty(loanAttributes[22].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[22]),
                             PaidToDate = Convert.ToDateTime(loanAttributes[25]),
                             NextDueDate = Convert.ToDateTime(loanAttributes[26]),
                             MaturityDate = Convert.ToDateTime(loanAttributes[27]),
@@ -287,6 +288,13 @@ namespace TPG_App.Controllers
 
             List<long> returnedAssetIds = assetCtrl.GetTradeAssets().Where(a => a.TapeID == tradeTape.TapeID).OrderBy(o => o.AssetID).Select(s => s.AssetID).ToList();
             return returnedAssetIds;
+        }
+
+        private void ParseHeader(List<string> parseErrors, IEnumerable<string> header)
+        {
+            var headerLocations = new[] { new {headerName= "LOANID",  } }
+            List<string> columnNames = header.First().Split(',').ToList();
+            columnNames.f
         }
 
 

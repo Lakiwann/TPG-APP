@@ -317,9 +317,12 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DB\DB scripts execution order.txt" />
+    <Content Include="DB\Scripts\Schemas\CreateSchema-Trd.sql" />
     <Content Include="DB\Scripts\Tables\1. Trd.TradePool.sql" />
     <Content Include="DB\Scripts\Tables\10.Trd.CounterParty.sql" />
     <Content Include="DB\Scripts\Tables\11.Trd.PalisadesAssetReference.sql" />
+    <Content Include="DB\Scripts\Tables\12.Trd.lu_TapeColumnDefs.sql" />
     <Content Include="DB\Scripts\Tables\2. Trd.lu_TradeStage.sql" />
     <Content Include="DB\Scripts\Tables\3. Trd.TradePoolStage.sql" />
     <Content Include="DB\Scripts\Tables\4. Trd.lu_DiligenceType.sql" />
@@ -327,11 +330,12 @@
     <Content Include="DB\Scripts\Tables\6. Trd.lu_DiligenceDesc.sql" />
     <Content Include="DB\Scripts\Tables\7. Trd.TradeTape.sql" />
     <Content Include="DB\Scripts\Tables\8. Trd.TradeAsset.sql" />
-    <Content Include="DB\Scripts\Tables\9.Trd.TradeAssetDeligence.sql" />
+    <Content Include="DB\Scripts\Tables\9.Trd.TradeAssetDiligence.sql" />
     <Content Include="DB\Scripts\Tables\Data Alts\LU_DiligenceCategory-data-alt.sql" />
     <Content Include="DB\Scripts\Tables\Data Alts\LU_DiligenceCategoryDesc-data-alt.sql" />
     <Content Include="DB\Scripts\Tables\Data Alts\LU_DiligenceType-data-alt.sql" />
-    <Content Include="DB\Scripts\Tables\Data Alts\LU_TradeStage-Alt_1.sql" />
+    <Content Include="DB\Scripts\Tables\Data Alts\LU_TapeColumnDefs-data-alt.sql" />
+    <Content Include="DB\Scripts\Tables\Data Alts\LU_TradeStage-data-alt.sql" />
     <Content Include="DB\Scripts\Tables\TRD_TradePool.sql" />
     <Content Include="DB\TRD_MainLogicQueriesFromODS_Palisades.sql" />
     <Content Include="favicon.ico" />
