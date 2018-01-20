@@ -139,11 +139,11 @@ namespace TPG_App.Controllers
                 yearlySummary.NPLoans = 0;
                 yearlySummary.MixedLoans = assetSummaries.Count();
                 yearlySummary.BidAmount = 0;
-                yearlySummary.TradeAmount = assetSummaries.Sum(a => a.CurrentPrice);
-                yearlySummary.RepriceAmount = assetSummaries.Sum(a => a.TotalRepriceAmount);
-                yearlySummary.AverageCloseTime = assetSummaries.Average(a => a.CloseTime);
-                yearlySummary.AverageFallOut = (assetSummaries.Where(a => a.InStatus == false).Count() / assetSummaries.Count()) * 100;
-                yearlySummary.PurchasesAmount = assetSummaries.Sum(a => a.CurrentPrice);
+                yearlySummary.TradeAmount = assetSummaries.Count() > 0 ? assetSummaries.Sum(a => a.CurrentPrice) : 0;
+                yearlySummary.RepriceAmount = assetSummaries.Count() > 0 ? assetSummaries.Sum(a => a.TotalRepriceAmount) : 0;
+                yearlySummary.AverageCloseTime = assetSummaries.Count() > 0 ? assetSummaries.Average(a => a.CloseTime) : 0;
+                yearlySummary.AverageFallOut = assetSummaries.Count() > 0 ? ((assetSummaries.Where(a => a.InStatus == false).Count() / assetSummaries.Count()) * 100): 0;
+                yearlySummary.PurchasesAmount = assetSummaries.Count() > 0 ? assetSummaries.Sum(a => a.CurrentPrice) : 0;
                 yearlySummary.SalesAmount = 0;
 
                 yearlySummaries.Add(yearlySummary);

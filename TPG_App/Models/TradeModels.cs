@@ -124,6 +124,22 @@ namespace TPG_App.Models
                .Property(e => e.CounterPartyName)
                .IsUnicode(false);
 
+            modelBuilder.Entity<TradeTapeColumnDef>()
+               .Property(e => e.TapeName)
+               .IsUnicode(false);
+
+            modelBuilder.Entity<TradeTapeColumnDef>()
+                .Property(e => e.PalFieldName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeTapeColumnDef>()
+                .Property(e => e.ColumnName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TradeTapeColumnDef>()
+                .Property(e => e.ColumnType)
+                .IsUnicode(false);
+
         }
 
         public System.Data.Entity.DbSet<TPG_App.Models.TradePoolStage> TradePoolStages { get; set; }
@@ -143,5 +159,7 @@ namespace TPG_App.Models
         public System.Data.Entity.DbSet<TradeCounterParty> TradeCounterParties { get; set; }
 
         public System.Data.Entity.DbSet<TPG_App.Models.PalisadesAssetReference> PalisadesAssetReferences { get; set; }
+
+        public System.Data.Entity.DbSet<TradeTapeColumnDef> TradeTapeColumnDefs { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LinqToExcel;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -128,6 +130,78 @@ namespace TPG_App.Controllers
         }
 
         /// <summary>
+        /// This method will validate the tradeTape that is already uploaded
+        /// </summary>
+        /// <param name="tradeTape"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("{id:int}/validate", Name = "TapeValidateApi")]
+        //[ActionName("import")]
+        public async Task<IHttpActionResult> PostTradeTapeValidate(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!TradeTapeExists(id))
+            {
+                ModelState.AddModelError("TapeID", "invalid tapeId received");
+                return BadRequest(ModelState);
+            }
+
+            TradeTape tradeTape = await db.TradeTapes.FindAsync(id);
+            TapeErrorInfo errors = null;
+            if(!ParseAndValidateTradeTape(tradeTape, out errors))
+            {
+                ModelState.AddModelError("TapeParserError", JsonConvert.SerializeObject(errors));
+                return BadRequest(ModelState);
+            }
+
+            List<long> assetIds = await ParseAndImportAssetsAsync(tradeTape);
+            if ((assetIds == null) || (assetIds.Count == 0))
+            {
+                ModelState.AddModelError("TapeErrors", "tape has invalid data.  Please refer to the tape logs for more information");
+                return BadRequest(ModelState);
+            }
+
+            db.Entry(tradeTape).State = EntityState.Modified;
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TradeTapeExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("TapeImportApi", new { id = tradeTape.TapeID }, tradeTape);
+        }
+
+        private bool ParseAndValidateTradeTape(TradeTape tradeTape, out TapeErrorInfo errors)
+        {
+            var parser = new TapeParser(tradeTape);
+
+            errors = null;
+            bool isSuccess = parser.ParseTape();
+            if (!isSuccess)
+            {
+                errors = parser.GetErrors;
+            }
+
+            return isSuccess;
+        }
+
+
+
+        /// <summary>
         /// This method will import the tradeTape that is already uploaded
         /// </summary>
         /// <param name="tradeTape"></param>
@@ -150,6 +224,13 @@ namespace TPG_App.Controllers
             }
 
             TradeTape tradeTape = await db.TradeTapes.FindAsync(id);
+            TapeErrorInfo errors = null;
+            if (!ParseAndValidateTradeTape(tradeTape, out errors))
+            {
+                ModelState.AddModelError("TapeParserError", JsonConvert.SerializeObject(errors));
+                return BadRequest(ModelState);
+            }
+
             List<long> assetIds = await ParseAndImportAssetsAsync(tradeTape);
 
             if((assetIds == null) || (assetIds.Count == 0))
@@ -188,10 +269,14 @@ namespace TPG_App.Controllers
             do
             {
                 List<TradeAsset> tradeAssets = new List<TradeAsset>();
+
+               
+            
                 ParseHeader(parseErrors, File.ReadLines(tradeTape.StoragePath).Take(1));
                 var loanBatch = File.ReadLines(tradeTape.StoragePath).Skip(skipRowCount).Take(rowBatchSize);
                 var counterPartyID = db.TradePools.Where(p => p.TradeID == tradeTape.TradeID).First().CounterPartyID;
 
+                
                 int lineCountInBatch = 0;
                 foreach (var line in loanBatch)
                 {
@@ -292,9 +377,9 @@ namespace TPG_App.Controllers
 
         private void ParseHeader(List<string> parseErrors, IEnumerable<string> header)
         {
-            var headerLocations = new[] { new {headerName= "LOANID",  } }
-            List<string> columnNames = header.First().Split(',').ToList();
-            columnNames.f
+            //var headerLocations = new[] { new {headerName= "LOANID",  } }
+            //List<string> columnNames = header.First().Split(',').ToList();
+            //columnNames.f
         }
 
 

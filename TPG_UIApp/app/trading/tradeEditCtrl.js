@@ -45,10 +45,19 @@
             fileItem.formData.push({ TradeID: vm.trade.tradeID });
             fileItem.formData.push({ Name: vm.trade.tradeName });
             fileItem.formData.push({ Description: 'Desc' });
+            vm.FileUploading == true;
+            vm.progressBarValue = 0;
+            vm.progressStatusPrefix = "File uploading - "
         };
+
+        $scope.uploader.onProgressAll = function (val) {
+            vm.progressBarVal = val;
+            vm.progressStatus = vm.progressPrefix + val + "%";
+        }
 
         $scope.uploader.onCompleteAll = function () {
             toastr.success("File uploaded successfully");
+            //vm.FilUploading = false;
             $scope.uploader.clearQueue();
             tradeTapeResource.query({ tradefilter: "$filter=TradeID eq " + vm.trade.tradeID }, function (data) {
                 vm.tradeTape = data[0];

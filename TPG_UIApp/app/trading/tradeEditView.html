@@ -98,6 +98,9 @@
                     </div>
                 </div>
                 <div ng-show="uploader.queue.length==1"><button class="btn btn-primary" type="submit" ng-click="uploader.queue[0].upload()">Upload Bid Tape</button></div>
+                <div class="progress" ng-show="vm.FileUploading == true">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{vm.progressBarValue}}" aria-valuemin="0" aria-valuemax="100" style="width:70%">{{vm.progressStatus}}</div>
+                </div>
                 <!--<ul>
                     <li ng-repeat="item in uploader.queue">
                         <label class="col-md-4 control-label">Bid Tape to Upload:</label> <span ng-bind="item.file.name"></span>
