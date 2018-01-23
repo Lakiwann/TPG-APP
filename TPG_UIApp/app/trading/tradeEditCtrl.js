@@ -67,8 +67,8 @@
             //toastr.success("File uploaded successfully");
             //vm.FilUploading = false;
             $scope.uploader.clearQueue();
-            tradeTapeResource.query({ tradefilter: "$filter=TradeID eq " + vm.trade.tradeID }, function (data) {
-                vm.tradeTape = data[0];
+            tradeTapeResource.query({ tradefilter: "$filter=TradeID eq " + vm.trade.tradeID + "&$orderby=TapeID desc"}, function (data) {
+                vm.tradeTape = data[0]; 
                 console.log("Calling parser validation");
                 //toastr.warning("File being imported....");
                 vm.progressBarValue = 20;

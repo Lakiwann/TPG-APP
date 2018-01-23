@@ -237,6 +237,9 @@ namespace TPG_App.Controllers
 
                 if (tradePoolStage.StageID > currentStageId)
                 {
+                    db.TradePoolStages.Add(tradePoolStage);
+                    await db.SaveChangesAsync();
+
                     //TODO:  This needs to be migrated to a service later.  The above will set the stage to 'Pool Awarded'.  Now generate the PAL IDs for the assets.  
                     if (currentStageId == 2) //If the current stage is Out for Bid before setting it to 'Pool Awarded' assign PAL IDs
                     {
@@ -244,7 +247,7 @@ namespace TPG_App.Controllers
                         await ApplyPalIDsToTradeAssets(tradePool);
                     }
                     //ENDTODO
-                    var result = await tpsCtrl.PostTradePoolStage(tradePoolStage);
+                    //var result = await tpsCtrl.PostTradePoolStage(tradePoolStage);
                 }
             }
 
@@ -311,12 +314,15 @@ namespace TPG_App.Controllers
 
         private static string GenerateStandardizedAssetSearchString(TradeAsset asset)
         {
-            string standardizedAddress = asset.StreetAddress1.Trim() + "|" + asset.City.Trim() + "|" + asset.State.Trim() + "|" + asset.Zip.Trim();
-            string standardizedAssetSearchString = asset.MaturityDate.Value.ToFileTimeUtc() + "|" + standardizedAddress;
-            if (standardizedAssetSearchString.Length > 250)
-            {
-                standardizedAssetSearchString = standardizedAssetSearchString.Take(250).ToString();
-            }
+
+            //TODO:  Defer this for now.  Build the asset serach criteria later.  For now just set it to the origination date
+            string standardizedAssetSearchString = asset.OriginalDate.GetValueOrDefault().ToString();
+            //string standardizedAddress = asset.StreetAddress1.Trim() + "|" + asset.City.Trim() + "|" + asset.State.Trim() + "|" + asset.Zip.Trim();
+            //standardizedAssetSearchString = asset.MaturityDate.Value.ToFileTimeUtc() + "|" + standardizedAddress;
+            //if (standardizedAssetSearchString.Length > 250)
+            //{
+            //    standardizedAssetSearchString = standardizedAssetSearchString.Take(250).ToString();
+            //}
 
             return standardizedAssetSearchString;
         }

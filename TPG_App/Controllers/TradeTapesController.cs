@@ -256,7 +256,7 @@ namespace TPG_App.Controllers
                     {
                         List<TradeAsset> assetBatch = tradeAssets.Skip(skipCount).Take(batchSize).ToList();
 
-                        await assetCtrl.PostTradeAssetsInBatch(tradeAssets);
+                        await assetCtrl.PostTradeAssetsInBatch(assetBatch);
                         skipCount += batchSize;
                     }
                     catch (Exception ex)

@@ -1,0 +1,1 @@
+{"WorksheetErrors":[],"LoanLevelErrors":[{"LoanLine":2,"columnErrors":[{"Key":"MAT DATE","Value":"Not a valid date"}]},{"LoanLine":5,"columnErrors":[{"Key":"ORIG BAL","Value":"Not a valid decimal value"}]}]}

@@ -14,8 +14,8 @@
         vm.tradeAsset = tradeAsset;
 
 
-        tradeResource.query({ tradeId: vm.tradeAsset.tradeID }, function (data) {
-            vm.tradeSummary = data[0];
+        tradeResource.get({ id: vm.tradeAsset.tradeID }, function (data) {
+            vm.tradeSummary = data;
         }).$promise;
         
 

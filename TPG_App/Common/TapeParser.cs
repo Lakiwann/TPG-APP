@@ -165,16 +165,23 @@ namespace TPG_App.Common
         internal List<TradeAsset> GetTradeAssets()
         {
             List<TradeAsset> assets = new List<TradeAsset>();
-            AddColDefinitionMappings();
-
             excelFile = new ExcelQueryFactory(tape.StoragePath);
-            var worksheets = excelFile.GetWorksheetNames();
+            AddColDefinitionMappings();
+            var counterPartyID = db.TradePools.Where(p => p.TradeID == tape.TradeID).First().CounterPartyID;
 
+            var worksheets = excelFile.GetWorksheetNames();
             if (worksheets.Count() > 0)
             {
-                foreach (var asset in excelFile.Worksheet<TradeAsset>(worksheetname))
+                worksheetname = worksheets.First();
+                assets = excelFile.Worksheet<TradeAsset>(worksheetname).ToList();
+                foreach(var asset in assets)
                 {
-                    assets.Add(asset);
+                    //                TradeID = tradeTape.TradeID,
+                    //                TapeID = tradeTape.TapeID,
+                    //                Seller_CounterPartyID = (short)counterPartyID,
+                    asset.TradeID = tape.TradeID;
+                    asset.TapeID = tape.TapeID;
+                    asset.Seller_CounterPartyID = (short)counterPartyID;
                 }
             }
 
