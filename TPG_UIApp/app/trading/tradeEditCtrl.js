@@ -13,6 +13,7 @@
         vm.selectedStage = ""; //This is used to keep track of the selected stage id.  This also serves as the modal for the counterparty dropdown disablement (ie when selected stage has a value the counter party drop down will be disabled)
         vm.availableCounterPartyOptions = [];
         vm.selectedCounterPartyId = "";
+        vm.validationErrors = "";
 
         //data modals setup
         if (vm.trade && vm.trade.tradePoolStages) {
@@ -41,41 +42,69 @@
 
         $scope.uploader = new FileUploader();
         $scope.uploader.url = "http://localhost:3666/" + "api/tradetapes";
+        $scope.queueLimit = 1;
         $scope.uploader.onBeforeUploadItem = function (fileItem) {
             fileItem.formData.push({ TradeID: vm.trade.tradeID });
             fileItem.formData.push({ Name: vm.trade.tradeName });
             fileItem.formData.push({ Description: 'Desc' });
-            vm.FileUploading == true;
+            vm.validationErrors = "";
+            vm.FileUploading = true;
             vm.progressBarValue = 0;
             vm.progressStatusPrefix = "File uploading - "
         };
+        $scope.uploader.onAfterAddingFile = function (fileItem) {
+            vm.FileUploading = false; //reset this flag to hide the status bar from a previous upload
+            vm.validationErrors = ""; //reset this to hide validation errors from a previous upload
+        }
 
         $scope.uploader.onProgressAll = function (val) {
-            vm.progressBarVal = val;
-            vm.progressStatus = vm.progressPrefix + val + "%";
+            vm.progressBarValue = val;
+            vm.progressStatus = vm.progressStatusPrefix + val + "%";
         }
 
         $scope.uploader.onCompleteAll = function () {
-            toastr.success("File uploaded successfully");
+            console.log("File uploaded successfully");
+            //toastr.success("File uploaded successfully");
             //vm.FilUploading = false;
             $scope.uploader.clearQueue();
             tradeTapeResource.query({ tradefilter: "$filter=TradeID eq " + vm.trade.tradeID }, function (data) {
                 vm.tradeTape = data[0];
-                toastr.warning("File being imported....");
-                tradeTapeResource.importtape({id: vm.tradeTape.tapeID}, function(data) {
-                    toastr.success("File successfully imported!");
-                    var newdate = new Date();
-
-                    //Change the Pool stage from 'Pool Identified' to 'Out for Bid'
-                    vm.trade.tradePoolStages.push(
-                        {
-                            'tradeID': vm.trade.tradeID,
-                            'stageID':  vm.availableStageOptions[1].stageID, // the second stage option is 'Out for Bid' vm.selectedStageDropdownParams + 1, 
-                            'tradeStageDate': (newdate.getMonth() + 1) + "/" + newdate.getDate() + "/" + newdate.getFullYear()
+                console.log("Calling parser validation");
+                //toastr.warning("File being imported....");
+                vm.progressBarValue = 20;
+                vm.progressStatus = "Validating the tape...."
+                tradeTapeResource.validatetape({ id: vm.tradeTape.tapeID },
+                    function (data) {
+                        vm.progressBarValue = 60;
+                        vm.progressStatus = "Importing the tape...."
+                        tradeTapeResource.importtape({ id: vm.tradeTape.tapeID },
+                            function (data) {
+                                //toastr.success("File successfully imported!");
+                                vm.progressBarValue = 90;
+                                vm.progressStatus = "Finalizing...."
+                                var newdate = new Date();
+                            //Change the Pool stage from 'Pool Identified' to 'Out for Bid'
+                                vm.trade.tradePoolStages.push(
+                                    {
+                                        'tradeID': vm.trade.tradeID,
+                                        'stageID': vm.availableStageOptions[1].stageID, // the second stage option is 'Out for Bid' vm.selectedStageDropdownParams + 1, 
+                                        'tradeStageDate': (newdate.getMonth() + 1) + "/" + newdate.getDate() + "/" + newdate.getFullYear()
+                                    })
+                                tradeResource.update({ Id: vm.trade.tradeID }, vm.trade)
+                                vm.progressBarValue = 100;
+                                vm.progressStatus = "Import successful...."
+                                $state.go('tradeDetail', { tradeId: vm.trade.tradeID });
                         })
-                    tradeResource.update({ Id: vm.trade.tradeID }, vm.trade);
-                    $state.go('tradeDetail', { tradeId: vm.trade.tradeID });
-                })
+                    },
+                    //Tape validation errors
+                    function (error) {
+                        console.log("validation errors: " + error.data);
+                        //vm.progressBarValue = 100;
+                        //vm.progressStatus = "Validation failed!!"
+                        var parserError = JSON.parse(error.data.modelState.tapeParserError);
+                        vm.validationErrors = JSON.stringify(parserError, null, "    ");
+                    })
+                
             })
         }
 

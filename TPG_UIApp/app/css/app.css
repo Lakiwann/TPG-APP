@@ -127,4 +127,8 @@ form legend {
     color: red;
 }
 
+.bg-submit-error {
+    background-color:red;
+}
+
 

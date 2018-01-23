@@ -32,6 +32,10 @@ namespace TPG_App.Common
             columnDefs = db.TradeTapeColumnDefs.Where(d => d.TapeName == "SellerBidTape").ToList();
         }
 
+        /// <summary>
+        /// Parser's and validates the tape.
+        /// </summary>
+        /// <returns>True if validation is successful.  False if validation fails.</returns>
         public bool ParseTape()
         {
             bool haveErrors = false;
@@ -46,27 +50,52 @@ namespace TPG_App.Common
                 haveErrors = ValidateSheetColumnNames();
                 if(!haveErrors)
                 {
-                    AddColDefinitionMappings();
-
-                    var rowEnumerator = excelFile.Worksheet<TradeAsset>(worksheetname).GetEnumerator();
+                    
+                    var rowEnumerator = excelFile.Worksheet(worksheetname).GetEnumerator();
                     {
                         int lineCount = 0;
                         while(rowEnumerator.MoveNext())
                         {
                             lineCount++;
-                            try
+                            Row currentRow = rowEnumerator.Current;
+                                
+                            LoanErrors err = new LoanErrors();
+                            err.LoanLine = lineCount;
+                            bool haveRowErrors = false;
+                            foreach (var colDef in columnDefs)
                             {
-                                TradeAsset asset = rowEnumerator.Current;
+                                switch(colDef.ColumnType)
+                                {
+                                    case "datetime":
+                                        try
+                                        {
+                                            Convert.ToDateTime(currentRow[colDef.ColumnName]);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            err.columnErrors.Add(new KeyValuePair<string, string>(colDef.ColumnName, "Not a valid date"));
+                                            haveRowErrors = true;
+                                        }
+                                        break;
+                                    case "decimal":
+                                        try
+                                        {
+                                            Convert.ToDecimal(currentRow[colDef.ColumnName]);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            err.columnErrors.Add(new KeyValuePair<string, string>(colDef.ColumnName, "Not a valid decimal value"));
+                                            haveRowErrors = true;
+                                        }
+                                        break;
+                                }
                             }
-                            catch(Exception ex)
+                            if(haveRowErrors)
                             {
-                                LoanErrors err = new LoanErrors();
-                                err.LoanLine = lineCount;
-                                err.columnErrors.Add(new KeyValuePair<string, string>("Error Message", ex.Message));
                                 tapeErrors.LoanLevelErrors.Add(err);
                                 haveErrors = true;
-                                continue;
                             }
+                            
                         }
                     }
                 }
@@ -89,7 +118,7 @@ namespace TPG_App.Common
                 File.WriteAllText(errorFileName, JsonConvert.SerializeObject(tapeErrors));
                 
             }
-            return haveErrors;
+            return !haveErrors;
         }
 
         public TapeErrorInfo GetErrors
@@ -131,6 +160,25 @@ namespace TPG_App.Common
                 string msg = ex.Message;
             }
             
+        }
+
+        internal List<TradeAsset> GetTradeAssets()
+        {
+            List<TradeAsset> assets = new List<TradeAsset>();
+            AddColDefinitionMappings();
+
+            excelFile = new ExcelQueryFactory(tape.StoragePath);
+            var worksheets = excelFile.GetWorksheetNames();
+
+            if (worksheets.Count() > 0)
+            {
+                foreach (var asset in excelFile.Worksheet<TradeAsset>(worksheetname))
+                {
+                    assets.Add(asset);
+                }
+            }
+
+            return assets;
         }
 
         private bool ValidateSheetColumnNames()

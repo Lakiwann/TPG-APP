@@ -152,37 +152,13 @@ namespace TPG_App.Controllers
 
             TradeTape tradeTape = await db.TradeTapes.FindAsync(id);
             TapeErrorInfo errors = null;
-            if(!ParseAndValidateTradeTape(tradeTape, out errors))
+            if (!ParseAndValidateTradeTape(tradeTape, out errors))
             {
                 ModelState.AddModelError("TapeParserError", JsonConvert.SerializeObject(errors));
                 return BadRequest(ModelState);
             }
 
-            List<long> assetIds = await ParseAndImportAssetsAsync(tradeTape);
-            if ((assetIds == null) || (assetIds.Count == 0))
-            {
-                ModelState.AddModelError("TapeErrors", "tape has invalid data.  Please refer to the tape logs for more information");
-                return BadRequest(ModelState);
-            }
-
-            db.Entry(tradeTape).State = EntityState.Modified;
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TradeTapeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("TapeImportApi", new { id = tradeTape.TapeID }, tradeTape);
+            return CreatedAtRoute("TapeValidateApi", new { id = tradeTape.TapeID }, tradeTape);
         }
 
         private bool ParseAndValidateTradeTape(TradeTape tradeTape, out TapeErrorInfo errors)
@@ -199,6 +175,11 @@ namespace TPG_App.Controllers
             return isSuccess;
         }
 
+        private List<TradeAsset> GetTradeAssetsFromTape(TradeTape tradeTape)
+        {
+            var parser = new TapeParser(tradeTape);
+            return parser.GetTradeAssets();
+        }
 
 
         /// <summary>
@@ -224,12 +205,12 @@ namespace TPG_App.Controllers
             }
 
             TradeTape tradeTape = await db.TradeTapes.FindAsync(id);
-            TapeErrorInfo errors = null;
-            if (!ParseAndValidateTradeTape(tradeTape, out errors))
-            {
-                ModelState.AddModelError("TapeParserError", JsonConvert.SerializeObject(errors));
-                return BadRequest(ModelState);
-            }
+            //TapeErrorInfo errors = null;
+            //if (!ParseAndValidateTradeTape(tradeTape, out errors))
+            //{
+            //    ModelState.AddModelError("TapeParserError", JsonConvert.SerializeObject(errors));
+            //    return BadRequest(ModelState);
+            //}
 
             List<long> assetIds = await ParseAndImportAssetsAsync(tradeTape);
 
@@ -261,118 +242,172 @@ namespace TPG_App.Controllers
 
         private async Task<List<long>> ParseAndImportAssetsAsync(TradeTape tradeTape)
         {
-            int skipRowCount = 1; //Start with skipping the first row as the first row contains the column headings
-            int rowBatchSize = 100;
-            var assetCtrl = new TradeAssetsController();
-            List<string> parseErrors = new List<string>();
-            parseErrors.Add("LoanID, Line#, ParserError");
-            do
+            var assetCtrl = new TradeAssetsController(); //TODO:  Change this to BL call later
+            List<TradeAsset> tradeAssets = GetTradeAssetsFromTape(tradeTape);
+            int skipCount = 0;
+            int batchSize = 100;
+            bool importErrors = false;
+            try
             {
-                List<TradeAsset> tradeAssets = new List<TradeAsset>();
-
-               
-            
-                ParseHeader(parseErrors, File.ReadLines(tradeTape.StoragePath).Take(1));
-                var loanBatch = File.ReadLines(tradeTape.StoragePath).Skip(skipRowCount).Take(rowBatchSize);
-                var counterPartyID = db.TradePools.Where(p => p.TradeID == tradeTape.TradeID).First().CounterPartyID;
-
-                
-                int lineCountInBatch = 0;
-                foreach (var line in loanBatch)
+                while (tradeAssets.Count > skipCount)
                 {
-                    lineCountInBatch++;
-                    string[] loanAttributes = line.Split(',');
+
                     try
                     {
-                        var asset = new TradeAsset
-                        {
-                            TradeID = tradeTape.TradeID,
-                            TapeID = tradeTape.TapeID,
-                            Seller_CounterPartyID = (short)counterPartyID,
-                            SellerAssetID = loanAttributes[2].Trim(),
-                            OriginalBalance = String.IsNullOrEmpty(loanAttributes[4].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[4]),
-                            CurrentBalance = String.IsNullOrEmpty(loanAttributes[5].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[5]),
-                            ForebearBalance = String.IsNullOrEmpty(loanAttributes[6].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[6]),
-                            Bpo = String.IsNullOrEmpty(loanAttributes[12].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[12]),
-                            BpoDate = Convert.ToDateTime(loanAttributes[11]),
-                            OriginalPmt = String.IsNullOrEmpty(loanAttributes[21].Trim())? 0 : Convert.ToDecimal(loanAttributes[21]),
-                            OriginalDate = Convert.ToDateTime(loanAttributes[23]),
-                            CurrentPmt = String.IsNullOrEmpty(loanAttributes[22].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[22]),
-                            PaidToDate = Convert.ToDateTime(loanAttributes[25]),
-                            NextDueDate = Convert.ToDateTime(loanAttributes[26]),
-                            MaturityDate = Convert.ToDateTime(loanAttributes[27]),
-                            StreetAddress1 = loanAttributes[36].Trim(),
-                            City = loanAttributes[37].Trim(),
-                            State = loanAttributes[38].Trim(),
-                            Zip = loanAttributes[39].Trim(),
-                            Cbsa = loanAttributes[40].Trim(),
-                            CbsaName = loanAttributes[41].Trim(),
-                            ProdType = loanAttributes[55].Trim(),
-                            LoanPurp = loanAttributes[56].Trim(),
-                            PropType = loanAttributes[57].Trim(),
-                            OrigFico = loanAttributes[69].Trim(),
-                            CurrFico = loanAttributes[70].Trim(),
-                            CurrFicoDate = Convert.ToDateTime(loanAttributes[71]),
-                            PayString = loanAttributes[80].Trim()
-                        };
+                        List<TradeAsset> assetBatch = tradeAssets.Skip(skipCount).Take(batchSize).ToList();
 
-                        tradeAssets.Add(asset);
+                        await assetCtrl.PostTradeAssetsInBatch(tradeAssets);
+                        skipCount += batchSize;
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        //If there are any
-                        parseErrors.Add(loanAttributes[2].Trim() + "," + (skipRowCount + lineCountInBatch).ToString() + "," + ex.Message);
-
+                        if (skipCount > 0)
+                        {
+                            db.TradeAssets.RemoveRange(db.TradeAssets.Where(a => a.TapeID == tradeTape.TapeID));
+                        }
+                        importErrors = true;
+                        throw;
                     }
                 }
-
-                if(parseErrors.Count() <= 1)
-                {
-                    //only post the assets batch if there are no previous parser errors.  Note there could be paser errors in subsequent batches, in which case these assets will be deleted later
-                    await assetCtrl.PostTradeAssetsInBatch(tradeAssets);
-                }
-               
-
-                if(loanBatch.Count() < rowBatchSize )
-                {
-                    break;
-                }
-                skipRowCount += rowBatchSize;
-
-            } while (true);
-
-            var dirPath = ConfigurationManager.AppSettings[APP_SETTINGS_IMPORTED_TAPES_PATH];
-            if (parseErrors.Count > 1)
+            }
+            finally
             {
+                var dirPath = ConfigurationManager.AppSettings[APP_SETTINGS_IMPORTED_TAPES_PATH];
+                if (importErrors)
+                {
+                    dirPath = ConfigurationManager.AppSettings[APP_SETTINGS_FAILED_TAPES_PATH];
+                }
+                else
+                {
+                    tradeTape.ImportedDate = DateTime.UtcNow;
+                }
                 
-                dirPath = ConfigurationManager.AppSettings[APP_SETTINGS_FAILED_TAPES_PATH];
-                //If there were assets created in loops prior to finding parser errors, remove those assets from db
-                if(skipRowCount > rowBatchSize)
+                if (!Directory.Exists(dirPath))
                 {
-                    db.TradeAssets.RemoveRange(db.TradeAssets.Where(a => a.TapeID == tradeTape.TapeID));
+                    Directory.CreateDirectory(dirPath);
                 }
-            }
-            
-            if (!Directory.Exists(dirPath))
-            {
-                Directory.CreateDirectory(dirPath);
+
+                var moveFullFileName = dirPath + "\\" + tradeTape.TapeID + "_" + DateTime.UtcNow.ToFileTimeUtc() + "_" + tradeTape.StoragePath.Split('\\').Last();
+                File.Move(tradeTape.StoragePath, moveFullFileName);
             }
 
-            if(parseErrors.Count > 1)
-            {
-                var errorFileName = dirPath + "\\" + tradeTape.TapeID + ".csv";
-                File.WriteAllLines(errorFileName, parseErrors.ToArray());
-            }
-            else
-            {
-                tradeTape.ImportedDate = DateTime.UtcNow;
-            }
-            
-            var moveFullFileName = dirPath + "\\" + tradeTape.TapeID + "_" + DateTime.UtcNow.ToFileTimeUtc() + "_" + tradeTape.StoragePath.Split('\\').Last();
-            File.Move(tradeTape.StoragePath, moveFullFileName);
 
             List<long> returnedAssetIds = assetCtrl.GetTradeAssets().Where(a => a.TapeID == tradeTape.TapeID).OrderBy(o => o.AssetID).Select(s => s.AssetID).ToList();
             return returnedAssetIds;
+
+
+            //int skipRowCount = 1; //Start with skipping the first row as the first row contains the column headings
+            //int rowBatchSize = 100;
+
+            //List<string> parseErrors = new List<string>();
+            //parseErrors.Add("LoanID, Line#, ParserError");
+            //do
+            //{
+            //    List<TradeAsset> tradeAssets = new List<TradeAsset>();
+
+
+
+            //    ParseHeader(parseErrors, File.ReadLines(tradeTape.StoragePath).Take(1));
+            //    var loanBatch = File.ReadLines(tradeTape.StoragePath).Skip(skipRowCount).Take(rowBatchSize);
+            //    var counterPartyID = db.TradePools.Where(p => p.TradeID == tradeTape.TradeID).First().CounterPartyID;
+
+
+            //    int lineCountInBatch = 0;
+            //    foreach (var line in loanBatch)
+            //    {
+            //        lineCountInBatch++;
+            //        string[] loanAttributes = line.Split(',');
+            //        try
+            //        {
+            //            var asset = new TradeAsset
+            //            {
+            //                TradeID = tradeTape.TradeID,
+            //                TapeID = tradeTape.TapeID,
+            //                Seller_CounterPartyID = (short)counterPartyID,
+            //                SellerAssetID = loanAttributes[2].Trim(),
+            //                OriginalBalance = String.IsNullOrEmpty(loanAttributes[4].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[4]),
+            //                CurrentBalance = String.IsNullOrEmpty(loanAttributes[5].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[5]),
+            //                ForebearBalance = String.IsNullOrEmpty(loanAttributes[6].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[6]),
+            //                Bpo = String.IsNullOrEmpty(loanAttributes[12].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[12]),
+            //                BpoDate = Convert.ToDateTime(loanAttributes[11]),
+            //                OriginalPmt = String.IsNullOrEmpty(loanAttributes[21].Trim())? 0 : Convert.ToDecimal(loanAttributes[21]),
+            //                OriginalDate = Convert.ToDateTime(loanAttributes[23]),
+            //                CurrentPmt = String.IsNullOrEmpty(loanAttributes[22].Trim()) ? 0 : Convert.ToDecimal(loanAttributes[22]),
+            //                PaidToDate = Convert.ToDateTime(loanAttributes[25]),
+            //                NextDueDate = Convert.ToDateTime(loanAttributes[26]),
+            //                MaturityDate = Convert.ToDateTime(loanAttributes[27]),
+            //                StreetAddress1 = loanAttributes[36].Trim(),
+            //                City = loanAttributes[37].Trim(),
+            //                State = loanAttributes[38].Trim(),
+            //                Zip = loanAttributes[39].Trim(),
+            //                Cbsa = loanAttributes[40].Trim(),
+            //                CbsaName = loanAttributes[41].Trim(),
+            //                ProdType = loanAttributes[55].Trim(),
+            //                LoanPurp = loanAttributes[56].Trim(),
+            //                PropType = loanAttributes[57].Trim(),
+            //                OrigFico = loanAttributes[69].Trim(),
+            //                CurrFico = loanAttributes[70].Trim(),
+            //                CurrFicoDate = Convert.ToDateTime(loanAttributes[71]),
+            //                PayString = loanAttributes[80].Trim()
+            //            };
+
+            //            tradeAssets.Add(asset);
+            //        }
+            //        catch(Exception ex)
+            //        {
+            //            //If there are any
+            //            parseErrors.Add(loanAttributes[2].Trim() + "," + (skipRowCount + lineCountInBatch).ToString() + "," + ex.Message);
+
+            //        }
+            //    }
+
+            //    if(parseErrors.Count() <= 1)
+            //    {
+            //        //only post the assets batch if there are no previous parser errors.  Note there could be paser errors in subsequent batches, in which case these assets will be deleted later
+            //        await assetCtrl.PostTradeAssetsInBatch(tradeAssets);
+            //    }
+
+
+            //    if(loanBatch.Count() < rowBatchSize )
+            //    {
+            //        break;
+            //    }
+            //    skipRowCount += rowBatchSize;
+
+            //} while (true);
+
+            //var dirPath = ConfigurationManager.AppSettings[APP_SETTINGS_IMPORTED_TAPES_PATH];
+            //if (parseErrors.Count > 1)
+            //{
+
+            //    dirPath = ConfigurationManager.AppSettings[APP_SETTINGS_FAILED_TAPES_PATH];
+            //    //If there were assets created in loops prior to finding parser errors, remove those assets from db
+            //    if(skipRowCount > rowBatchSize)
+            //    {
+            //        db.TradeAssets.RemoveRange(db.TradeAssets.Where(a => a.TapeID == tradeTape.TapeID));
+            //    }
+            //}
+
+            //if (!Directory.Exists(dirPath))
+            //{
+            //    Directory.CreateDirectory(dirPath);
+            //}
+
+            //if(parseErrors.Count > 1)
+            //{
+            //    var errorFileName = dirPath + "\\" + tradeTape.TapeID + ".csv";
+            //    File.WriteAllLines(errorFileName, parseErrors.ToArray());
+            //}
+            //else
+            //{
+            //    tradeTape.ImportedDate = DateTime.UtcNow;
+            //}
+
+            //var moveFullFileName = dirPath + "\\" + tradeTape.TapeID + "_" + DateTime.UtcNow.ToFileTimeUtc() + "_" + tradeTape.StoragePath.Split('\\').Last();
+            //File.Move(tradeTape.StoragePath, moveFullFileName);
+
+            //List<long> returnedAssetIds = assetCtrl.GetTradeAssets().Where(a => a.TapeID == tradeTape.TapeID).OrderBy(o => o.AssetID).Select(s => s.AssetID).ToList();
+            //return returnedAssetIds;
         }
 
         private void ParseHeader(List<string> parseErrors, IEnumerable<string> header)

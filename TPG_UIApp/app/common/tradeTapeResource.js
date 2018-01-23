@@ -12,6 +12,10 @@
             'update': {
                 method: 'PUT'
             },
+            'validatetape': {
+                method: 'POST',
+                url: "http://localhost:3666/" + "api/tradetapes/:tapeId/validate"
+            },
             'importtape': {
                 method: 'POST',
                 url: "http://localhost:3666/" + "api/tradetapes/:tapeId/import"
