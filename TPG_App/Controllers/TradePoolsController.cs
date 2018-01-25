@@ -247,7 +247,6 @@ namespace TPG_App.Controllers
                         await ApplyPalIDsToTradeAssets(tradePool);
                     }
                     //ENDTODO
-                    //var result = await tpsCtrl.PostTradePoolStage(tradePoolStage);
                 }
             }
 
@@ -274,7 +273,7 @@ namespace TPG_App.Controllers
                     {
                         pal = await db.PalisadesAssetReferences.Where(p => (p.Seller_CounterPartyID == asset.Seller_CounterPartyID) && (p.StandardizedAssetSearchCriteria == standardizedAssetSearchString)).OrderByDescending(o => o.CreatedDate).FirstAsync();
                     }
-                    catch(Exception ex)
+                    catch(Exception)
                     {
                         //TODO:  if there are no results an exception will be thrown - ignoring for now as that would allow to continue the flow.  Make some improvements later to check the results before trying to access the 'First' above
                     }

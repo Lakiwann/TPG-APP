@@ -4,12 +4,28 @@ namespace TPG_App.Models
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using Audit.EntityFramework;
+    using Audit.EntityFramework.Providers;
+    using Audit.Core;
 
-    public partial class TradeModels : DbContext
+    [AuditDbContext(Mode = AuditOptionMode.OptIn)]
+    public partial class TradeModels : AuditDbContext
     {
         public TradeModels()
             : base("name=TradeModels")
         {
+            Audit.Core.Configuration.DataProvider = new EntityFrameworkDataProvider();
+
+            Audit.Core.Configuration.Setup()
+                .UseEntityFramework(x => x
+                .AuditTypeNameMapper(typeName => typeName + "History")
+                .AuditEntityAction((evt, entry, auditEntity) =>
+                {
+                    var a = (dynamic)auditEntity;
+                    a.AuditDate = DateTime.UtcNow;
+                    a.UserName = evt.Environment.UserName;
+                    a.AuditAction = entry.Action; // Insert, Update, Delete
+                }));
         }
 
         public virtual DbSet<TradePool> TradePools { get; set; }
@@ -161,5 +177,9 @@ namespace TPG_App.Models
         public System.Data.Entity.DbSet<TPG_App.Models.PalisadesAssetReference> PalisadesAssetReferences { get; set; }
 
         public System.Data.Entity.DbSet<TradeTapeColumnDef> TradeTapeColumnDefs { get; set; }
+
+        public System.Data.Entity.DbSet<TradeAssetPricing> TradeAssetPricings { get; set; }
+
+        public System.Data.Entity.DbSet<TradeAssetPricingHistory> TradeAssetPricingHistories { get; set; }
     }
 }

@@ -44,12 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Audit.EntityFramework, Version=10.0.2.0, Culture=neutral, PublicKeyToken=571d6b80b242c87e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Audit.EntityFramework.10.0.2\lib\net45\Audit.EntityFramework.dll</HintPath>
+    <Reference Include="Audit.EntityFramework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=571d6b80b242c87e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Audit.EntityFramework.11.0.0\lib\net45\Audit.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Audit.NET, Version=10.0.2.0, Culture=neutral, PublicKeyToken=571d6b80b242c87e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Audit.NET.10.0.2\lib\net45\Audit.NET.dll</HintPath>
+    <Reference Include="Audit.NET, Version=11.0.0.0, Culture=neutral, PublicKeyToken=571d6b80b242c87e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Audit.NET.11.0.0\lib\net45\Audit.NET.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
@@ -309,6 +309,8 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\TradeAssetPricing.cs" />
+    <Compile Include="Models\TradeAssetPricingHistory.cs" />
     <Compile Include="Models\TradeTapeColumnDef.cs" />
     <Compile Include="Models\PalisadesAssetReference.cs" />
     <Compile Include="Models\TradeCounterParty.cs" />
@@ -341,6 +343,8 @@
     <Content Include="DB\Scripts\Tables\10.Trd.CounterParty.sql" />
     <Content Include="DB\Scripts\Tables\11.Trd.PalisadesAssetReference.sql" />
     <Content Include="DB\Scripts\Tables\12.Trd.lu_TapeColumnDefs.sql" />
+    <Content Include="DB\Scripts\Tables\13. Trd.TradeAssetPricing.sql" />
+    <Content Include="DB\Scripts\Tables\14. Trd.TradeAssetPricingHistory.sql" />
     <Content Include="DB\Scripts\Tables\2. Trd.lu_TradeStage.sql" />
     <Content Include="DB\Scripts\Tables\3. Trd.TradePoolStage.sql" />
     <Content Include="DB\Scripts\Tables\4. Trd.lu_DiligenceType.sql" />
@@ -352,7 +356,8 @@
     <Content Include="DB\Scripts\Tables\Data Alts\LU_DiligenceCategory-data-alt.sql" />
     <Content Include="DB\Scripts\Tables\Data Alts\LU_DiligenceCategoryDesc-data-alt.sql" />
     <Content Include="DB\Scripts\Tables\Data Alts\LU_DiligenceType-data-alt.sql" />
-    <Content Include="DB\Scripts\Tables\Data Alts\LU_TapeColumnDefs-data-alt.sql" />
+    <Content Include="DB\Scripts\Tables\Data Alts\LU_TapeColumnDefs-SellerBidTape-data-alt.sql" />
+    <Content Include="DB\Scripts\Tables\Data Alts\LU_TapeColumnDefs-SellerPricingTape-data-alt.sql" />
     <Content Include="DB\Scripts\Tables\Data Alts\LU_TradeStage-data-alt.sql" />
     <Content Include="DB\Scripts\Tables\TRD_TradePool.sql" />
     <Content Include="DB\TRD_MainLogicQueriesFromODS_Palisades.sql" />

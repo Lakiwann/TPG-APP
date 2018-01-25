@@ -14,6 +14,7 @@
         vm.availableCounterPartyOptions = [];
         vm.selectedCounterPartyId = "";
         vm.validationErrors = "";
+        vm.uploadTapeCandidateName = "";
 
         //data modals setup
         if (vm.trade && vm.trade.tradePoolStages) {
@@ -22,6 +23,10 @@
         if (vm.selectedStage) {
             vm.selectedStageDropdownParams = vm.selectedStage.stageID;
             vm.selectedStageDate = new Date(vm.trade.tradePoolStages.slice(-1)[0].tradeStageDate);
+            if(vm.selectedStage.stageID==1)
+            {
+                vm.uploadTapeCandidateName = 'SellerBidTape';
+            }
         }
 
 
@@ -45,14 +50,30 @@
         $scope.queueLimit = 1;
         $scope.uploader.onBeforeUploadItem = function (fileItem) {
             fileItem.formData.push({ TradeID: vm.trade.tradeID });
-            fileItem.formData.push({ Name: vm.trade.tradeName });
-            fileItem.formData.push({ Description: 'Desc' });
+            //fileItem.formData.push({ Name: 'SellerBidTape' });
+            fileItem.formData.push({ Name: vm.uploadTapeCandidateName });
+            vm.fileuploadDesc = "timestamp:" + new Date().getUTCMilliseconds();
+            fileItem.formData.push({ Description: vm.fileuploadDesc });
             vm.validationErrors = "";
             vm.FileUploading = true;
             vm.progressBarValue = 0;
             vm.progressStatusPrefix = "File uploading - "
         };
         $scope.uploader.onAfterAddingFile = function (fileItem) {
+
+            //Set the uploadTapeCondidate flag value to put the uploader and the associated controls to allow proper tape upload
+            if (vm.selectedStage && vm.selectedStage.stageID == 1)
+            {
+                vm.uploadTapeCandidateName = 'SellerBidTape';
+            }
+            else
+            {
+                if(vm.selectedStage && (vm.selectedStage.stageID == 2 || vm.selectedStage.stageID == 3))
+                {
+                    vm.uploadTapeCandidateName = 'SellerPricingTape';
+                }
+            }
+            
             vm.FileUploading = false; //reset this flag to hide the status bar from a previous upload
             vm.validationErrors = ""; //reset this to hide validation errors from a previous upload
         }
@@ -67,8 +88,9 @@
             //toastr.success("File uploaded successfully");
             //vm.FilUploading = false;
             $scope.uploader.clearQueue();
-            tradeTapeResource.query({ tradefilter: "$filter=TradeID eq " + vm.trade.tradeID + "&$orderby=TapeID desc"}, function (data) {
-                vm.tradeTape = data[0]; 
+            //tradeTapeResource.query({ tradefilter: "$filter=TradeID eq " + vm.trade.tradeID + "&$orderby=TapeID desc"}, function (data) {
+            tradeTapeResource.query({ tradefilter: "$filter=TradeID eq " + vm.trade.tradeID + " and Description eq '" + vm.fileuploadDesc + "'"}, function (data) {
+                vm.tradeTape = data[0];  
                 console.log("Calling parser validation");
                 //toastr.warning("File being imported....");
                 vm.progressBarValue = 20;

@@ -13,8 +13,12 @@ Tables\lu_DiligenceType.sql
 Tables\lu_DiligenceCategory.sql
 Tables\lu_DiligenceDesc.sql
 Tables\Trd.TradeAssetDiligence.sql
+Tables\Trd.lu_TapeColumnDefs.sql
+Tables\Trd.TradeAssetPricing.sql
 
 Tables\Data Alts\LU_TradeStage-data-alt.sql
 Tables\Data Alts\LU_DiligenceType-data-alt.sql
 Tables\Data Alts\LU_DiligenceCategory-data-alt.sql
-Tables\Data Alts\LU-DiligenceCategoryDesc-data-alt.sql
+Tables\Data Alts\LU_DiligenceCategoryDesc-data-alt.sql
+Tables\Data Alts\LU_TapeColumnDefs-SellerBidTape-data-alt.sql
+Tables\Data Alts\LU_TapeColumnDefs-SellerPricingTape-data-alt.txt

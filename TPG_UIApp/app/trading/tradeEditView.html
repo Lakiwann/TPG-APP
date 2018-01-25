@@ -87,30 +87,34 @@
                 </div>
             </div>
         </div>
-                 <div class="form-group-sm" ng-show="vm.selectedStage && vm.selectedStage.stageID==1">
+                 <div class="form-group-sm" ng-show="vm.uploadTapeCandidateName != ''">
                         <div class="col-md-6 col-md-offset-2">
-                            <!--<input type="file" title="Upload" nv-file-select uploader="uploader" ng-show="uploader.queue.length==0" class="btn btn-primary"/><br />-->
-                            <!--<element nv-file-drop  uploader="uploader" ng-show="uploader.queue.length==0"> Drop a bid tape file here...</element>-->
                             <div nv-file-drop="" uploader="uploader">
                                 <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
-                                    <div ng-show="uploader.queue.length==0">Please drop the bid tape .csv file here.</div>
+                                    <div ng-show="uploader.queue.length==0">Please drop the {{vm.uploadTapeCandidateName}} excel file here.</div>
                                     <div ng-show="uploader.queue.length==1"><span ng-bind="uploader.queue[0].file.name"></span></div>
                                 </div>
                             </div>
-                            <div ng-show="uploader.queue.length==1"><button class="btn btn-primary" type="submit" ng-click="uploader.queue[0].upload()">Upload Bid Tape</button></div>
                             <div class="progress" ng-show="vm.FileUploading == true">
                                 <div ng-hide="vm.validationErrors" class="progress-bar" role="progressbar" aria-valuenow="{{vm.progressBarValue}}" aria-valuemin="0" aria-valuemax="100" style="width:100%">{{vm.progressStatus}}</div>
                                 <div ng-show="vm.validationErrors" class="progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;color:white">Tape validation failed.  Please correct below errors in tape.</div>
                             </div>
-                            <!--<ul>
-                                <li ng-repeat="item in uploader.queue">
-                                    <label class="col-md-4 control-label">Bid Tape to Upload:</label> <span ng-bind="item.file.name"></span>
-                                    <span><button ng-show="uploader.queue.length==1" class="btn btn-default" type="submit" ng-click="item.upload()">Upload Bid Tape</button></span>
-                                </li>
-                            </ul>-->
                         </div>
-            
                 </div>
+                <!--<div class="form-group-sm" ng-show="vm.pricingUploadEnabled">
+                    <div class="col-md-6 col-md-offset-2">
+                        <div nv-file-drop="" uploader="uploader">
+                            <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
+                                <div ng-show="uploader.queue.length==0">Please drop the pricing tape .csv file here.</div>
+                                <div ng-show="uploader.queue.length==1"><span ng-bind="uploader.queue[0].file.name"></span></div>
+                            </div>
+                        </div>
+                        <div class="progress" ng-show="vm.FileUploading == true">
+                            <div ng-hide="vm.validationErrors" class="progress-bar" role="progressbar" aria-valuenow="{{vm.progressBarValue}}" aria-valuemin="0" aria-valuemax="100" style="width:100%">{{vm.progressStatus}}</div>
+                            <div ng-show="vm.validationErrors" class="progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;color:white">Tape validation failed.  Please correct below errors in tape.</div>
+                        </div>
+                    </div>
+                </div>-->
                 <div class="form-group" ng-show="vm.validationErrors">
                     <div class="col-md-6 col-md-offset-2">
                         <textarea id="validationInfo" name="validationInfo" class="submit-error" style="width:100%;height:200px">{{vm.validationErrors}}</textarea>
@@ -125,6 +129,15 @@
         </span>
         <span>
             <button ng-show="uploader.queue.length==0" id="deleteBtn" name="deleteBtn" class="btn btn-warning" type="submit" style="width:80px;margin-right:10px" ng-click="vm.deleteTrade(vm.trade)" ng-disabled="!tradeEditForm.$pristine">Delete</button>
+        </span>
+        <span>
+            <button ng-show="vm.uploadTapeCandidateName=='SellerBidTape' && uploader.queue.length==1" class="btn btn-primary" type="submit" ng-click="uploader.queue[0].upload()">Upload Bid Tape</button>
+        </span>
+        <span>
+            <button ng-show="vm.uploadTapeCandidateName=='SellerPricingTape' && uploader.queue.length==1" class="btn btn-primary" type="submit" ng-click="uploader.queue[0].upload()">Upload Pricing Tape</button>
+        </span>
+        <span>
+            <button ng-show="uploader.queue.length==0 && vm.selectedStage && (vm.selectedStage.stageID == 2 || vm.selectedStage.stageID == 3)" class="btn btn-primary" type="submit" ng-click="vm.uploadTapeCandidateName = 'SellerPricingTape'">Import Seller Pricing</button>
         </span>
         <span>
             <button  class="btn btn-primary" type="submit" style="width:70px" ng-click="vm.cancel()">Cancel</button>
