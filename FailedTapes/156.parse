@@ -1,0 +1,1 @@
+{"HaveErrors":true,"WorksheetErrors":[],"LoanLevelErrors":[{"HaveLoanErrors":true,"LoanLine":318,"columnErrors":[{"Key":"SELLER_ID","Value":"The seller loan ID 718000898 is not found in the current trade assets collection"}]}]}

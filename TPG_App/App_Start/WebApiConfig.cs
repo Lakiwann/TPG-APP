@@ -6,6 +6,8 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http.OData.Extensions;
+using Audit.EntityFramework.Providers;
+using Audit.Core;
 
 namespace TPG_App
 {
@@ -31,6 +33,19 @@ namespace TPG_App
             );
 
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            Audit.Core.Configuration.DataProvider = new EntityFrameworkDataProvider();
+
+            Audit.Core.Configuration.Setup()
+                .UseEntityFramework(x => x
+                .AuditTypeNameMapper(typeName => typeName + "History")
+                .AuditEntityAction((evt, entry, auditEntity) =>
+                {
+                    var a = (dynamic)auditEntity;
+                    a.Date = DateTime.UtcNow;
+                    a.UserName = evt.Environment.UserName;
+                    a.Action = entry.Action; // Insert, Update, Delete
+                }));
         }
     }
 }

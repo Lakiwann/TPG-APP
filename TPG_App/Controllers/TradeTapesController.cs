@@ -218,17 +218,17 @@ namespace TPG_App.Controllers
         {
 
             var parser = new TapeParser(tradeTape);
-
+            
             List<long> returnedAssetIds = null;
 
             switch(tradeTape.Name)
             {
-                case "SellerBidTape":
+                case TapeParser.SELLER_BID_TAPE_NAME:
                     returnedAssetIds = await ImportSellerBidTape(tradeTape, parser);
                     break;
-                case "SellerPricingTape":
+                case TapeParser.SELLER_PRICING_TAPE:
                     //returnedAssetIds = await ImportSellerPricingTape(tradeTape, parser);
-                    returnedAssetIds = ImportSellerPricingTape(tradeTape, parser);
+                    returnedAssetIds = await ImportSellerPricingTape(tradeTape, parser);
                     break;
             }
 
@@ -238,13 +238,50 @@ namespace TPG_App.Controllers
         }
 
         //private Task<List<long>> ImportSellerPricingTape(TradeTape tradeTape, TapeParser parser)
-        private List<long> ImportSellerPricingTape(TradeTape tradeTape, TapeParser parser)
+        private async Task<List<long>> ImportSellerPricingTape(TradeTape tradeTape, TapeParser parser)
         {
-            List<TradeAssetPricing> tradeAssetPrices = parser.GetTradeAssetPrices();
+            string pricingSearchString = "tape:" + tradeTape.TapeID;
+            List<TradeAssetPricing> tapsFromTape = parser.GetTradeAssetPrices(pricingSearchString);
 
-            //TODO:  Add the pricing history.
+            List<TradeAssetPricing> assetsPricingsInDB = await db.TradeAssets.Where(a => a.TradeID == tradeTape.TradeID).Join(db.TradeAssetPricings, asset => asset.AssetID, assetPricing => assetPricing.AssetID, (asset, assetPricing) => assetPricing).ToListAsync();
 
-            return new List<long>();
+            List<TradeAssetPricing> tapsToUpdateInDB = tapsFromTape.Join(assetsPricingsInDB, tape => tape.AssetID, indb => indb.AssetID, (tape, indb) => indb).ToList();
+            
+            foreach (var tap in tapsToUpdateInDB)
+            {
+                TradeAssetPricing curr = tapsFromTape.Where(p => p.AssetID == tap.AssetID).First();
+
+                var columnsToUpdate = parser.GetValidColumnsFromSheet().Select(vc => vc.PalFieldName).ToList();
+                if (columnsToUpdate.Contains("BidPercentage"))
+                {
+                    tap.BidPercentage = curr.BidPercentage;
+                }
+                if (columnsToUpdate.Contains("UnpaidBalance"))
+                {
+                    tap.UnpaidBalance = curr.UnpaidBalance;
+                }
+                tap.Source = curr.Source;
+
+                db.Entry(tap).State = EntityState.Modified;
+                try
+                {
+                    await db.SaveChangesAsync();
+                    //await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw;
+                }
+
+                tapsFromTape.Remove(curr);
+            }
+            //The remaing elements are to be added to the DB
+            db.TradeAssetPricings.AddRange(tapsFromTape);
+            await db.SaveChangesAsync();
+
+            List<long> changedPricingAssetIDs = await db.TradeAssetPricings.Where(tap => tap.Source == pricingSearchString).Select(tap => tap.AssetID).ToListAsync();
+
+            return changedPricingAssetIDs;
         }
 
         private async Task<List<long>> ImportSellerBidTape(TradeTape tradeTape, TapeParser parser)

@@ -14,18 +14,7 @@ namespace TPG_App.Models
         public TradeModels()
             : base("name=TradeModels")
         {
-            Audit.Core.Configuration.DataProvider = new EntityFrameworkDataProvider();
-
-            Audit.Core.Configuration.Setup()
-                .UseEntityFramework(x => x
-                .AuditTypeNameMapper(typeName => typeName + "History")
-                .AuditEntityAction((evt, entry, auditEntity) =>
-                {
-                    var a = (dynamic)auditEntity;
-                    a.AuditDate = DateTime.UtcNow;
-                    a.UserName = evt.Environment.UserName;
-                    a.AuditAction = entry.Action; // Insert, Update, Delete
-                }));
+           
         }
 
         public virtual DbSet<TradePool> TradePools { get; set; }
