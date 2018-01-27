@@ -9,23 +9,40 @@ namespace TPG_App.Models
 
     [Table("Trd.TradeAssetPricing")]
     [AuditInclude]
-    public partial class TradeAssetPricing
+    public partial class TradeAssetPricing : TradeAssetPricingBase
     {
         [Key]
         public long AssetPricingID { get; set; }
+    }
+
+    public class TradeAssetPricingBase
+    {
+        public int TradeID { get; set; }
 
         public long AssetID { get; set; }
-
-        [NotMapped]
+        public short Seller_CounterPartyID { get; set; }
         public string SellerAssetID { get; set; }
 
         [Column(TypeName = "numeric")]
-        public decimal UnpaidBalance { get; set; }
+        public decimal OriginalDebt { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal CurrentBalance { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal ForebearanceBalance { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal OriginalPrice { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal CurrentPrice { get; set; }
 
         [Column(TypeName = "numeric")]
         public decimal BidPercentage { get; set; }
 
-        [StringLength(20)]
+        [StringLength(50)]
         public string Source { get; set; }
+
     }
 }

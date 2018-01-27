@@ -32,3 +32,7 @@ GO
 ALTER TABLE [Trd].[TradeTape] CHECK CONSTRAINT [FK_TradeTape_TradeID]
 GO
 
+CREATE NONCLUSTERED INDEX IX_TradeTape_TradeID   
+    ON [Trd].[TradeTape] (TradeID);   
+GO  
+

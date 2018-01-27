@@ -29,14 +29,17 @@ namespace TPG_App.Models
 
         public decimal TotalRepriceAmount { get; set; }
 
-        public decimal OriginalPrice { get; set; }
+        public decimal OriginalDebt { get; set; }
+        public decimal CurrentDebt { get; set; }
 
+        public decimal OriginalPrice { get; set; }
+        
         public decimal CurrentPrice { get; set; }
         public decimal CloseTime { get; set; }
         public bool InStatus {
             get { return inStatus; }
             set { inStatus = value; }
         }
-        public string Zip { get; set; }
+        
     }
 }

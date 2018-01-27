@@ -12,9 +12,16 @@ CREATE TABLE [Trd].[TradeAssetPricingHistory](
     [ID] [bigint] IDENTITY(1,1) NOT NULL,
     [AssetPricingID] [bigint] NOT NULL,
 	[AssetID] [bigint] NOT NULL,
-	[UnpaidBalance] numeric (18, 2) NOT NULL,
+	[TradeID] int NOT NULL,
+	[Seller_CounterPartyID] smallint NOT NULL,
+	[SellerAssetID] varchar(50) NOT NULL,
+	[OriginalDebt] numeric (18,2) NOT NULL,
+	[CurrentBalance] numeric (18, 2) NOT NULL,
+	[ForebearanceBalance] numeric (18, 2) NOT NULL,
+	[OriginalPrice] numeric (18,2) NOT NULL,
+	[CurrentPrice] numeric (18,2) NOT NULL,
 	[BidPercentage] numeric (3, 2) NOT NULL,
-	[Source] varchar(20),
+	[Source] varchar(50),
 	[Date] datetime NOT NULL,
 	[Action] varchar(20) NOT NULL,
 	[UserName] varchar(50) NOT NULL
@@ -33,5 +40,8 @@ REFERENCES [Trd].[TradeAssetPricing] ([AssetPricingID])
 ON DELETE CASCADE
 GO
 
+CREATE NONCLUSTERED INDEX IX_TradeAssetPricingHistory_AssetID   
+    ON [Trd].[TradeAssetPricingHistory] (AssetID);   
+GO  
 
 

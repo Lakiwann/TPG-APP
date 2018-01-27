@@ -20,7 +20,7 @@
             columnDefs: [
                 {
                     field: 'assetID'
-                    , name: 'Asset Id'
+                    , name: 'Asset ID'
                     , cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="tradeAsset({assetId:{{COL_FIELD}}})">{{COL_FIELD}}</a>'
                     , enableHiding: false
                     , enableFiltering: false
@@ -39,21 +39,35 @@
                 },
                 {
                     field: 'totalRepriceAmount'
-                    , name: 'Reprice Amt'
+                    //, name: 'Reprice Amt'
+                    , enableHiding: false
+                    , enableFiltering: false
+                    , cellFilter: 'currency',
+                },
+                {
+                    field: 'originalDebt'
+                    //, name: 'Reprice Amt'
+                    , enableHiding: false
+                    , enableFiltering: false
+                    , cellFilter: 'currency',
+                },
+                {
+                    field: 'currentDebt'
+                    //, name: 'Reprice Amt'
                     , enableHiding: false
                     , enableFiltering: false
                     , cellFilter: 'currency',
                 },
                 {
                     field: 'originalPrice'
-                    , name: 'Original Prc'
+                    //, name: 'Original Prc'
                     , enableHiding: false
                     , enableFiltering: false
                     , cellFilter: 'currency',
                 },
                 {
                     field: 'currentPrice'
-                    , name: 'Current Prc'
+                    //, name: 'Current Prc'
                     , enableHiding: false
                     , enableFiltering: false
                     , cellFilter: 'currency',

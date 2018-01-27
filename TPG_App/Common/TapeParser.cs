@@ -185,9 +185,28 @@ namespace TPG_App.Common
         {
             try
             {
+
+                //foreach (var colDef in columnDefs)
+                //{
+                //    excelFile.AddMapping<TradeAsset>(x => x.GetType().GetProperty(colDef.PalFieldName), colDef.ColumnName);
+                //}
+
                 switch (tape.Name)
                 {
+
                     case SELLER_BID_TAPE_NAME:
+                        //var assetPropertyInfo = Type.GetType(typeof(TradeAsset).ToString()).GetProperties();
+                        //foreach(var prop in assetPropertyInfo)
+                        //{
+                        //    var colDef = columnDefs.Where(d => d.PalFieldName == prop.ToString()).ToList();
+                        //    if (colDef.Count() > 0)
+                        //    {
+
+                        //    }
+                        //}
+
+
+
                         excelFile.AddMapping<TradeAsset>(x => x.Bpo, columnDefs.Where(d => d.PalFieldName == "Bpo").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.BpoDate, columnDefs.Where(d => d.PalFieldName == "BpoDate").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.Cbsa, columnDefs.Where(d => d.PalFieldName == "Cbsa").First().ColumnName);
@@ -197,7 +216,7 @@ namespace TPG_App.Common
                         excelFile.AddMapping<TradeAsset>(x => x.CurrentPmt, columnDefs.Where(d => d.PalFieldName == "CurrentPmt").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.CurrFico, columnDefs.Where(d => d.PalFieldName == "CurrFico").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.CurrFicoDate, columnDefs.Where(d => d.PalFieldName == "CurrFicoDate").First().ColumnName);
-                        excelFile.AddMapping<TradeAsset>(x => x.ForebearBalance, columnDefs.Where(d => d.PalFieldName == "ForebearBalance").First().ColumnName);
+                        excelFile.AddMapping<TradeAsset>(x => x.ForebearanceBalance, columnDefs.Where(d => d.PalFieldName == "ForebearanceBalance").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.LoanPurp, columnDefs.Where(d => d.PalFieldName == "LoanPurp").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.MaturityDate, columnDefs.Where(d => d.PalFieldName == "MaturityDate").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.NextDueDate, columnDefs.Where(d => d.PalFieldName == "NextDueDate").First().ColumnName);
@@ -217,10 +236,12 @@ namespace TPG_App.Common
                     case SELLER_PRICING_TAPE:
                         excelFile.AddMapping<TradeAssetPricing>(x => x.SellerAssetID, columnDefs.Where(d => d.PalFieldName == "SellerAssetID").First().ColumnName);
                         excelFile.AddMapping<TradeAssetPricing>(x => x.BidPercentage, columnDefs.Where(d => d.PalFieldName == "BidPercentage").First().ColumnName);
-                        excelFile.AddMapping<TradeAssetPricing>(x => x.UnpaidBalance, columnDefs.Where(d => d.PalFieldName == "UnpaidBalance").First().ColumnName);
+                        excelFile.AddMapping<TradeAssetPricing>(x => x.CurrentBalance, columnDefs.Where(d => d.PalFieldName == "CurrentBalance").First().ColumnName);
+                        excelFile.AddMapping<TradeAssetPricing>(x => x.CurrentPrice, columnDefs.Where(d => d.PalFieldName == "CurrentPrice").First().ColumnName);
+                        excelFile.AddMapping<TradeAssetPricing>(x => x.ForebearanceBalance, columnDefs.Where(d => d.PalFieldName == "ForebearanceBalance").First().ColumnName);
                         break;
                 }
-                
+
             }
             catch(Exception ex)
             {
@@ -229,29 +250,30 @@ namespace TPG_App.Common
             
         }
 
-        internal List<TradeAssetPricing> GetTradeAssetPrices(string sourceString)
+        internal List<TradeAssetPricing> GetTradeAssetPricesFromTape(out List<string> columnsInTape)
         {
             List<TradeAssetPricing> sellerLoanPricingItems = new List<TradeAssetPricing>();
+            columnsInTape = new List<string>();
             excelFile = new ExcelQueryFactory(tape.StoragePath);
+
             AddColDefinitionMappings();
 
             var worksheets = excelFile.GetWorksheetNames();
             if (worksheets.Count() > 0)
             {
                 worksheetname = worksheets.First();
-                
                 sellerLoanPricingItems = excelFile.Worksheet<TradeAssetPricing>(worksheetname).ToList();
+                columnsInTape = excelFile.GetColumnNames(worksheetname).Join(columnDefs, colName => colName, cd => cd.ColumnName, (colName, cd) => cd.PalFieldName).ToList();
               
-                foreach (var item in sellerLoanPricingItems)
-                {
-                    var assetId = db.TradeAssets.Where(a => a.TradeID == tape.TradeID && a.SellerAssetID == item.SellerAssetID).First().AssetID;
-                    item.AssetID = assetId;
-                    item.Source = sourceString;
-                }
+                //foreach (var item in sellerLoanPricingItems)
+                //{
+                //    var assetId = db.TradeAssets.Where(a => a.TradeID == tape.TradeID && a.SellerAssetID == item.SellerAssetID).First().AssetID;
+                //    item.AssetID = assetId;
+                //    item.Source = sourceString;
+                //}
             }
 
             return sellerLoanPricingItems;
-
         }
 
         internal List<TradeAsset> GetTradeAssets()

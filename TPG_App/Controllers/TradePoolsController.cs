@@ -63,20 +63,21 @@ namespace TPG_App.Controllers
                 return NotFound();
             }
 
-            List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == id).ToListAsync();
-            
-            TradePoolHighLevelSummary poolSummary = assets == null || assets.Count == 0 ?
+            // List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == id).ToListAsync();
+
+            List<TradeAssetPricing> assetPricing = await db.TradeAssetPricings.Where(p => p.TradeID == id).ToListAsync();
+
+            TradePoolHighLevelSummary poolSummary = assetPricing == null || assetPricing.Count == 0 ?
                 new TradePoolHighLevelSummary(id) { TotalCount = 0, TotalDebt = 0, TotalPurchasePrice = 0, TotalReprices = 0, TotalKicks = 0, TotalPIFs = 0, TotalTrailingDocs = 0 } :
                 new TradePoolHighLevelSummary(id)
                 {
-                    TotalCount = assets.Count,
-                    TotalDebt = assets.Sum(a => a.CurrentBalance),
-                    TotalPurchasePrice = 0,
+                    TotalCount = assetPricing.Count(),
+                    TotalDebt = assetPricing.Sum(a => a.CurrentBalance + a.ForebearanceBalance),
+                    TotalPurchasePrice = assetPricing.Sum(a => a.CurrentPrice),
                     TotalReprices = 0,
                     TotalKicks = 0,
                     TotalPIFs = 0,
                     TotalTrailingDocs = 0
-                    
                     //TODO: Add the other 'YEAR/Type' information here
                 };
 
@@ -123,29 +124,34 @@ namespace TPG_App.Controllers
                 var pools = await db.TradePools.Where(p => p.EstSettlementDate.Value.Year == y).ToListAsync();
                 yearlySummary.Year = y;
                 yearlySummary.Trades = pools.Count();
-                yearlySummary.CounterParties = pools.GroupBy(p => p.TradeName).Count();
+                yearlySummary.CounterParties = pools.GroupBy(p => p.CounterPartyID).Count();
 
                 List<AssetSummary> assetSummaries = new List<AssetSummary>();
+                //yearlySummary.RPLoans = 0;
+                //yearlySummary.NPLoans = 0;
+                //yearlySummary.MixedLoans = assetSummaries.Count();
+                //yearlySummary.BidAmount = 0;
+                //yearlySummary.TradeAmount = assetSummaries.Count() > 0 ? assetSummaries.Sum(a => a.CurrentPrice) : 0;
+                //yearlySummary.RepriceAmount = assetSummaries.Count() > 0 ? assetSummaries.Sum(a => a.TotalRepriceAmount) : 0;
+                //yearlySummary.AverageCloseTime = assetSummaries.Count() > 0 ? assetSummaries.Average(a => a.CloseTime) : 0;
+                //yearlySummary.AverageFallOut = assetSummaries.Count() > 0 ? ((assetSummaries.Where(a => a.InStatus == false).Count() / assetSummaries.Count()) * 100) : 0;
+                //yearlySummary.PurchasesAmount = assetSummaries.Count() > 0 ? assetSummaries.Sum(a => a.CurrentPrice) : 0;
+                //yearlySummary.SalesAmount = 0;
                 foreach (var p in pools)
                 {
                     List<AssetSummary> poolAssetSummaries = await GetAssetSummariesAsynch(p.TradeID);
-                    if (poolAssetSummaries.Count() > 0)
+                    if(poolAssetSummaries.Count > 0)
                     {
-                        assetSummaries.AddRange(poolAssetSummaries);
+                        yearlySummary.Mixed += poolAssetSummaries.Count();
+                        yearlySummary.TradeAmount += poolAssetSummaries.Sum(a => a.CurrentDebt);
+                        yearlySummary.BidAmount += poolAssetSummaries.Sum(a => a.CurrentPrice);
+                        yearlySummary.PurchasesAmount = poolAssetSummaries.Sum(a => a.CurrentPrice);
                     }
+                    //if (poolAssetSummaries.Count() > 0)
+                    //{
+                    //    assetSummaries.AddRange(poolAssetSummaries);
+                    //}
                 }
-
-                yearlySummary.RPLoans = 0;
-                yearlySummary.NPLoans = 0;
-                yearlySummary.MixedLoans = assetSummaries.Count();
-                yearlySummary.BidAmount = 0;
-                yearlySummary.TradeAmount = assetSummaries.Count() > 0 ? assetSummaries.Sum(a => a.CurrentPrice) : 0;
-                yearlySummary.RepriceAmount = assetSummaries.Count() > 0 ? assetSummaries.Sum(a => a.TotalRepriceAmount) : 0;
-                yearlySummary.AverageCloseTime = assetSummaries.Count() > 0 ? assetSummaries.Average(a => a.CloseTime) : 0;
-                yearlySummary.AverageFallOut = assetSummaries.Count() > 0 ? ((assetSummaries.Where(a => a.InStatus == false).Count() / assetSummaries.Count()) * 100): 0;
-                yearlySummary.PurchasesAmount = assetSummaries.Count() > 0 ? assetSummaries.Sum(a => a.CurrentPrice) : 0;
-                yearlySummary.SalesAmount = 0;
-
                 yearlySummaries.Add(yearlySummary);
             }
 
@@ -413,25 +419,24 @@ namespace TPG_App.Controllers
 
         private async Task<List<AssetSummary>> GetAssetSummariesAsynch(int tradeId)
         {
-            List<TradeAsset> assets = await db.TradeAssets.Where(a => a.TradeID == tradeId).OrderBy(o => o.AssetID).ToListAsync();
-            List<AssetSummary> assetSummaries = new List<AssetSummary>();
-            foreach (var asset in assets)
+            IQueryable<TradeAsset> assets = db.TradeAssets.Where(a => a.TradeID == tradeId);
+            IQueryable <TradeAssetPricing> pricing = db.TradeAssetPricings.Where(p => p.TradeID == tradeId);
+
+            List<AssetSummary> assetSummaries = await assets.Join(pricing, a => a.AssetID, p => p.AssetID,
+            (a, p) => new AssetSummary()
             {
-                AssetSummary assetSummary = new AssetSummary()
-                {
-                    TradeID = asset.TradeID,
-                    AssetID = asset.AssetID,
-                    InOutStatus = "IN",
-                    NumberOfIssues = 0,
-                    TotalRepriceAmount = 0,
-                    OriginalPrice = asset.CurrentBalance + asset.ForebearBalance,
-                    CurrentPrice = 0,
-                    Zip = asset.Zip
-                };
-
-                assetSummaries.Add(assetSummary);
-            }
-
+                TradeID = a.TradeID,
+                AssetID = a.AssetID,
+                InOutStatus = "",
+                NumberOfIssues = 0,
+                TotalRepriceAmount = 0,
+                OriginalDebt = p.OriginalDebt,
+                CurrentDebt = p.CurrentBalance + p.ForebearanceBalance,
+                OriginalPrice = p.OriginalPrice,
+                CurrentPrice = p.CurrentPrice
+            })
+            .ToListAsync();
+            
             return assetSummaries;
         }
 

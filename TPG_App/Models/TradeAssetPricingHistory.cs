@@ -7,23 +7,12 @@ namespace TPG_App.Models
     using System.Data.Entity.Spatial;
 
     [Table("Trd.TradeAssetPricingHistory")]
-    public partial class TradeAssetPricingHistory
+    public partial class TradeAssetPricingHistory : TradeAssetPricingBase
     {
         [Key]
         public long ID { get; set; }
 
         public long AssetPricingID { get; set; }
-
-        public long AssetID { get; set; }
-
-        [Column(TypeName = "numeric")]
-        public decimal UnpaidBalance { get; set; }
-
-        [Column(TypeName = "numeric")]
-        public decimal BidPercentage { get; set; }
-
-        [StringLength(20)]
-        public string Source { get; set; }
 
         public DateTime Date { get; set; }
 

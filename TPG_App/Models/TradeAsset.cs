@@ -27,11 +27,11 @@ namespace TPG_App.Models
         [Column(TypeName = "numeric")]
         public decimal OriginalBalance { get; set; }
 
-        [Column(TypeName = "numeric")]
+        [NotMapped]
         public decimal CurrentBalance { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal ForebearBalance { get; set; }
+        [NotMapped]
+        public decimal ForebearanceBalance { get; set; }
 
         [Column(TypeName = "numeric")]
         public decimal? Bpo { get; set; }

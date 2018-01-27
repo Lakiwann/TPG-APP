@@ -240,46 +240,61 @@ namespace TPG_App.Controllers
         //private Task<List<long>> ImportSellerPricingTape(TradeTape tradeTape, TapeParser parser)
         private async Task<List<long>> ImportSellerPricingTape(TradeTape tradeTape, TapeParser parser)
         {
-            string pricingSearchString = "tape:" + tradeTape.TapeID;
-            List<TradeAssetPricing> tapsFromTape = parser.GetTradeAssetPrices(pricingSearchString);
-
-            List<TradeAssetPricing> assetsPricingsInDB = await db.TradeAssets.Where(a => a.TradeID == tradeTape.TradeID).Join(db.TradeAssetPricings, asset => asset.AssetID, assetPricing => assetPricing.AssetID, (asset, assetPricing) => assetPricing).ToListAsync();
-
-            List<TradeAssetPricing> tapsToUpdateInDB = tapsFromTape.Join(assetsPricingsInDB, tape => tape.AssetID, indb => indb.AssetID, (tape, indb) => indb).ToList();
+            var pricingSourceName = tradeTape.Name + ":" + tradeTape.TapeID;
+            List<string> columnsInTape;
+            List<TradeAssetPricing> tapsFromTape = parser.GetTradeAssetPricesFromTape(out columnsInTape);
             
-            foreach (var tap in tapsToUpdateInDB)
+            foreach (var tap in tapsFromTape)
             {
-                TradeAssetPricing curr = tapsFromTape.Where(p => p.AssetID == tap.AssetID).First();
-
-                var columnsToUpdate = parser.GetValidColumnsFromSheet().Select(vc => vc.PalFieldName).ToList();
-                if (columnsToUpdate.Contains("BidPercentage"))
+                var tapFromDb = db.TradeAssetPricings.Where(ap => ap.TradeID == tradeTape.TradeID && ap.SellerAssetID == tap.SellerAssetID).First();
+                foreach (var col in columnsInTape)
                 {
-                    tap.BidPercentage = curr.BidPercentage;
+                    switch (col)
+                    {
+                        case "CurrentBalance":
+                            tapFromDb.CurrentBalance = tap.CurrentBalance;
+                            break;
+                        case "ForebearanceBalance":
+                            tapFromDb.ForebearanceBalance = tap.ForebearanceBalance;
+                            break;
+                        case "CurrentPrice":
+                            tapFromDb.CurrentPrice = tap.CurrentPrice;
+                            break;
+                        case "BidPercentage":
+                            //If there is a CurrentPrice and a BidPrice, then the CurrentPrice will be taken to calculate the bid%
+                            if(!columnsInTape.Contains("CurrentPrice"))
+                            {
+                                tapFromDb.BidPercentage = tap.BidPercentage;
+                            }
+                            break;
+                    }
                 }
-                if (columnsToUpdate.Contains("UnpaidBalance"))
-                {
-                    tap.UnpaidBalance = curr.UnpaidBalance;
-                }
-                tap.Source = curr.Source;
 
-                db.Entry(tap).State = EntityState.Modified;
+                //Calculate the new Bid%
+                if (columnsInTape.Contains("CurrentPrice"))
+                {
+                    tapFromDb.BidPercentage = tapFromDb.CurrentPrice / (tapFromDb.CurrentBalance + tapFromDb.ForebearanceBalance);
+                }
+
+                tapFromDb.Source = pricingSourceName;
+                db.Entry(tapFromDb).State = EntityState.Modified;
                 try
                 {
-                    await db.SaveChangesAsync();
                     //await db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     throw;
                 }
-
-                tapsFromTape.Remove(curr);
+                catch (Exception ex)
+                {
+                    string msg = ex.Message;
+                }
+               
             }
-            //The remaing elements are to be added to the DB
-            db.TradeAssetPricings.AddRange(tapsFromTape);
-            await db.SaveChangesAsync();
 
-            List<long> changedPricingAssetIDs = await db.TradeAssetPricings.Where(tap => tap.Source == pricingSearchString).Select(tap => tap.AssetID).ToListAsync();
+            List<long> changedPricingAssetIDs = await db.TradeAssetPricings.Where(tap => tap.Source == pricingSourceName).Select(tap => tap.AssetID).ToListAsync();
 
             return changedPricingAssetIDs;
         }
@@ -298,10 +313,29 @@ namespace TPG_App.Controllers
                 {
                     List<TradeAsset> assetBatch = tradeAssets.Skip(skipCount).Take(batchSize).ToList();
 
-                    await assetCtrl.PostTradeAssetsInBatch(assetBatch);
+                    db.TradeAssets.AddRange(assetBatch);
+                    await db.SaveChangesAsync();
+
+                    List<TradeAssetPricing> assetPricingBatch = assetBatch.Select(a => new TradeAssetPricing()
+                    {
+                        TradeID = a.TradeID,
+                        AssetID = a.AssetID,
+                        CurrentBalance = a.CurrentBalance,
+                        ForebearanceBalance = a.ForebearanceBalance,
+                        SellerAssetID = a.SellerAssetID,
+                        BidPercentage = 0,
+                        CurrentPrice = 0,
+                        OriginalDebt = a.CurrentBalance + a.ForebearanceBalance,
+                        OriginalPrice = 0,
+                        Source = tradeTape.Name + ":" + tradeTape.TapeID
+                    }).ToList();
+
+                    db.TradeAssetPricings.AddRange(assetPricingBatch);
+                    await db.SaveChangesAsync();
+
                     skipCount += batchSize;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     if (skipCount > 0)
                     {
