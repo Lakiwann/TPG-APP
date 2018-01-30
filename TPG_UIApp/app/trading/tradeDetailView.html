@@ -74,12 +74,12 @@
                     </div>
                     <div id="collapseLoanSummary" class="collapse">
                         <div class="input-group" >
-                            <input class="form-control" placeholder="Search query... [Example query: (AssetID eq 3947) and (Zip eq '85041')]" name="search" id="search" type="text" ng-model="vm.filterValue" />
+                            <input class="form-control" placeholder="Search query... [Example query: (SellerAssetId eq '103168') and (Zip eq '85041')]" name="search" id="search" type="text" ng-model="vm.filterValue" />
                             <div class="input-group-btn"><button class="btn btn-primary" type="submit" ng-click="vm.filter()"><i class="glyphicon glyphicon-search"></i> </button></div>
                         </div>
                         <!--<div ui-grid="vm.gridOption" ui-grid-auto-resize class="gridAssets"></div>-->
                         <!--<span><input ng-model='vm.filterValue' placeholder="Search by Asset ID.. " />  <label class='btn btn-link' ng-click='vm.filter()'>Search</label></span>-->
-                        <div ui-grid="vm.gridOption" ui-grid-pagination class="grid"></div>
+                        <div ui-grid="vm.gridOption" ui-grid-pagination class="grid" ui-grid-auto-resize ></div>
                     </div>
                 </div>
 

@@ -267,7 +267,7 @@ namespace TPG_App.Controllers
                 string standardizedAssetSearchString = GenerateStandardizedAssetSearchString(asset);
 
                 //Check if there is a PalID matching the AssetID for the seller
-                List<PalisadesAssetReference> palEntities = await db.PalisadesAssetReferences.Where(p => (p.Seller_CounterPartyID == asset.Seller_CounterPartyID) && (p.Seller_AssetID == asset.SellerAssetID)).ToListAsync();
+                List<PalisadesAssetReference> palEntities = await db.PalisadesAssetReferences.Where(p => (p.SellerCounterPartyId == asset.Seller_CounterPartyID) && (p.SellerAssetId == asset.SellerAssetId)).ToListAsync();
                 PalisadesAssetReference pal = null;
                 if (palEntities.Count() > 0)
                 {
@@ -277,7 +277,7 @@ namespace TPG_App.Controllers
                 {
                     try
                     {
-                        pal = await db.PalisadesAssetReferences.Where(p => (p.Seller_CounterPartyID == asset.Seller_CounterPartyID) && (p.StandardizedAssetSearchCriteria == standardizedAssetSearchString)).OrderByDescending(o => o.CreatedDate).FirstAsync();
+                        pal = await db.PalisadesAssetReferences.Where(p => (p.SellerCounterPartyId == asset.Seller_CounterPartyID) && (p.StandardizedAssetSearchCriteria == standardizedAssetSearchString)).OrderByDescending(o => o.CreatedDate).FirstAsync();
                     }
                     catch(Exception)
                     {
@@ -289,8 +289,8 @@ namespace TPG_App.Controllers
                 {
                     //We couldn't find a matching palid.  Generate a new one
                     pal = new PalisadesAssetReference();
-                    pal.Seller_CounterPartyID = asset.Seller_CounterPartyID;
-                    pal.Seller_AssetID = asset.SellerAssetID;
+                    pal.SellerCounterPartyId = asset.Seller_CounterPartyID;
+                    pal.SellerAssetId = asset.SellerAssetId;
                     pal.StandardizedAssetSearchCriteria = standardizedAssetSearchString;
                     pal.CreatedDate = DateTime.UtcNow;
 
@@ -299,7 +299,7 @@ namespace TPG_App.Controllers
                     {
                         var newPal = db.PalisadesAssetReferences.Add(pal);
                         await db.SaveChangesAsync();
-                        asset.PalID = newPal.PalID;
+                        asset.PalId = newPal.PalId;
                     }
                     catch (Exception ex)
                     {
@@ -310,7 +310,7 @@ namespace TPG_App.Controllers
                 }
                 else
                 {
-                    asset.PalID = pal.PalID;
+                    asset.PalId = pal.PalId;
                 }
                 db.Entry(asset).State = EntityState.Modified;
                 await db.SaveChangesAsync();
@@ -427,13 +427,15 @@ namespace TPG_App.Controllers
             {
                 TradeID = a.TradeID,
                 AssetID = a.AssetID,
-                InOutStatus = "",
+                SellerAssetId = p.SellerAssetID,
+                Status = "IN",
                 NumberOfIssues = 0,
                 TotalRepriceAmount = 0,
                 OriginalDebt = p.OriginalDebt,
                 CurrentDebt = p.CurrentBalance + p.ForebearanceBalance,
                 OriginalPrice = p.OriginalPrice,
-                CurrentPrice = p.CurrentPrice
+                CurrentPrice = p.CurrentPrice,
+                Zip = a.Zip
             })
             .ToListAsync();
             

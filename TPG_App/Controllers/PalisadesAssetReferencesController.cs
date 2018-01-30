@@ -45,7 +45,7 @@ namespace TPG_App.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != palisadesAssetReference.PalID)
+            if (id != palisadesAssetReference.PalId)
             {
                 return BadRequest();
             }
@@ -83,7 +83,7 @@ namespace TPG_App.Controllers
             db.PalisadesAssetReferences.Add(palisadesAssetReference);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = palisadesAssetReference.PalID }, palisadesAssetReference);
+            return CreatedAtRoute("DefaultApi", new { id = palisadesAssetReference.PalId }, palisadesAssetReference);
         }
 
         // DELETE: api/PalisadesAssetReferences/5
@@ -113,7 +113,7 @@ namespace TPG_App.Controllers
 
         private bool PalisadesAssetReferenceExists(long id)
         {
-            return db.PalisadesAssetReferences.Count(e => e.PalID == id) > 0;
+            return db.PalisadesAssetReferences.Count(e => e.PalId == id) > 0;
         }
     }
 }

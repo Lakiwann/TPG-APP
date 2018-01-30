@@ -38,7 +38,7 @@ namespace TPG_App.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<TradeAsset>()
-                .Property(e => e.SellerAssetID)
+                .Property(e => e.SellerAssetId)
                 .IsUnicode(false);
 
             modelBuilder.Entity<TradeAsset>()

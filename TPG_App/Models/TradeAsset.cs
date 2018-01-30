@@ -20,9 +20,11 @@ namespace TPG_App.Models
 
         [Required]
         [StringLength(50)]
-        public string SellerAssetID { get; set; }
+        [Column("SellerAssetID")]
+        public string SellerAssetId { get; set; }
 
-        public long? PalID { get; set; }
+        [Column("PalID")]
+        public long? PalId { get; set; }
 
         [Column(TypeName = "numeric")]
         public decimal OriginalBalance { get; set; }

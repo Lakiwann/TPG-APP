@@ -14,6 +14,7 @@
                                                     , "ui.grid.autoResize"
                                                     , "ui.grid.edit"
                                                     , "ui.grid.rowEdit"
+                                                    , "ui.grid.resizeColumns"
                                                     //, "ui.grid.footer"
     ]);
 

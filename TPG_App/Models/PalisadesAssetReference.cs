@@ -10,12 +10,15 @@ namespace TPG_App.Models
     public partial class PalisadesAssetReference
     {
         [Key]
-        public long PalID { get; set; }
+        [Column("PalID")]
+        public long PalId { get; set; }
 
-        public short Seller_CounterPartyID { get; set; }
+        [Column("Seller_CounterPartyID")]
+        public short SellerCounterPartyId { get; set; }
 
         [StringLength(50)]
-        public string Seller_AssetID { get; set; }
+        [Column("Seller_AssetID")]
+        public string SellerAssetId { get; set; }
 
         [StringLength(250)]
         public string StandardizedAssetSearchCriteria { get; set; }

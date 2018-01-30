@@ -3,11 +3,11 @@
         <span style="font-size:large" class="col-md-4">
             Trade Asset Summary -
         </span>
-        <span style="font-size:large">[Asset ID:  {{vm.tradeAsset.assetID}}]</span>
+        <span style="font-size:large">[Seller ID:  {{vm.tradeAsset.sellerAssetId}}]</span>
 
     </div>
     <div class="panel-body">
-        <table class="table">
+        <!--<table class="table">
             <thead>
                 <tr>
                     <th scope="col">Pal ID</th>
@@ -29,12 +29,19 @@
                     <td></td>
                     <td>{{vm.tradeAsset.prodType}}</td>
                     <td>{{vm.tradeAsset.propType}}</td>
-                    <td><a ui-sref="tradeDetail({tradeId:{{vm.tradeAsset.tradeID}}})">{{vm.tradeSummary.tradeName}}</a></td>
+                    <td><a ui-sref="tradeDetail({tradeId:{{vm.tradeAsset.tradeID}}})"></a></td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
+       <div class="grid-container">
+           <div ui-grid="vm.assetGridOption" class="grid" id="assetGrid" name="assetGrid" ui-grid-resize-columns ></div>
+       </div>
+            
+        
+        
 
     <div class="panel-footer">
+        <a class="btn btn-primary" ui-sref="tradeDetail({tradeId:{{vm.tradeAsset.tradeID}}})"><i class="glyphicon glyphicon-chevron-left"></i>Trade Detail</a>
         <a class="btn btn-primary"
            ui-sref="trading"
            style="width:120px">

@@ -259,6 +259,7 @@ namespace TPG_App.Controllers
                             break;
                         case "CurrentPrice":
                             tapFromDb.CurrentPrice = tap.CurrentPrice;
+                            tapFromDb.OriginalPrice = tapFromDb.OriginalPrice == 0 ? tap.CurrentPrice : tapFromDb.OriginalPrice;
                             break;
                         case "BidPercentage":
                             //If there is a CurrentPrice and a BidPrice, then the CurrentPrice will be taken to calculate the bid%
@@ -280,8 +281,8 @@ namespace TPG_App.Controllers
                 db.Entry(tapFromDb).State = EntityState.Modified;
                 try
                 {
-                    //await db.SaveChangesAsync();
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
+                   
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -322,7 +323,8 @@ namespace TPG_App.Controllers
                         AssetID = a.AssetID,
                         CurrentBalance = a.CurrentBalance,
                         ForebearanceBalance = a.ForebearanceBalance,
-                        SellerAssetID = a.SellerAssetID,
+                        Seller_CounterPartyID = a.Seller_CounterPartyID,
+                        SellerAssetID = a.SellerAssetId,
                         BidPercentage = 0,
                         CurrentPrice = 0,
                         OriginalDebt = a.CurrentBalance + a.ForebearanceBalance,

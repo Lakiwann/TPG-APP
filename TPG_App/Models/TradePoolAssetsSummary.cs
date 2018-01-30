@@ -20,10 +20,11 @@ namespace TPG_App.Models
 
     public class AssetSummary
     {
-        private bool inStatus = true;
         public int TradeID { get; set; }
         public long AssetID { get; set; }
-        public string InOutStatus { get; set; }
+
+        public string SellerAssetId { get; set; }
+        public string Status { get; set; }
 
         public int NumberOfIssues { get; set; }
 
@@ -35,11 +36,8 @@ namespace TPG_App.Models
         public decimal OriginalPrice { get; set; }
         
         public decimal CurrentPrice { get; set; }
+
+        public string Zip { get; set; }
         public decimal CloseTime { get; set; }
-        public bool InStatus {
-            get { return inStatus; }
-            set { inStatus = value; }
-        }
-        
     }
 }

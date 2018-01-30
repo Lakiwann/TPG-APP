@@ -20,14 +20,20 @@
             columnDefs: [
                 {
                     field: 'assetID'
-                    , name: 'Asset ID'
-                    , cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="tradeAsset({assetId:{{COL_FIELD}}})">{{COL_FIELD}}</a>'
+                    , name: ' '
+                    , cellTemplate: '<a ui-sref="tradeAsset({assetId:{{COL_FIELD}}})"><span class="glyphicon glyphicon-option-horizontal"></span></a>'
                     , enableHiding: false
                     , enableFiltering: false
+                    , enableSorting: false
+                    , width: 20
                 },
                 {
-                    field: 'inOutStatus'
-                    , name: 'Status'
+                    field: 'sellerAssetId'
+                    , enableHiding: false
+                    , enableFiltering: true
+                },
+                {
+                    field: 'status'
                     , enableHiding: false
                     , enableFiltering: true
                 },
@@ -74,7 +80,7 @@
                 },
                 {
                     field: 'zip'
-                    , name: 'Prop. Zip'
+                    //, name: 'Prop. Zip'
                     , enableHiding: false
                     , enableFiltering: false
                 }

@@ -166,7 +166,7 @@ namespace TPG_App.Common
                         {
                             var sellerAssetId = currentRow[colDef.ColumnName];
 
-                            List<TradeAsset> assets = await db.TradeAssets.Where(a => (a.TradeID == this.tape.TradeID) && (a.SellerAssetID == sellerAssetId)).ToListAsync();//await db.TradeAssets.Where(a => (a.TradeID == this.tape.TradeID) && (a.SellerAssetID == sellerAssetId)).
+                            List<TradeAsset> assets = await db.TradeAssets.Where(a => (a.TradeID == this.tape.TradeID) && (a.SellerAssetId == sellerAssetId)).ToListAsync();//await db.TradeAssets.Where(a => (a.TradeID == this.tape.TradeID) && (a.SellerAssetID == sellerAssetId)).
                             if (assets.Count() == 0)
                             {
                                 err.columnErrors.Add(new KeyValuePair<string, string>(colDef.ColumnName, "The seller loan ID " + sellerAssetId + " is not found in the current trade assets collection"));
@@ -227,7 +227,7 @@ namespace TPG_App.Common
                         excelFile.AddMapping<TradeAsset>(x => x.PaidToDate, columnDefs.Where(d => d.PalFieldName == "PaidToDate").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.PayString, columnDefs.Where(d => d.PalFieldName == "PayString").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.ProdType, columnDefs.Where(d => d.PalFieldName == "ProdType").First().ColumnName);
-                        excelFile.AddMapping<TradeAsset>(x => x.SellerAssetID, columnDefs.Where(d => d.PalFieldName == "SellerAssetID").First().ColumnName);
+                        excelFile.AddMapping<TradeAsset>(x => x.SellerAssetId, columnDefs.Where(d => d.PalFieldName == "SellerAssetID").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.State, columnDefs.Where(d => d.PalFieldName == "State").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.StreetAddress1, columnDefs.Where(d => d.PalFieldName == "StreetAddress1").First().ColumnName);
                         excelFile.AddMapping<TradeAsset>(x => x.Zip, columnDefs.Where(d => d.PalFieldName == "Zip").First().ColumnName);

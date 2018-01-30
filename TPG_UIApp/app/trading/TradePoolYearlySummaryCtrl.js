@@ -9,6 +9,7 @@
         vm.yearlySummaryGridOption = {
             //showGridFooter: true,
             showColumnFooter: true,
+            minimumColumnSize: 20,
             columnDefs: [
                 {
                     field: 'year',
